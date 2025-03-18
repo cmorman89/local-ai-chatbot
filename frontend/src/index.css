@@ -1,0 +1,28 @@
+
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+@tailwind utilities;
+
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+
+.font-serif {
+  font-family: "Source Serif 4", serif;
+}
+.animate {
+  @apply ease-in-out transition-all;
+}
+
+.animate-grow {
+  @apply hover:scale-105 duration-300;
+}
+
+.animate-menu {
+  @apply hover:w-72 hover:text-purple-400 duration-600;
+}
+
+.animate-menu-icon {
+  @apply hover:scale-150 hover:text-purple-400 duration-600;
+}
