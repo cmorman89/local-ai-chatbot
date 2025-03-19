@@ -89,5 +89,5 @@ li.markdown {
 }
 
 ol.markdown {
-  @apply list-decimal list-inside mx-4;
+  @apply list-disc list-inside mx-4;
 }

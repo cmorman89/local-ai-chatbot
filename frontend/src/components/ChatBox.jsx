@@ -8,18 +8,19 @@ const ChatBox = () => {
   const url = "http://127.0.0.1:1234";
   const { messages, sendMessage, _ } = useStreamingChat(url);
   const [displayedMessages, setDisplayedMessages] = useState([]);
-  const [title, setTitle] = useState("Response");
   const [history, setHistory] = useState([]);
   const [formData, setFormData] = useState({
     userPrompt: "",
     systemPrompt: "",
   });
 
+  // Update the form data on change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle form submission
   const handleSubmit = () => {
     if (formData.userPrompt.trim() === "") return;
     console.log("Submitting form data:", formData);
@@ -28,15 +29,16 @@ const ChatBox = () => {
     setFormData({ ...formData, userPrompt: "" });
   };
 
-  
   // Check for markdown in the response
   useEffect(() => {
     setDisplayedMessages([]);
-    // Get only the new chunk
+    
+    // Split the messages into lines
     const toLines = (chunks) => {
       return chunks.join("").split("\n");
     };
 
+    // Parse the line-level markdown tags
     const parseMarkdown = (text) => {
       const regex = {
         h1: /^#{1} (.*)/,
@@ -45,8 +47,9 @@ const ChatBox = () => {
         h4: /^#{4} (.*)/,
         h5: /^#{5} (.*)/,
         h6: /^#{6} (.*)/,
-        li: /^ *[*+-] {2}(.*)/,
-        ol: /^ *[0-9]+\. (.*)/,
+        li: /^ *[*+-] {2}(.*)|^ *[0-9]+\. (.*)/,
+        quote: /^> (.*)/,
+        code: /^```(.*)/,
         p: /^(.*)/,
       };
 
@@ -71,6 +74,40 @@ const ChatBox = () => {
     parseMarkdown(toLines(messages));
   }, [messages]);
 
+  const wrapMatches = (text, regex, Wrapper, className) => {
+    if (regex.test(text)) {
+      return text.split(regex).map((part, index) =>
+        index % 2 === 1 ? (
+          <Wrapper key={index} className={className}>
+            {processInlineMarkdown(part)}
+          </Wrapper>
+        ) : (
+          processInlineMarkdown(part)
+        )
+      );
+    }
+    return text;
+  };
+
+  const processInlineMarkdown = (text) => {
+    // Match inline code `code`
+    text = wrapMatches(
+      text,
+      /`(.*?)`/g,
+      "code",
+      "bg-gray-200 p-1 rounded font-mono"
+    );
+    // Match ***bold italic***
+    text = wrapMatches(text, /\*\*\*(.*?)\*\*\*/g, "span", "font-bold italic");
+    // Match **bold**
+    text = wrapMatches(text, /\*\*(.*?)\*\*/g, "span", "font-bold");
+    // Match *italic*
+    text = wrapMatches(text, /[*_](.*?)[*_]/g, "span", "italic");
+    // Match *code*
+    text = wrapMatches(text, /~~(.*?)~~/g, "span", "line-through");
+    return text;
+  };
+
   return (
     <div
       className="
@@ -82,27 +119,43 @@ const ChatBox = () => {
       {history
         ? history.map((message, i) => (
             <ChatBubble key={i} isUser={true}>
-              <span className="animate-fade-up">{message}</span>
+              <span className="animate-fade-up ">{message}</span>
             </ChatBubble>
           ))
         : null}
-      {displayedMessages.length > 1 ? (
-        <ChatBubble title={title}>
-          <div>
-            {displayedMessages.map((message, i) =>
-              (message.tag === "h1" || message.tag === "h2") &&
-              title === "Response" ? (
-                (console.log(message.tag), setTitle(message.content))
-              ) : message.tag === "br" ? (
-                  <div key={i} className="mb-2"></div>
-              ) : (
-                message.content !== title &&
-                    React.createElement(message.tag, { key: i, className: 'markdown' }, `${message.tag}: ${message.content}`)
-              )
-            )}
-          </div>
-        </ChatBubble>
-      ) : null}
+      {displayedMessages.length > 1
+        ? displayedMessages.reduce((acc, message, i) => {
+            if (message.tag === "h1" || message.tag === "h2") {
+              // Start a new ChatBubble
+              acc.push(
+                <ChatBubble key={i} title={message.content}>
+                  {/* Future messages will be children */}
+                </ChatBubble>
+              );
+            } else {
+              // Process markdown in message content
+              const formattedContent = processInlineMarkdown(message.content);
+
+              // Add to the latest ChatBubble
+              const lastBubble = acc[acc.length - 1];
+              if (lastBubble) {
+                acc[acc.length - 1] = React.cloneElement(lastBubble, {}, [
+                  ...(lastBubble.props.children || []),
+                  message.tag === "br" ? (
+                    <div key={i} className="mb-2" />
+                  ) : (
+                    React.createElement(
+                      message.tag,
+                      { key: i, className: "markdown animate animate-fade-up-fast" },
+                      formattedContent
+                    )
+                  ),
+                ]);
+              }
+            }
+            return acc;
+          }, [])
+        : null}
 
       <ChatInput
         name="userPrompt"
