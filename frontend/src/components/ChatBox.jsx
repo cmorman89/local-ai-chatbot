@@ -1,6 +1,19 @@
 import PropTypes from "prop-types";
+import ChatInput from "./ChatInput";
+import { useState } from "react";
+
 
 const ChatBox = ({ children }) => {
+  const [formData, setFormData] = useState({
+    userPrompt: "",
+    systemPrompt: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  }
+
   return (
     <div
       className="
@@ -10,6 +23,11 @@ const ChatBox = ({ children }) => {
         "
     >
       {children}
+      <ChatInput
+        name="userPrompt"
+        value={formData.userPrompt}  
+        onChange={handleChange}
+      />
     </div>
   );
 };
