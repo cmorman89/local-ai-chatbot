@@ -24,6 +24,10 @@ const ChatInput = ({ name = "userPrompt", onChange, onSubmit, value }) => {
     >
       <input
         type="text"
+        autoFocus
+        autoComplete="off"
+        autoCorrect="on"
+        aria-autocomplete="off"
         name={name}
         placeholder="What would you like to ask?"
         className="

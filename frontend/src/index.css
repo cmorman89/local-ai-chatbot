@@ -1,8 +1,6 @@
-
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap");
 @tailwind utilities;
-
 
 .font-inter {
   font-family: "Inter", sans-serif;
@@ -27,14 +25,12 @@
   @apply hover:scale-150 hover:text-purple-400 duration-600;
 }
 
-
-
 @keyframes fadeIn {
   0% {
-    opacity: 0;  
+    opacity: 0;
   }
   100% {
-    opacity: 1;  
+    opacity: 1;
   }
 }
 @keyframes fadeUp {
@@ -44,7 +40,7 @@
   }
   100% {
     opacity: 1;
-    transform: translateY(0); 
+    transform: translateY(0);
   }
 }
 
@@ -58,4 +54,40 @@
 
 .animate-fade-up-fast {
   animation: fadeUp 0.3s ease-out; /* Apply the fadeUp animation with a duration of 2 seconds */
+}
+
+h1.markdown {
+  @apply text-violet-800 font-semibold text-lg;
+}
+
+h2.markdown {
+  @apply text-violet-800/80 font-semibold text-lg;
+}
+
+h3.markdown {
+  @apply text-violet-800/70 font-medium text-lg;
+}
+
+h4.markdown {
+  @apply text-violet-900/70 font-medium text-lg;
+}
+
+h5.markdown {
+  @apply text-violet-900/70 font-medium;
+}
+
+h6.markdown {
+  @apply text-violet-900/60 font-medium;
+}
+
+p.markdown {
+  @apply mx-4;
+}
+
+li.markdown {
+  @apply list-disc list-inside mx-4;
+}
+
+ol.markdown {
+  @apply list-decimal list-inside mx-4;
 }
