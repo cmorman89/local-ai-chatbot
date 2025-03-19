@@ -1,8 +1,9 @@
 import { faPaperPlane, faSliders } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExpandingButton from "./ExpandingButton";
+import PropTypes from "prop-types";
 
-const ChatInput = () => {
+const ChatInput = ({ name = "userPrompt", onChange, onSubmit, value }) => {
   return (
     <div
       className="
@@ -15,7 +16,7 @@ const ChatInput = () => {
             rounded-full 
             shadow-2xl shadow-black/30
             hover:shadow-violet-950/50
-            w-full max-w-[calc(100vw-18rem)] ml-36
+            w-full max-w-[calc(100vw-18rem)] ml-12
             p-4 gap-4
             animate duration-800 
             translate-y-0 hover:-translate-y-1.5
@@ -23,16 +24,24 @@ const ChatInput = () => {
     >
       <input
         type="text"
+        name={name}
         placeholder="What would you like to ask?"
         className="
               flex
               focus:outline-none 
               w-full mx-4
-              font-medium text-lg text-violet-950/80
-              placeholder:text-violet-950/30 placeholder:italic
+              text-violet-950/80 font-inter
+              placeholder:text-violet-950/50 placeholder:italic
               "
+        value={value}
+        onChange={(e) => onChange(e)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            onSubmit();
+          }
+        }}
       />
-      <ExpandingButton text="Send Message">
+      <ExpandingButton text="Send Message" onClick={onSubmit}>
         <FontAwesomeIcon icon={faPaperPlane} className="text-violet-50" />
       </ExpandingButton>
       <ExpandingButton text="Edit System Prompt">
@@ -40,5 +49,15 @@ const ChatInput = () => {
       </ExpandingButton>
     </div>
   );
+};
+
+ChatInput.propTypes = {
+  name: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
+ChatInput.defaultProps = {
+  name: "userPrompt",
 };
 export default ChatInput;

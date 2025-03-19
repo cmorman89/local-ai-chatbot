@@ -9,9 +9,7 @@ const MainContentWindow = ({ children }) => {
         fixed bottom-0 left-0
         bg-gradient-to-b from-25% to-75% from-transparent to-white
         "
-          >
-              
-      </div>
+      ></div>
       {children}
     </div>
   );

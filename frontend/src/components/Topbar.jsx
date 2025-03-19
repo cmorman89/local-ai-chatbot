@@ -11,8 +11,8 @@ const Topbar = () => {
         px-8 py-4
         shadow-lg shadow-black/20
         "
-      >
-          <Logo />
+    >
+      <Logo />
     </div>
   );
 };
