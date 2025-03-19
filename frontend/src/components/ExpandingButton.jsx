@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const ExpandingButton = ({ text, children }) => {
+const ExpandingButton = ({ text, children, onClick }) => {
   return (
     <div
       title={text}
@@ -18,7 +18,10 @@ const ExpandingButton = ({ text, children }) => {
       overflow-hidden"
     >
       {children}
-      <div className="flex text-nowrap mx-5 font-medium text-white text-sm">
+      <div
+        className="flex text-nowrap mx-5 font-medium text-white text-sm"
+        onClick={() => onClick()}
+      >
         {text}
       </div>
     </div>
@@ -28,6 +31,7 @@ const ExpandingButton = ({ text, children }) => {
 ExpandingButton.propTypes = {
   text: PropTypes.string.isRequired,
   children: PropTypes.node,
+  onClick: PropTypes.func,
 };
 
 export default ExpandingButton;

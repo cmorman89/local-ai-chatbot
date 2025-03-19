@@ -16,7 +16,7 @@ const ChatInput = ({ name = "userPrompt", onChange, onSubmit, value }) => {
             rounded-full 
             shadow-2xl shadow-black/30
             hover:shadow-violet-950/50
-            w-full max-w-[calc(100vw-18rem)] ml-36
+            w-full max-w-[calc(100vw-18rem)] ml-12
             p-4 gap-4
             animate duration-800 
             translate-y-0 hover:-translate-y-1.5
