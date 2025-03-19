@@ -14,8 +14,8 @@ const useFetchData = (url) => {
     // Reset state before fetching new data
     setData([]);
     setLoading(true);
-      setError(null);
-      // Fetch data from the API
+    setError(null);
+    // Fetch data from the API
     const fetchData = async () => {
       try {
         const response = await axios.get(url);

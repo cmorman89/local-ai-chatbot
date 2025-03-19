@@ -5,7 +5,7 @@ const useStreamingChat = (url) => {
   const [loading, setLoading] = useState(false);
 
   const sendMessage = async (input) => {
-    setMessages([]); 
+    setMessages([]);
     setLoading(true);
 
     const response = await fetch(`${url}/v1/chat/completions`, {

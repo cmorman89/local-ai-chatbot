@@ -1,12 +1,8 @@
-import ChatBubble from "./components/ChatBubble";
 import Sidebar from "./components/Sidebar";
-
 import ChatBox from "./components/ChatBox";
 import Topbar from "./components/Topbar";
-import ChatInput from "./components/ChatInput";
 import ChatHistoryFlyout from "./components/ChatHistoryFlyout";
 import MainContentWindow from "./components/MainContentWindow";
-import ChatComponent from "./components/ChatComponent";
 
 function App() {
   return (
@@ -22,9 +18,7 @@ function App() {
       <div className="flex flex-row w-full h-full">
         <Sidebar />
         <MainContentWindow>
-          <ChatBox>
-            <ChatComponent url="http://192.168.0.162:1234"/>
-          </ChatBox>
+          <ChatBox />
         </MainContentWindow>
         <ChatHistoryFlyout />
       </div>

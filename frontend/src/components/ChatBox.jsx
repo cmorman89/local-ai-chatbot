@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import ChatInput from "./ChatInput";
 import ChatBubble from "./ChatBubble";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useStreamingChat from "../hooks/useStreamingChat";
 
-const ChatBox = ({ children }) => {
+const ChatBox = () => {
   const url = "http://127.0.0.1:1234";
-  const { messages, sendMessage, loading } = useStreamingChat(url);
+  const { messages, sendMessage, _ } = useStreamingChat(url);
   const [history, setHistory] = useState([]);
   const [formData, setFormData] = useState({
     userPrompt: "",
@@ -26,9 +26,6 @@ const ChatBox = ({ children }) => {
     setFormData({ ...formData, userPrompt: "" });
   };
 
-  useEffect(() => {
-    console.log("Messages updated:", messages);
-  }, []);
   return (
     <div
       className="

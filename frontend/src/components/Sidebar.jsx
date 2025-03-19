@@ -1,4 +1,10 @@
-import { faGear, faHistory, faHouse, faMessage, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGear,
+  faHistory,
+  faHouse,
+  faMessage,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Sidebar = () => {

@@ -10,9 +10,7 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
         animate animate-grow animate-fade-up
         `}
     >
-      {isUser && (
-        <ChatUserIcon />
-      )}
+      {isUser && <ChatUserIcon />}
 
       <div
         className={`
@@ -48,7 +46,8 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
             className={`
             ${isUser ? "text-violet-100 font-medium" : "text-gray-700"}
             ${title ? "mx-2" : "mx-0"}
-            `}>
+            `}
+          >
             {children}
           </span>
         </div>
