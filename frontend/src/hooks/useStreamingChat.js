@@ -16,7 +16,8 @@ const useStreamingChat = (url) => {
         messages: [
           {
             role: "system",
-            content: "Answer in markdown format with headings. The first line must be an h1 heading. The second line must not be a heading.",
+            content:
+              "Answer in markdown format with headings. The first line must be an h1 heading. The second line must not be a heading. Make heavy use of markdown formatting.",
           },
           { role: "user", content: input },
         ],
