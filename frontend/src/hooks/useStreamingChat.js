@@ -16,7 +16,8 @@ const useStreamingChat = (url) => {
         messages: [
           {
             role: "system",
-            content: "Answer in markdown format with headings.",
+            content:
+              "Answer in markdown format with headings. The first line must be an h1 heading. The second line must not be a heading. Make heavy use of markdown formatting.",
           },
           { role: "user", content: input },
         ],
@@ -28,7 +29,6 @@ const useStreamingChat = (url) => {
 
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
-
     while (true) {
       const { value, done } = await reader.read();
       if (done) break;
@@ -39,14 +39,18 @@ const useStreamingChat = (url) => {
 
       for (let line of lines) {
         try {
-          const chunkData = JSON.parse(line.substring(5).trim());
+          const chunkData = JSON.parse(line.substring(5));
           const content = chunkData.choices?.[0]?.delta?.content || "";
           if (content) {
             // Add new message chunk
-            setMessages((prev) => [...prev, { content, id: Date.now() }]);
+            setMessages((prev) => [...prev, content]);
           }
         } catch (error) {
-          console.error("Error parsing JSON", error);
+          if ("[DONE]" in error) {
+            console.log("Stream finished");
+          } else {
+            console.error("Error parsing JSON", error);
+          }
         }
       }
     }

@@ -32,7 +32,7 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
         py-8 px-10
         `}
       >
-        <div className="flex flex-col flex-grow justify-center">
+        <div className="flex flex-col flex-grow justify-center overflow-hidden">
           {title && (
             <h3
               className={`text-xl ${
@@ -46,6 +46,8 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
             className={`
             ${isUser ? "text-violet-100 font-medium" : "text-gray-700"}
             ${title ? "mx-2" : "mx-0"}
+            animate animate-fade-up-fast
+            markdown
             `}
           >
             {children}
@@ -58,7 +60,6 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
 
 ChatBubble.propTypes = {
   isUser: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
   title: PropTypes.string,
 };
 
