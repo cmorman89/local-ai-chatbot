@@ -32,7 +32,7 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
         py-8 px-10
         `}
       >
-        <div className="flex flex-col flex-grow justify-center">
+        <div className="flex flex-col flex-grow justify-center overflow-hidden">
           {title && (
             <h3
               className={`text-xl ${

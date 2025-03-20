@@ -101,7 +101,7 @@
 }
 
 .markdown li {
-  @apply list-inside mx-4 transition-all;
+  @apply list-outside mx-4 transition-all;
   animation: fadeUp 0.3s ease-in-out;
 }
 
@@ -127,5 +127,10 @@
 
 .markdown hr {
   @apply border-t border-violet-900/20 my-4 transition-all;
+  animation: fadeUp 0.3s ease-in-out;
+}
+
+li p {
+  @apply -translate-x-4 mb-2 transition-all;
   animation: fadeUp 0.3s ease-in-out;
 }
