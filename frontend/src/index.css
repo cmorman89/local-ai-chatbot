@@ -18,11 +18,11 @@
 }
 
 .animate-menu {
-  @apply hover:w-72 hover:text-purple-400 duration-600;
+  @apply hover:w-65 hover:text-gray-200 duration-600;
 }
 
 .animate-menu-icon {
-  @apply hover:scale-150 hover:text-purple-400 duration-600;
+  @apply hover:scale-115 hover:text-purple-400 duration-300;
 }
 
 @keyframes fadeIn {
@@ -116,7 +116,7 @@
 }
 
 .markdown pre code {
-  @apply block bg-violet-900/10 text-violet-900/80 font-mono text-sm p-6 m-2 rounded-md mx-8 transition-all;
+  @apply block bg-violet-900/10 text-violet-900/80 font-mono text-sm p-6 m-2 rounded-md mx-8 transition-all overflow-x-scroll;
   animation: fadeUp 0.3s ease-in-out;
 }
 
