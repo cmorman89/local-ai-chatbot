@@ -18,4 +18,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Chat window with user and AI-styled chat bubbles.
 - Chat input box with animated send and edit system prompt buttons.
 - Connect to local LLM server and get a single response with animated, streaming text.
+- Response renders markdown into HTML and React components for a dynamic chat experience.
 - History flyout menu from side on hover (UI only).
