@@ -3,6 +3,8 @@ import ChatBox from "./components/ChatBox";
 import Topbar from "./components/Topbar";
 import ChatHistoryFlyout from "./components/ChatHistoryFlyout";
 import MainContentWindow from "./components/MainContentWindow";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -14,14 +16,19 @@ function App() {
       min-w-screen w-full
       "
     >
-      <Topbar />
-      <div className="flex flex-row w-full h-full">
-        <Sidebar />
-        <MainContentWindow>
-          <ChatBox />
-        </MainContentWindow>
-        <ChatHistoryFlyout />
-      </div>
+      <Router>
+        <Topbar />
+        <div className="flex flex-row w-full h-full">
+          <Sidebar />
+          <MainContentWindow>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/chat" element={<ChatBox />} />
+            </Routes>
+          </MainContentWindow>
+          <ChatHistoryFlyout />
+        </div>
+      </Router>
     </div>
   );
 }

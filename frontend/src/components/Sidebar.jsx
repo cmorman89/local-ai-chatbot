@@ -1,5 +1,6 @@
 import {
   faGear,
+  faHexagonNodes,
   faHistory,
   faHouse,
   faMessage,
@@ -25,13 +26,22 @@ const Sidebar = () => {
                 "
     >
       <div className="flex flex-col gap-12 items-start justify-center text-center">
-        <SidebarItem icon={faHouse}>Home</SidebarItem>
-        <SidebarItem icon={faMessage}>Chat</SidebarItem>
-        <SidebarItem icon={faHistory}>History</SidebarItem>
+        <SidebarItem icon={faHouse} url="/">
+          Home
+        </SidebarItem>
+        <SidebarItem icon={faMessage} url="/chat">
+          Chat
+        </SidebarItem>
+        <SidebarItem icon={faHistory} url="/history">
+          History
+        </SidebarItem>
+        <SidebarItem icon={faHexagonNodes} url="/models">
+          Models
+        </SidebarItem>
       </div>
-      <div className="flex flex-col gap-12 items-start justify-center text-center">
-        <SidebarItem icon={faUser}>Profile</SidebarItem>
-        <SidebarItem icon={faGear}>Settings</SidebarItem>
+      <div className="flex flex-col gap-12 items-start justify-center text-center ">
+        <SidebarItem icon={faUser}>Personalize</SidebarItem>
+        <SidebarItem icon={faGear}>Server</SidebarItem>
       </div>
     </div>
   );
