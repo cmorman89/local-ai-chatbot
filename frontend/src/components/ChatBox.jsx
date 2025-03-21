@@ -81,6 +81,8 @@ const ChatBox = ({ model }) => {
         value={formData.userPrompt}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        loading={loading}
+        stopGenerating={stopChatGeneration}
       />
     </div>
   );

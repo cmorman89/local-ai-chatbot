@@ -1,9 +1,20 @@
-import { faPaperPlane, faSliders } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPaperPlane,
+  faSliders,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExpandingButton from "./ExpandingButton";
 import PropTypes from "prop-types";
 
-const ChatInput = ({ name = "userPrompt", onChange, onSubmit, value }) => {
+const ChatInput = ({
+  name = "userPrompt",
+  onChange,
+  onSubmit,
+  value,
+  loading,
+  stopGenerating,
+}) => {
   return (
     <div
       className="
@@ -24,19 +35,23 @@ const ChatInput = ({ name = "userPrompt", onChange, onSubmit, value }) => {
     >
       <input
         type="text"
+        disabled={loading}
         autoFocus
         autoComplete="off"
         autoCorrect="on"
         aria-autocomplete="off"
         name={name}
-        placeholder="What would you like to ask?"
-        className="
+        placeholder={
+          loading ? "Generating response..." : "What would you like to ask?"
+        }
+        className={`
               flex
               focus:outline-none 
               w-full mx-4
               text-violet-950/80 font-inter
               placeholder:text-violet-950/50 placeholder:italic
-              "
+              ${loading ? "cursor-not-allowed" : "cursor-text"}
+              `}
         value={value}
         onChange={(e) => onChange(e)}
         onKeyDown={(e) => {
@@ -45,10 +60,23 @@ const ChatInput = ({ name = "userPrompt", onChange, onSubmit, value }) => {
           }
         }}
       />
-      <ExpandingButton text="Send Message" onClick={onSubmit}>
-        <FontAwesomeIcon icon={faPaperPlane} className="text-violet-50" />
-      </ExpandingButton>
-      <ExpandingButton text="Edit System Prompt">
+      {loading ? (
+        <ExpandingButton
+          text="Stop Generating"
+          onClick={stopGenerating}
+          variant="cancel"
+        >
+          <FontAwesomeIcon icon={faXmark} className="text-violet-50 ml-0.5" />
+        </ExpandingButton>
+      ) : (
+        <ExpandingButton text="Send Message" onClick={onSubmit}>
+          <FontAwesomeIcon icon={faPaperPlane} className="text-violet-50" />
+        </ExpandingButton>
+      )}
+      <ExpandingButton
+        text="Edit System Prompt"
+        variant={loading ? "disabled" : "default"}
+      >
         <FontAwesomeIcon icon={faSliders} className="text-violet-50" />
       </ExpandingButton>
     </div>

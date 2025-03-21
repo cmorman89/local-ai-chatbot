@@ -75,5 +75,4 @@ const useStreamingChat = (url) => {
   return { messages, sendMessage, loading, setModel, stopChatGeneration };
 };
 
-
 export default useStreamingChat;
