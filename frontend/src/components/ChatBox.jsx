@@ -41,8 +41,8 @@ const ChatBox = () => {
   return (
     <div
       className="
-        flex flex-col 
-        w-full p-8 ml-24 mr-24 mb-50
+        flex flex-col items-center
+        w-full p-8 mb-50
         gap-4
         "
     >
