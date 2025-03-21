@@ -5,10 +5,13 @@ import React, { useEffect, useState } from "react";
 import useStreamingChat from "../hooks/useStreamingChat";
 import useMarkdownRenderer from "../hooks/useMarkdownRenderer";
 import ReactMarkdown from "react-markdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const ChatBox = ({ model }) => {
   const url = "http://127.0.0.1:1234";
-  const { messages, sendMessage, _, setModel } = useStreamingChat(url);
+  const { messages, sendMessage, loading, setModel, stopChatGeneration } =
+    useStreamingChat(url);
   const { chatBubbles, renderMarkdown } = useMarkdownRenderer();
   const [history, setHistory] = useState([]);
   const [formData, setFormData] = useState({
@@ -70,6 +73,8 @@ const ChatBox = ({ model }) => {
         value={formData.userPrompt}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        loading={loading}
+        stopGenerating={stopChatGeneration}
       />
     </div>
   );
