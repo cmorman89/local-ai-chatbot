@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const useStreamingChat = (url) => {
+  const [model, setModel] = useState("gemma-3-12b-it");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -12,12 +13,12 @@ const useStreamingChat = (url) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "gemma-3-12b-it",
+        model: model,
         messages: [
           {
             role: "system",
             content:
-              "Answer in markdown format with headings. The first line must be an h1 heading. The second line must not be a heading. Make heavy use of markdown formatting.",
+              "Answer in markdown format with headings. The first line must be an h1 heading. The second line must not be a heading. Make heavy use of markdown formatting. Limit responses to a reasonable length.",
           },
           { role: "user", content: input },
         ],
@@ -57,7 +58,7 @@ const useStreamingChat = (url) => {
     setLoading(false);
   };
 
-  return { messages, sendMessage, loading };
+  return { messages, sendMessage, loading, setModel };
 };
 
 export default useStreamingChat;
