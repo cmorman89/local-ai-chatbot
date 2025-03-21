@@ -1,10 +1,11 @@
 import Logo from "./Logo";
+import ModelIndicator from "./ModelIndicator";
 
-const Topbar = () => {
+const Topbar = ({ model }) => {
   return (
     <div
       className="
-        flex items-center
+        flex items-center justify-between
         sticky top-0 z-50
         bg-violet-700
         w-full h-18
@@ -13,6 +14,7 @@ const Topbar = () => {
         "
     >
       <Logo />
+      <ModelIndicator model={model} />
     </div>
   );
 };
