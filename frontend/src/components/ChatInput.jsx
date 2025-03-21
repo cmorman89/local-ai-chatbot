@@ -6,7 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExpandingButton from "./ExpandingButton";
 import PropTypes from "prop-types";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const ChatInput = ({
   name = "userPrompt",
@@ -28,12 +28,17 @@ const ChatInput = ({
     }
   }, [isHover, isFocused]);
 
+  useEffect(() => {
+    if (loading) {
+      setIsFocused(false);
+    }
+  }, [loading]);
   return (
     <div
       className={`
             flex justify-center
             border border-violet-700/70
-            backdrop-blur-sm
+            backdrop-blur-lg
             fixed bottom-20 z-20
             bg-gradient-to-br from-violet-200/5 to-violet-700/10 from-80%
             bg-white/60
