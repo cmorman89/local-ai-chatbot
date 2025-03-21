@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
-const SidebarItem = ({ icon, children, url }) => {
+const SidebarItem = ({ icon, children, url, onClick = null }) => {
   const navigate = useNavigate();
   return (
     <div
@@ -14,7 +14,7 @@ const SidebarItem = ({ icon, children, url }) => {
                 font-inter
             `}
       role="buttom"
-      onClick={() => navigate(url)}
+      onClick={onClick ? onClick : () => navigate(url)}
     >
       <FontAwesomeIcon
         icon={icon}

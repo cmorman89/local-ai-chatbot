@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarItem from "./SidebarItem";
 
-const Sidebar = () => {
+const Sidebar = ({setModelIsOpen}) => {
   return (
     <div
       className="
@@ -35,7 +35,7 @@ const Sidebar = () => {
         <SidebarItem icon={faHistory} url="/history">
           History
         </SidebarItem>
-        <SidebarItem icon={faHexagonNodes} url="/models">
+        <SidebarItem icon={faHexagonNodes} onClick={() => setModelIsOpen(true)}>
           Models
         </SidebarItem>
       </div>

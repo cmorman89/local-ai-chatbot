@@ -6,16 +6,16 @@ import useStreamingChat from "../hooks/useStreamingChat";
 import useMarkdownRenderer from "../hooks/useMarkdownRenderer";
 import ReactMarkdown from "react-markdown";
 
-const ChatBox = () => {
+const ChatBox = ({ model }) => {
   const url = "http://127.0.0.1:1234";
-  const { messages, sendMessage, _ } = useStreamingChat(url);
+  const { messages, sendMessage, _, setModel } = useStreamingChat(url);
   const { chatBubbles, renderMarkdown } = useMarkdownRenderer();
   const [history, setHistory] = useState([]);
   const [formData, setFormData] = useState({
     userPrompt: "",
     systemPrompt: "",
+    model: model,
   });
-
   // Update the form data on change
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +37,10 @@ const ChatBox = () => {
       renderMarkdown(messages.join("").split("\n"));
     }
   }, [messages]);
+
+  useEffect(() => {
+    setModel(model);
+  }, [model]);
 
   return (
     <div
