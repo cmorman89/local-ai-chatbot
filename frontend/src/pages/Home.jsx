@@ -10,16 +10,16 @@ const Home = () => {
         flex flex-col 
         items-center
         w-full h-full
-        p-8 pt-24
+        p-24 pt-24
         "
     >
       <div
         className="
             flex flex-col items-center
-            w-full
+            w-full max-w-3xl
             text-7xl font-bold font-inter
             animate animate-fade-up
-            bg-gradient-to-br from-transparent to-fuchsia-300/20
+            bg-gradient-to-br from-gray-800 to-violet-950
             bg-gray-200
             p-8 py-24 rounded-4xl
             shadow-lg shadow-black/10
@@ -29,7 +29,7 @@ const Home = () => {
         <div
           className="
             w-3/4
-            bg-gradient-to-br from-violet-800 to-fuchsia-600
+            bg-gradient-to-tl from-violet-600 to-fuchsia-500 
             bg-clip-text text-transparent
             animate animate-fade-up
               "
@@ -39,8 +39,8 @@ const Home = () => {
         <div
           className="
             flex items-center justify-center
-            font-normal  text-xl text-gray-200
-            bg-gradient-to-br from-violet-700 to-violet-900
+            font-normal  text-xl
+            bg-violet-300
             w-fit
             px-8 py-4 mt-24
             rounded-full
