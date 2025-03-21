@@ -53,14 +53,6 @@ const ChatBox = ({ model }) => {
         gap-4
         "
     >
-      {loading && (
-        <div role="button" onClick={() => stopChatGeneration()}>
-          <FontAwesomeIcon
-            icon={faCircleXmark}
-            className="text-4xl text-red-500/20 hover:text-red-500 shadow-lg hover:shadow-xl animate rounded-full cursor-pointer"
-          />
-        </div>
-      )}
       {history
         ? history.map((message, i) => (
             <ChatBubble key={i} isUser={true}>

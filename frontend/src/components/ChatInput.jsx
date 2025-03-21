@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExpandingButton from "./ExpandingButton";
 import PropTypes from "prop-types";
+import { use, useEffect, useState } from "react";
 
 const ChatInput = ({
   name = "userPrompt",
@@ -15,9 +16,21 @@ const ChatInput = ({
   loading,
   stopGenerating,
 }) => {
+  const [isHover, setIsHover] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    if (isHover || isFocused) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [isHover, isFocused]);
+
   return (
     <div
-      className="
+      className={`
             flex justify-center
             border border-violet-700/70
             backdrop-blur-sm
@@ -31,7 +44,10 @@ const ChatInput = ({
             p-4 gap-4 
             animate duration-800 
             translate-y-0 hover:-translate-y-1.5
-            "
+            ${isActive ? "opacity-100" : "opacity-60"}
+            `}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
     >
       <input
         type="text"
@@ -59,6 +75,8 @@ const ChatInput = ({
             onSubmit();
           }
         }}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
       {loading ? (
         <ExpandingButton
