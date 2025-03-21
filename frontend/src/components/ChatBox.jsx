@@ -5,10 +5,13 @@ import React, { useEffect, useState } from "react";
 import useStreamingChat from "../hooks/useStreamingChat";
 import useMarkdownRenderer from "../hooks/useMarkdownRenderer";
 import ReactMarkdown from "react-markdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const ChatBox = ({ model }) => {
   const url = "http://127.0.0.1:1234";
-  const { messages, sendMessage, _, setModel } = useStreamingChat(url);
+  const { messages, sendMessage, loading, setModel, stopChatGeneration } =
+    useStreamingChat(url);
   const { chatBubbles, renderMarkdown } = useMarkdownRenderer();
   const [history, setHistory] = useState([]);
   const [formData, setFormData] = useState({
@@ -50,6 +53,14 @@ const ChatBox = ({ model }) => {
         gap-4
         "
     >
+      {loading && (
+        <div role="button" onClick={() => stopChatGeneration()}>
+          <FontAwesomeIcon
+            icon={faCircleXmark}
+            className="text-4xl text-red-500/20 hover:text-red-500 shadow-lg hover:shadow-xl animate rounded-full cursor-pointer"
+          />
+        </div>
+      )}
       {history
         ? history.map((message, i) => (
             <ChatBubble key={i} isUser={true}>
