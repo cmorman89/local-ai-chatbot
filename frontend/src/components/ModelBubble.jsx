@@ -1,4 +1,4 @@
-const ModelBubble = ({ children, onClick, title, active }) => {
+const ModelBubble = ({ children, onClick, title }) => {
   return (
     <div
       className={`
@@ -16,7 +16,9 @@ const ModelBubble = ({ children, onClick, title, active }) => {
       role="button"
       onClick={onClick}
     >
-      {title && <h3 className={`text-2xl font-inter font-medium mb-2`}>{title}</h3>}
+      {title && (
+        <h3 className={`text-2xl font-inter font-medium mb-2`}>{title}</h3>
+      )}
       {children}
     </div>
   );

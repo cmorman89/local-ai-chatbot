@@ -8,7 +8,6 @@ import Home from "./pages/Home";
 import { useState } from "react";
 
 function App() {
-  
   const [modelIsOpen, setModelIsOpen] = useState(false);
   const [model, setModel] = useState("gemma-3-12b-it");
 
@@ -22,16 +21,20 @@ function App() {
       "
     >
       <Router>
-        <Topbar />
+        <Topbar model={model} setModelIsOpen={setModelIsOpen} />
         <div className="flex flex-row w-full h-full">
           <Sidebar setModelIsOpen={setModelIsOpen} />
           <MainContentWindow>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/chat" element={<ChatBox model={model}/>} />
+              <Route path="/chat" element={<ChatBox model={model} />} />
             </Routes>
           </MainContentWindow>
-          <ModelSelectionMenu isOpen={modelIsOpen} setIsOpen={setModelIsOpen} setModel={setModel} />
+          <ModelSelectionMenu
+            isOpen={modelIsOpen}
+            setIsOpen={setModelIsOpen}
+            setModel={setModel}
+          />
         </div>
       </Router>
     </div>
