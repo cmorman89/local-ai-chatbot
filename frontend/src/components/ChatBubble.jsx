@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import ChatUserIcon from "./ChatUserIcon";
+import ReactMarkdown from "react-markdown";
 
 const ChatBubble = ({ isUser = false, children, title = null }) => {
   return (
@@ -50,7 +51,8 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
             markdown
             `}
           >
-            {children}
+            {isUser && typeof children === 'string' ?
+              children : <ReactMarkdown>{children}</ReactMarkdown>}
           </span>
         </div>
       </div>
@@ -59,6 +61,7 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
 };
 
 ChatBubble.propTypes = {
+  children: PropTypes.node.isRequired,
   isUser: PropTypes.bool.isRequired,
   title: PropTypes.string,
 };

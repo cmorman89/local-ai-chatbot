@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 const useStreamingChat = (url) => {
   const [model, setModel] = useState("gemma-3-12b-it");
-  const [messages, setMessages] = useState([]);
+  const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
   const abortControllerRef = useRef(null);
 
@@ -12,10 +12,10 @@ const useStreamingChat = (url) => {
     }
   };
 
-  const sendMessage = async (input) => {
+  const sendMessage = async (messages) => {
     abortControllerRef.current = new AbortController();
     setLoading(true);
-    setMessages([]);
+    setResponses([]);
 
     try {
       const response = await fetch(`${url}/v1/chat/completions`, {
@@ -23,14 +23,7 @@ const useStreamingChat = (url) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: model,
-          messages: [
-            {
-              role: "system",
-              content:
-                "Answer in markdown format with headings. The first line must be an h1 heading. The second line must not be a heading. Make heavy use of markdown formatting. Limit responses to a reasonable length.",
-            },
-            { role: "user", content: input },
-          ],
+          messages: messages,
           temperature: 0.7,
           max_tokens: -1,
           stream: true,
@@ -54,7 +47,7 @@ const useStreamingChat = (url) => {
             const chunkData = JSON.parse(line.substring(5));
             const content = chunkData.choices?.[0]?.delta?.content || "";
             if (content) {
-              setMessages((prev) => [...prev, content]);
+              setResponses((prev) => [...prev, content]);
             }
           } catch (error) {
             console.error("Error parsing JSON", error);
@@ -72,7 +65,7 @@ const useStreamingChat = (url) => {
     }
   };
 
-  return { messages, sendMessage, loading, setModel, stopChatGeneration };
+  return { responses, sendMessage, loading, setModel, stopChatGeneration };
 };
 
 export default useStreamingChat;

@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Animated menu sidebar with FontAwesome icons for home, chat, history, profile, and settings (UI only).
 - Hooks for fetching data from API and fetching streaming chat response from API.
 - Chat window with user and AI-styled chat bubbles.
-- Connect to local LLM server and get a single response with animated, streaming text.
+- Connect to local LLM server and to get a streaming response and single conversation history.
 - Response renders markdown into HTML and React components for a dynamic chat experience.
 - Chat input box with animated send and edit system prompt buttons, responsive opacity.
 - Chat input buttons dynamically change based on the current state of the chat.

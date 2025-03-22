@@ -1,11 +1,11 @@
 import Sidebar from "./components/Sidebar";
-import ChatBox from "./components/ChatBox";
 import Topbar from "./components/Topbar";
 import ModelSelectionMenu from "./components/ModelSelectionMenu";
 import MainContentWindow from "./components/MainContentWindow";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { useState } from "react";
+import Chat from "./pages/Chat";
 
 function App() {
   const [modelIsOpen, setModelIsOpen] = useState(false);
@@ -27,7 +27,7 @@ function App() {
           <MainContentWindow>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/chat" element={<ChatBox model={model} />} />
+              <Route path="/chat" element={<Chat model={model} />} />
             </Routes>
           </MainContentWindow>
           <ModelSelectionMenu

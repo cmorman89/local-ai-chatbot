@@ -6,8 +6,9 @@
 
 ## Features:
 
-- Interact with a local LLM server
+- Interact with a local LLM server (e.g., LM Studio)
 - User and AI-styled chat bubbles with dynamic markdown rendering
+- Conversational/contextual chat history
 - Selecting a different model to load and use
 
 ## Screenshots:
