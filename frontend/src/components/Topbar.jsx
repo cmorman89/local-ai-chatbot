@@ -1,7 +1,7 @@
 import Logo from "./Logo";
 import ModelIndicator from "./ModelIndicator";
 
-const Topbar = ({ model }) => {
+const Topbar = ({ model, setModelIsOpen }) => {
   return (
     <div
       className="
@@ -14,7 +14,7 @@ const Topbar = ({ model }) => {
         "
     >
       <Logo />
-      <ModelIndicator model={model} />
+      <ModelIndicator model={model} setModelIsOpen={setModelIsOpen} />
     </div>
   );
 };

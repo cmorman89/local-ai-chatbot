@@ -1,7 +1,7 @@
-import { faHexagonNodes, faRobot } from "@fortawesome/free-solid-svg-icons";
+import { faHexagonNodes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ModelIndicator = ({ model='Not Set' }) => {
+const ModelIndicator = ({ setModelIsOpen, model = "Not Set" }) => {
   return (
     <div
       className="
@@ -9,9 +9,9 @@ const ModelIndicator = ({ model='Not Set' }) => {
           px-6 py-2 rounded-full
           font-inter text-violet-950 text-lg font-semibold
           bg-gray-100/90
-          cursor-default
-          
+          cursor-pointer
           "
+      onClick={() => setModelIsOpen(true)}
     >
       <FontAwesomeIcon icon={faHexagonNodes} className="text-2xl" />
       <h2>

@@ -21,7 +21,7 @@ function App() {
       "
     >
       <Router>
-        <Topbar model={model} />
+        <Topbar model={model} setModelIsOpen={setModelIsOpen} />
         <div className="flex flex-row w-full h-full">
           <Sidebar setModelIsOpen={setModelIsOpen} />
           <MainContentWindow>
