@@ -21,4 +21,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Chat input box with animated send and edit system prompt buttons, responsive opacity.
 - Chat input buttons dynamically change based on the current state of the chat.
 - Button to cancel chat generation.
-- Model selection menu with a list of available models to load and use.
+- Styled model selection menu with a list of available models to load and use and basic info.
