@@ -36,7 +36,7 @@ const Chat = ({ model, serverUrl }) => {
     let newMessages = [...messages];
     newMessages.push({ role: "user", content: input });
     setMessages(newMessages);
-    sendMessage(newMessages);
+    sendMessage(newMessages, model);
     newMessages.push({ role: "assistant", content: "" });
     setMessages(newMessages);
     setInput("");
