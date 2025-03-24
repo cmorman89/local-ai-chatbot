@@ -39,7 +39,10 @@ function App() {
           <MainContentWindow>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/chat" element={<Chat model={model} />} />
+              <Route
+                path="/chat"
+                element={<Chat model={model} serverUrl={serverUrl} />}
+              />
             </Routes>
           </MainContentWindow>
           <ModelSelectionMenu

@@ -14,7 +14,7 @@ const ServerMenu = ({
 }) => {
   const [data, setData] = useState({
     type: "https://",
-    server: "localhost/v1/",
+    server: "localhost",
     port: "1234",
   });
 
@@ -72,7 +72,7 @@ const ServerMenu = ({
             value={data.server}
             name="server"
             onChange={(e) => setData({ ...data, server: e.target.value })}
-            placeholder="localhost/v1/"
+            placeholder="localhost"
             className="bg-gray-100 rounded-full px-4 py-2 text-gray-800"
           />
         </div>
@@ -82,8 +82,8 @@ const ServerMenu = ({
             type="number"
             value={data.port}
             name="port"
+            placeholder="1234"
             onChange={(e) => setData({ ...data, port: e.target.value })}
-            placeholder="Optional"
             className="bg-gray-100 rounded-full px-4 py-2 text-gray-800"
           />
         </div>

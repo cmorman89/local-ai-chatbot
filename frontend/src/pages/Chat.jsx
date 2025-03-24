@@ -3,10 +3,9 @@ import ChatInput from "../components/ChatInput";
 import useStreamingChat from "../hooks/useStreamingChat";
 import ChatConversation from "../components/ChatConversation";
 
-const Chat = ({ model }) => {
-  const url = "http://127.0.0.1:1234";
+const Chat = ({ model, serverUrl }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
-    useStreamingChat(url);
+    useStreamingChat(serverUrl);
 
   const [systemPrompt, setSystemPrompt] = useState([
     "You are a helpful, friendly assistant that answers questions.",
