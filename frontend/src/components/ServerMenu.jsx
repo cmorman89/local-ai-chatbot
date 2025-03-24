@@ -1,7 +1,6 @@
 import {
   faCircleCheck,
   faCircleXmark,
-  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
@@ -28,9 +27,9 @@ const ServerMenu = ({
     <div
       className={`
             ${serverMenuOpen ? "flex" : "hidden"}
-            items-center mb-2
+            items-center mb-2 pr-2
             fixed left-24 bottom-0 z-50
-            w-full max-w-225
+            w-4/5 max-w-105 md:max-w-225
             shadow-lg shadow-black/10
             animate animate-grow
             `}
@@ -46,25 +45,25 @@ const ServerMenu = ({
 
       <div
         className="
-            grid grid-cols-10 w-full px-8 py-4 gap-3
+            grid grid-cols-2 md:grid-cols-10 w-full px-8 py-4 gap-3
             bg-violet-700
             rounded-2xl
             text-gray-100  font-inter
                 "
       >
-        <div className="flex flex-col col-span-2 gap-2 w-full">
+        <div className="flex flex-col col-span-2 gap-2">
           <label>Type</label>
           <select
             value={data.type}
             name="type"
             onChange={(e) => setData({ ...data, type: e.target.value })}
-            className="bg-gray-100 rounded-full px-4 py-2 text-gray-800"
+            className=" bg-gray-100 rounded-full px-4 py-2 text-gray-800"
           >
             <option value="http://">http://</option>
             <option value="https://">https://</option>
           </select>
         </div>
-        <div className="flex flex-col gap-2 col-span-5 w-full">
+        <div className="flex flex-col gap-2 col-span-5">
           <label>Server IP/URL</label>
           <input
             type="text"
@@ -75,7 +74,7 @@ const ServerMenu = ({
             className="bg-gray-100 rounded-full px-4 py-2 text-gray-800"
           />
         </div>
-        <div className="flex flex-col gap-2 col-span-2 w-full">
+        <div className="flex flex-col gap-2 col-span-2">
           <label>Port</label>
           <input
             type="number"

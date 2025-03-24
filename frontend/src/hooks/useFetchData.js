@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 /// Custom hook to fetch data from an API
