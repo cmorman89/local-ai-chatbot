@@ -54,7 +54,7 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
             `}
           >
             {isUser && typeof children === "string" ? (
-              children.replace(/---$/, "")
+              children.replace(/---$|```\w*$/, "")
             ) : (
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
