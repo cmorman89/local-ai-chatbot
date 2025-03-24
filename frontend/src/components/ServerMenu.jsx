@@ -13,7 +13,7 @@ const ServerMenu = ({
   setServerMenuOpen,
 }) => {
   const [data, setData] = useState({
-    type: "https://",
+    type: "http://",
     server: "localhost",
     port: "1234",
   });
@@ -28,26 +28,25 @@ const ServerMenu = ({
     <div
       className={`
             ${serverMenuOpen ? "flex" : "hidden"}
-            items-end
-            mb-2
+            items-center mb-2
             fixed left-24 bottom-0 z-50
-            w-full max-w-175
+            w-full max-w-225
             shadow-lg shadow-black/10
             animate animate-grow
             `}
     >
       <div
         className=" 
-            w-0 h-0 mb-6
+            w-0 h-0
             border-t-[30px] border-t-transparent
-            border-r-[50px] border-r-violet-700
+            border-r-[30px] border-r-violet-700
             border-b-[30px] border-b-transparent
                     "
       ></div>
 
       <div
         className="
-            grid grid-cols-10 w-full p-8 gap-3
+            grid grid-cols-10 w-full px-8 py-4 gap-3
             bg-violet-700
             rounded-2xl
             text-gray-100  font-inter
@@ -87,26 +86,28 @@ const ServerMenu = ({
             className="bg-gray-100 rounded-full px-4 py-2 text-gray-800"
           />
         </div>
-        <div
-          className="flex flex-col cursor-pointer h-full items-center justify-end"
-          role="button"
-          onClick={() => handleUpdateServerUrl()}
-        >
-          <FontAwesomeIcon
-            icon={faCircleCheck}
-            className="text-gray-100 text-4xl hover:text-green-300 mb-0.5 animate animate-grow"
-          />
+        <div className="flex gap-2">
+          <div
+            className="flex flex-col cursor-pointer h-full items-center justify-end"
+            role="button"
+            onClick={() => handleUpdateServerUrl()}
+          >
+            <FontAwesomeIcon
+              icon={faCircleCheck}
+              className="text-gray-100 text-4xl hover:text-green-300 mb-0.5 animate animate-grow"
+            />
+          </div>
+          <div
+            className="flex flex-col cursor-pointer h-full items-center justify-end"
+            role="button"
+            onClick={() => setServerMenuOpen(false)}
+          >
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="text-gray-100 text-4xl hover:text-red-100 mb-0.5 animate animate-grow"
+            />
+          </div>
         </div>
-      </div>
-      <div
-        className="absolute right-0 top-0 cursor-pointer"
-        role="button"
-        onClick={() => setServerMenuOpen(false)}
-      >
-        <FontAwesomeIcon
-          icon={faCircleXmark}
-          className="text-gray-100 m-4 text-2xl  hover:text-red-200 animate animate-grow"
-        />
       </div>
     </div>
   );
