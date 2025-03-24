@@ -10,14 +10,14 @@ const Home = () => {
         flex flex-col 
         items-center
         w-full h-full
-        p-24 pt-24
+        p-4 lg:p-24 pt-24
         "
     >
       <div
         className="
             flex flex-col items-center
             w-full max-w-3xl
-            text-7xl font-bold font-inter
+            text-5xl lg:text-7xl font-bold font-inter
             animate animate-fade-up
             bg-gradient-to-br from-gray-800 to-violet-950
             bg-gray-200
@@ -43,7 +43,7 @@ const Home = () => {
             font-normal  text-xl
             bg-violet-300
             w-fit
-            px-8 py-4 mt-24
+            px-8 py-4 mt-12 lg:mt-24
             rounded-full
             shadow-lg shadow-black/20 hover:shadow-violet-950/50
             cursor-pointer

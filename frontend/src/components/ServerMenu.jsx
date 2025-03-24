@@ -29,7 +29,7 @@ const ServerMenu = ({
             ${serverMenuOpen ? "flex" : "hidden"}
             items-center mb-2 pr-2
             fixed left-24 bottom-0 z-50
-            w-4/5 max-w-105 md:max-w-225
+            w-4/5 max-w-105 lg:max-w-225
             shadow-lg shadow-black/10
             animate animate-grow
             `}
@@ -45,7 +45,7 @@ const ServerMenu = ({
 
       <div
         className="
-            grid grid-cols-2 md:grid-cols-10 w-full px-8 py-4 gap-3
+            grid grid-cols-2 lg:grid-cols-10 w-full px-8 py-4 gap-3
             bg-violet-700
             rounded-2xl
             text-gray-100  font-inter
