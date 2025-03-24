@@ -22,7 +22,7 @@
 }
 
 .animate-menu-icon {
-  @apply hover:scale-115 hover:text-purple-400 duration-300;
+  @apply hover:scale-115 hover:text-violet-400 duration-300;
 }
 
 @keyframes fadeIn {
@@ -116,7 +116,7 @@
 }
 
 .markdown pre code {
-  @apply block bg-violet-900/10 text-violet-900/80 font-mono text-sm p-6 m-2 rounded-md mx-8 transition-all overflow-x-scroll;
+  @apply block bg-violet-900/10 text-violet-900/80 font-mono text-sm p-6 m-2 rounded-md mx-8 transition-all overflow-auto;
   animation: fadeUp 0.3s ease-in-out;
 }
 
@@ -127,6 +127,26 @@
 
 .markdown hr {
   @apply border-t border-violet-900/20 my-4 transition-all;
+  animation: fadeUp 0.3s ease-in-out;
+}
+
+.markdown a {
+  @apply text-violet-800 underline transition-all;
+  animation: fadeUp 0.3s ease-in-out;
+}
+
+.markdown table {
+  @apply w-full border-collapse transition-all rounded-2xl overflow-hidden text-center ring-1 ring-violet-900/20;
+  animation: fadeUp 0.3s ease-in-out;
+}
+
+.markdown th {
+  @apply bg-violet-900/10  font-semibold p-2 transition-all;
+  animation: fadeUp 0.3s ease-in-out;
+}
+
+.markdown td {
+  @apply border-violet-900/20 py-2 px-4 transition-all border-b;
   animation: fadeUp 0.3s ease-in-out;
 }
 

@@ -1,15 +1,44 @@
-import { faPaperPlane, faSliders } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPaperPlane,
+  faSliders,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExpandingButton from "./ExpandingButton";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
-const ChatInput = ({ name = "userPrompt", onChange, onSubmit, value }) => {
+const ChatInput = ({
+  name = "userPrompt",
+  onChange,
+  onSubmit,
+  value,
+  loading,
+  stopGenerating,
+}) => {
+  const [isHover, setIsHover] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    if (isHover || isFocused) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [isHover, isFocused]);
+
+  useEffect(() => {
+    if (loading) {
+      setIsFocused(false);
+    }
+  }, [loading]);
   return (
     <div
-      className="
+      className={`
             flex justify-center
             border border-violet-700/70
-            backdrop-blur-sm
+            backdrop-blur-lg
             fixed bottom-20 z-20
             bg-gradient-to-br from-violet-200/5 to-violet-700/10 from-80%
             bg-white/60
@@ -20,23 +49,30 @@ const ChatInput = ({ name = "userPrompt", onChange, onSubmit, value }) => {
             p-4 gap-4 
             animate duration-800 
             translate-y-0 hover:-translate-y-1.5
-            "
+            ${isActive ? "opacity-100" : "opacity-60"}
+            `}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
     >
       <input
         type="text"
+        disabled={loading}
         autoFocus
         autoComplete="off"
         autoCorrect="on"
         aria-autocomplete="off"
         name={name}
-        placeholder="What would you like to ask?"
-        className="
+        placeholder={
+          loading ? "Generating response..." : "What would you like to ask?"
+        }
+        className={`
               flex
               focus:outline-none 
               w-full mx-4
               text-violet-950/80 font-inter
               placeholder:text-violet-950/50 placeholder:italic
-              "
+              ${loading ? "cursor-not-allowed" : "cursor-text"}
+              `}
         value={value}
         onChange={(e) => onChange(e)}
         onKeyDown={(e) => {
@@ -44,11 +80,26 @@ const ChatInput = ({ name = "userPrompt", onChange, onSubmit, value }) => {
             onSubmit();
           }
         }}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
-      <ExpandingButton text="Send Message" onClick={onSubmit}>
-        <FontAwesomeIcon icon={faPaperPlane} className="text-violet-50" />
-      </ExpandingButton>
-      <ExpandingButton text="Edit System Prompt">
+      {loading ? (
+        <ExpandingButton
+          text="Stop Generating"
+          onClick={stopGenerating}
+          variant="cancel"
+        >
+          <FontAwesomeIcon icon={faXmark} className="text-violet-50 ml-0.5" />
+        </ExpandingButton>
+      ) : (
+        <ExpandingButton text="Send Message" onClick={onSubmit}>
+          <FontAwesomeIcon icon={faPaperPlane} className="text-violet-50" />
+        </ExpandingButton>
+      )}
+      <ExpandingButton
+        text="Edit System Prompt"
+        variant={loading ? "disabled" : "default"}
+      >
         <FontAwesomeIcon icon={faSliders} className="text-violet-50" />
       </ExpandingButton>
     </div>

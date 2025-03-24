@@ -1,21 +1,26 @@
 import PropTypes from "prop-types";
 
-const ExpandingButton = ({ text, children, onClick }) => {
+const ExpandingButton = ({ text, children, onClick, variant = "default" }) => {
+  const buttonStyles = {
+    default: "bg-violet-700 cursor-pointer",
+    cancel: "bg-rose-500 cursor-pointer",
+    disabled: "bg-gray-500 cursor-not-allowed",
+  };
   return (
     <div
       title={text}
-      className="
+      className={`
       flex items-center 
       text-start hover:justify-center
       rounded-full shadow-md shadow-black/20
       h-14 min-h-14 max-h-14 
       w-14 min-w-14 hover:w-80
       pl-4.5
-      bg-violet-700 
+      ${buttonStyles[variant]}
       text-xl
-      cursor-pointer 
-      animate duration-800
-      overflow-hidden"
+      overflow-hidden
+      animate
+      `}
     >
       {children}
       <div

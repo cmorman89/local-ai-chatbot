@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
 import ChatUserIcon from "./ChatUserIcon";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 const ChatBubble = ({ isUser = false, children, title = null }) => {
   return (
@@ -50,7 +53,18 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
             markdown
             `}
           >
-            {children}
+            {isUser && typeof children === "string" ? (
+              children.replace(/---$|```\w*$/, "")
+            ) : (
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeHighlight]}
+              >
+                {typeof children === "string"
+                  ? children.replace(/---$/, "")
+                  : children}
+              </ReactMarkdown>
+            )}
           </span>
         </div>
       </div>
@@ -59,6 +73,7 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
 };
 
 ChatBubble.propTypes = {
+  children: PropTypes.node.isRequired,
   isUser: PropTypes.bool.isRequired,
   title: PropTypes.string,
 };
