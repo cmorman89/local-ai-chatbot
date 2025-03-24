@@ -1,17 +1,12 @@
 import { Gemma, Meta } from "@lobehub/icons";
 import { useEffect, useState } from "react";
 
-const ModelBubble = ({ children, onClick, title }) => {
+const ModelBubble = ({ onClick, title }) => {
   const [model, setModel] = useState({
     title: title,
     params: null,
     type: "other",
   });
-
-  const images = {
-    llama: "/llama.png",
-    gemma: "/gemma.png",
-  };
 
   useEffect(() => {
     const parseModelTitle = (title) => {
@@ -68,9 +63,7 @@ const ModelBubble = ({ children, onClick, title }) => {
               <span className="text-gray-400">B</span>
             </span>
           ) : (
-
-              <span className="text-gray-400">N/A</span>
-
+            <span className="text-gray-400">N/A</span>
           )}
         </div>
       </div>
