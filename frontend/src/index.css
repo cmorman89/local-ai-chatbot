@@ -22,7 +22,7 @@
 }
 
 .animate-menu-icon {
-  @apply hover:scale-115 hover:text-purple-400 duration-300;
+  @apply hover:scale-115 hover:text-violet-400 duration-300;
 }
 
 @keyframes fadeIn {
