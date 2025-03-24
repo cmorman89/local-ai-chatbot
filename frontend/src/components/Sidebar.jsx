@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarItem from "./SidebarItem";
 
-const Sidebar = ({setModelIsOpen}) => {
+const Sidebar = ({ setModelIsOpen }) => {
   return (
     <div
       className="
