@@ -32,7 +32,6 @@ const Chat = ({ model, serverUrl }) => {
 
   const handleSubmit = () => {
     if (input.trim() === "") return;
-    console.log("Submitting form data:", input);
     let newMessages = [...messages];
     newMessages.push({ role: "user", content: input });
     setMessages(newMessages);
@@ -43,14 +42,12 @@ const Chat = ({ model, serverUrl }) => {
   };
 
   const appendMessageToCurrent = (role, content) => {
-    console.log("Appending message to current:", role, content);
     if (messages.length === 0 || !content) return;
     const prevMessages = messages.slice(0, messages.length - 1);
     setMessages([...prevMessages, { role, content }]);
   };
 
   useEffect(() => {
-    console.log("Responses:", responses);
     if (responses.length === 0) return;
     appendMessageToCurrent("assistant", responses.join(""));
   }, [responses]);
