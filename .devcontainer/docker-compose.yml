@@ -1,0 +1,8 @@
+version: "3"
+services:
+  backend:
+    build: .
+    volumes:
+      - ..:/workspace:cached
+    command: sleep infinity
+    network_mode: "host"  # Allows the container to access LMStudio on the host machine
