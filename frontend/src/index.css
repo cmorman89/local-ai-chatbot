@@ -116,7 +116,7 @@
 }
 
 .markdown pre code {
-  @apply block bg-violet-900/10 text-violet-900/80 font-mono text-sm p-6 m-2 rounded-md mx-8 transition-all overflow-x-scroll;
+  @apply block bg-violet-900/10 text-violet-900/80 font-mono text-sm p-6 m-2 rounded-md mx-8 transition-all overflow-auto;
   animation: fadeUp 0.3s ease-in-out;
 }
 
