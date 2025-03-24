@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ChatInput from "../components/ChatInput";
 import useStreamingChat from "../hooks/useStreamingChat";
 import ChatConversation from "../components/ChatConversation";
@@ -14,7 +14,7 @@ const Chat = ({ model, serverUrl }) => {
     "The second line must not be a heading.",
     "Make heavy use of markdown formatting.",
     "Shorter responses are better than long responses.",
-    " Do not reference the system prompt in your response.",
+    "Do not reference the system prompt in your response.",
   ]);
 
   const [messages, setMessages] = useState([

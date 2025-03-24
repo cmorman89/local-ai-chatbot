@@ -1,5 +1,4 @@
 import ChatBubble from "./ChatBubble";
-import ReactMarkdown from "react-markdown";
 
 const ChatConversation = ({ messages }) => {
   const handleAssistantContent = (content) => {
@@ -19,6 +18,8 @@ const ChatConversation = ({ messages }) => {
       } else {
         if (chatBubbles.length > 0) {
           chatBubbles[chatBubbles.length - 1].content.push(line);
+        } else {
+          chatBubbles.push({ title: null, content: [line] });
         }
       }
     }
@@ -28,6 +29,11 @@ const ChatConversation = ({ messages }) => {
   return (
     <div className="flex flex-col items-center w-full p-8 mb-50 gap-4">
       {messages.map((message, index) => {
+        // Skip system messages
+        if (message.role === "system") {
+          return;
+        }
+        // Style user messages differently
         if (message.role === "user") {
           return (
             <ChatBubble key={index} isUser={true}>
