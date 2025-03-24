@@ -1,4 +1,13 @@
-import { Gemma, Meta, Mistral, Microsoft, Grok, DeepSeek, Claude, Qwen } from "@lobehub/icons";
+import {
+  Gemma,
+  Meta,
+  Mistral,
+  Microsoft,
+  Grok,
+  DeepSeek,
+  Claude,
+  Qwen,
+} from "@lobehub/icons";
 import { useEffect, useState } from "react";
 
 const ModelBubble = ({ onClick, title }) => {
@@ -34,18 +43,21 @@ const ModelBubble = ({ onClick, title }) => {
       className="
         grid grid-cols-4 lg:grid-cols-8
         items-center
-        bg-gray-100 hover:bg-violet-700/80
+        bg-gray-100
+        ring-0 hover:ring-4 ring-violet-700
         font-inter
         rounded-2xl
         py-2 px-4
         shadow-xl shadow-black/20
         cursor-pointer
-        animate animate-grow
+        animate animate-grow animate-fade-up
         "
       onClick={onClick}
     >
       <div className="flex col-span-5 border-none lg:border-r border-violet-400 justify-center lg:justify-start">
-        <div className="py-1 px-3 bg-violet-100 rounded-full border border-violet-300 font-mono text-lg lg:text-base mb-4 lg:mb-0">{model.title}</div>
+        <div className="py-1 px-3 bg-violet-100 rounded-full border border-violet-300 font-mono text-lg lg:text-base mb-4 lg:mb-0">
+          {model.title}
+        </div>
       </div>
       <div className="flex col-span-2 justify-center border-r border-violet-400">
         <div className="py-1 px-3 bg-gray-100 rounded-full">
