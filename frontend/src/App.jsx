@@ -6,10 +6,13 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { useState } from "react";
 import Chat from "./pages/Chat";
+import ServerMenu from "./components/ServerMenu";
 
 function App() {
   const [modelIsOpen, setModelIsOpen] = useState(false);
+  const [serverMenuOpen, setServerMenuOpen] = useState(false);
   const [model, setModel] = useState("gemma-3-12b-it");
+  const [serverUrl, setServerUrl] = useState("http://localhost:1234");
 
   return (
     <div
@@ -23,11 +26,23 @@ function App() {
       <Router>
         <Topbar model={model} setModelIsOpen={setModelIsOpen} />
         <div className="flex flex-row w-full h-full">
-          <Sidebar setModelIsOpen={setModelIsOpen} />
+          <Sidebar
+            setModelIsOpen={setModelIsOpen}
+            setServerMenuOpen={setServerMenuOpen}
+          />
+          <ServerMenu
+            serverUrl={serverUrl}
+            setServerUrl={setServerUrl}
+            serverMenuOpen={serverMenuOpen}
+            setServerMenuOpen={setServerMenuOpen}
+          />
           <MainContentWindow>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/chat" element={<Chat model={model} />} />
+              <Route
+                path="/chat"
+                element={<Chat model={model} serverUrl={serverUrl} />}
+              />
             </Routes>
           </MainContentWindow>
           <ModelSelectionMenu

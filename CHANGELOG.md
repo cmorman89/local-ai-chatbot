@@ -20,5 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Response renders markdown into HTML and React components for a dynamic chat experience.
 - Chat input box with animated send and edit system prompt buttons, responsive opacity.
 - Chat input buttons dynamically change based on the current state of the chat.
-- Button to cancel chat generation.
-- Styled model selection menu with a list of available models to load and use and basic info.
+- Button to cancel chat generation on client- and server-side.
+- Model selection menu with logos (Claude, Mistral, DeepSeek, Qwen, Llama, Phi, Grok, Gemma)
+- Server selection menu with http/https, server, and port input fields.

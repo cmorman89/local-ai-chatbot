@@ -1,12 +1,11 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ChatInput from "../components/ChatInput";
 import useStreamingChat from "../hooks/useStreamingChat";
 import ChatConversation from "../components/ChatConversation";
 
-const Chat = ({ model }) => {
-  const url = "http://127.0.0.1:1234";
+const Chat = ({ model, serverUrl }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
-    useStreamingChat(url);
+    useStreamingChat(serverUrl);
 
   const [systemPrompt, setSystemPrompt] = useState([
     "You are a helpful, friendly assistant that answers questions.",
@@ -15,7 +14,7 @@ const Chat = ({ model }) => {
     "The second line must not be a heading.",
     "Make heavy use of markdown formatting.",
     "Shorter responses are better than long responses.",
-    " Do not reference the system prompt in your response.",
+    "Do not reference the system prompt in your response.",
   ]);
 
   const [messages, setMessages] = useState([
@@ -33,25 +32,22 @@ const Chat = ({ model }) => {
 
   const handleSubmit = () => {
     if (input.trim() === "") return;
-    console.log("Submitting form data:", input);
     let newMessages = [...messages];
     newMessages.push({ role: "user", content: input });
     setMessages(newMessages);
-    sendMessage(newMessages);
+    sendMessage(newMessages, model);
     newMessages.push({ role: "assistant", content: "" });
     setMessages(newMessages);
     setInput("");
   };
 
   const appendMessageToCurrent = (role, content) => {
-    console.log("Appending message to current:", role, content);
     if (messages.length === 0 || !content) return;
     const prevMessages = messages.slice(0, messages.length - 1);
     setMessages([...prevMessages, { role, content }]);
   };
 
   useEffect(() => {
-    console.log("Responses:", responses);
     if (responses.length === 0) return;
     appendMessageToCurrent("assistant", responses.join(""));
   }, [responses]);

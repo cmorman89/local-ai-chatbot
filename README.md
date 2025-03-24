@@ -18,11 +18,14 @@ Chat Interface:
 |:--:|
 | _Chat window with dynamic markdown rendering. Using `gemma-3-12b-it`_ |
 
-Menu:
+Interactive Menu:
 ![Sidebar Menu](docs/menu.png)
 
 Model Selection:
-![Model Selection Menu](docs/models.png)
+![Model Selection Menu](docs/models.png)![alt text](image.png)
+
+Server Selection:
+![Server Selection Menu](docs/server.png)
 
 Dynamic Buttons:
 ![Chat window with no buttons activated](docs/chat_input.png)

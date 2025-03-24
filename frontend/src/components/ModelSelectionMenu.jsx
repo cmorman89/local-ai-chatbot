@@ -47,35 +47,35 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel }) => {
         className="
         flex flex-col
         bg-gray-200
-        h-2/3 w-2/3
+        max-h-4/5 w-2/3 max-w-250
         m-auto
-        rounded-4xl
+        rounded-2xl
         shadow-xl shadow-black/20"
       >
         <div
           className="
           flex items-center justify-evenly
-          bg-gradient-to-br from-violet-800 to-violet-600
+          bg-violet-700
           text-white
-          font-medium font-inter text-3xl
-          rounded-t-4xl shadow-lg shadow-black/20
-          py-8 px-8
+          font-medium font-inter text-2xl
+          rounded-t-2xl shadow-lg shadow-black/20
+          py-3 px-8
           "
         >
-          <div className="flex flex-grow items-center justify-center gap-8">
+          <div className="flex flex-grow items-center justify-center gap-4">
             <FontAwesomeIcon
               icon={faHexagonNodes}
-              className="font-normal text-violet-200 text-4xl"
+              className="font-normal text-violet-200 text-2xl"
             />
             Model Selection
           </div>
           <div
-            className="cursor-pointer"
+            className="cursor-pointer hover:text-red-100 animate animate-grow"
             onClick={handleClose}
             role="button"
             aria-label="Close"
           >
-            <FontAwesomeIcon icon={faCircleXmark} className="text-4xl" />
+            <FontAwesomeIcon icon={faCircleXmark} className="text-2xl" />
           </div>
         </div>
         <div
@@ -83,18 +83,22 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel }) => {
             flex flex-col gap-4
             mb-7 p-8
             overflow-y-auto
+            overflow-x-visible
           "
         >
           {loading && <div>Loading...</div>}
           {error && <div>Error: {error.message}</div>}
-          {modelList.map((model, i) => (
-            <ModelBubble
-              key={i}
-              title={model}
-              description="This is a description of the model"
-              onClick={() => handleModelSelect(model)}
-            />
-          ))}
+          {modelList
+            .slice()
+            .sort((a, b) => a.localeCompare(b))
+            .map((model, i) => (
+              <ModelBubble
+                key={i}
+                title={model}
+                description="This is a description of the model"
+                onClick={() => handleModelSelect(model)}
+              />
+            ))}
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ const useStreamingChat = (url) => {
     }
   };
 
-  const sendMessage = async (messages) => {
+  const sendMessage = async (messages, modelName=model) => {
     abortControllerRef.current = new AbortController();
     setLoading(true);
     setResponses([]);
@@ -22,7 +22,7 @@ const useStreamingChat = (url) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: model,
+          model: modelName,
           messages: messages,
           temperature: 0.7,
           max_tokens: -1,

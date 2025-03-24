@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import ChatUserIcon from "./ChatUserIcon";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 const ChatBubble = ({ isUser = false, children, title = null }) => {
   return (
@@ -52,9 +54,16 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
             `}
           >
             {isUser && typeof children === "string" ? (
-              children
+              children.replace(/---$|```\w*$/, "")
             ) : (
-              <ReactMarkdown>{children}</ReactMarkdown>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeHighlight]}
+              >
+                {typeof children === "string"
+                  ? children.replace(/---$/, "")
+                  : children}
+              </ReactMarkdown>
             )}
           </span>
         </div>
