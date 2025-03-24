@@ -50,6 +50,7 @@ function App() {
             isOpen={modelIsOpen}
             setIsOpen={setModelIsOpen}
             setModel={setModel}
+            serverUrl={serverUrl}
           />
         </div>
       </Router>

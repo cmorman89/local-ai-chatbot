@@ -36,6 +36,7 @@ const Home = () => {
         >
           Connect to your local LLM with ease.
         </div>
+        <div className="text-sm text-gray-500 mt-3 italic font-normal">(v0.0.1-alpha)</div>
         <div
           className="
             flex items-center justify-center
