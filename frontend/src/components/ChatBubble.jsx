@@ -51,8 +51,11 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
             markdown
             `}
           >
-            {isUser && typeof children === 'string' ?
-              children : <ReactMarkdown>{children}</ReactMarkdown>}
+            {isUser && typeof children === "string" ? (
+              children
+            ) : (
+              <ReactMarkdown>{children}</ReactMarkdown>
+            )}
           </span>
         </div>
       </div>

@@ -11,7 +11,7 @@ import useFetchData from "../hooks/useFetchData";
 const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel }) => {
   const [selectedModel, setSelectedModel] = useState(null);
   const [modelList, setModelList] = useState([]);
-  const { data, loading, error, } = useFetchData(
+  const { data, loading, error } = useFetchData(
     "http://192.168.162:1234/v1/models"
   );
 
