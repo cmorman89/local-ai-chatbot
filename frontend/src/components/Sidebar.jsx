@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarItem from "./SidebarItem";
 
-const Sidebar = ({ setModelIsOpen }) => {
+const Sidebar = ({ setModelIsOpen, setServerMenuOpen }) => {
   return (
     <div
       className="
@@ -41,7 +41,9 @@ const Sidebar = ({ setModelIsOpen }) => {
       </div>
       <div className="flex flex-col gap-12 items-start justify-center text-center ">
         <SidebarItem icon={faUser}>Personalize</SidebarItem>
-        <SidebarItem icon={faGear}>Server</SidebarItem>
+        <SidebarItem icon={faGear} onClick={() => setServerMenuOpen(true)}>
+          Server
+        </SidebarItem>
       </div>
     </div>
   );
