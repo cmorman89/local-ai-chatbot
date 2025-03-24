@@ -1,10 +1,11 @@
+import { Gemma, Meta } from "@lobehub/icons";
 import { useEffect, useState } from "react";
 
 const ModelBubble = ({ children, onClick, title }) => {
   const [model, setModel] = useState({
     title: title,
     params: null,
-    type: null,
+    type: "other",
   });
 
   const images = {
@@ -35,50 +36,43 @@ const ModelBubble = ({ children, onClick, title }) => {
   }, [title]);
   return (
     <div
-      className={`
-          flex flex-col justify-center items-center relative
-          bg-gray-300 hover:bg-violet-700
-          text-gray-600 hover:text-gray-200
-          w-full min-h-64 max-h-64
-          shadow-md shadow-violet-800/20
-          rounded-4xl
-          p-4 pb-2
-          animate
-          overflow-hidden
-          cursor-pointer
-          `}
-      role="button"
+      className="
+        grid grid-cols-8 items-center
+        bg-gray-100 hover:bg-violet-700/80
+        font-inter
+        rounded-2xl
+        py-2 px-4
+        shadow-xl shadow-black/20
+        cursor-pointer
+        animate animate-grow
+        "
       onClick={onClick}
     >
-      {title && (
-        <h3 className={`text-2xl font-inter font-medium mb-2 p-2`}>{title}</h3>
-      )}
-      {children}
-      <div
-        className="
-        flex justify-between items-baseline
-        w-full
-        mt-auto
-        font-inter
-        "
-      >
-        {model.type && (
-          <img
-            className="block w-24 h-auto"
-            src={images[model.type]}
-            alt={model.type}
-          />
-        )}
-        {model.params && (
-          <div
-            className="
-            flex flex-grow justify-end  gap-1
-            text-4xl font-medium italic text-gray-400
-            "
-          >
-            <span className="font-bold">{model.params}</span> B
-          </div>
-        )}
+      <div className="flex col-span-5 border-r border-violet-400 font-mono">
+        <div className="py-1 px-3 bg-gray-100 rounded-full">{model.title}</div>
+      </div>
+      <div className="flex col-span-2 justify-center border-r border-violet-400">
+        <div className="py-1 px-3 bg-gray-100 rounded-full">
+          {model.type === "gemma" && <Gemma.Combine type={"color"} />}
+          {model.type === "llama" && <Meta.Combine type={"color"} />}
+          {model.type === "other" && (
+            <span className="text-gray-400">Other</span>
+          )}
+        </div>
+      </div>
+      <div className="flex justify-end">
+        <div className="py-1 px-3 bg-gray-100 rounded-full">
+          {model.params ? (
+            <span className="text-lg">
+              {model.params}
+              <span className="text-gray-400">B</span>
+            </span>
+          ) : (
+
+              <span className="text-gray-400">N/A</span>
+
+          )}
+        </div>
       </div>
     </div>
   );

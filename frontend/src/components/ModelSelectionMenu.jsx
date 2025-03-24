@@ -83,8 +83,8 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel }) => {
         </div>
         <div
           className="
-            grid grid-cols-1 lg:grid-cols-3 gap-8
-            mb-7 px-8 pt-8 pb-1
+            flex flex-col gap-4
+            mb-7 p-8
             overflow-y-auto
           "
         >
