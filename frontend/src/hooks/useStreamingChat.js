@@ -12,7 +12,7 @@ const useStreamingChat = (url) => {
     }
   };
 
-  const sendMessage = async (messages, modelName=model) => {
+  const sendMessage = async (messages, modelName = model) => {
     abortControllerRef.current = new AbortController();
     setLoading(true);
     setResponses([]);
