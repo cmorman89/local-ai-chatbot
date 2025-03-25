@@ -11,7 +11,7 @@ import {
 import useModelParser from "../hooks/useModelParser";
 
 const ModelBubble = ({ onClick, modelId }) => {
-  const { _, paramCount, arch } = useModelParser(modelId);
+  const { _, paramCount, arch, Icon, IconCombined } = useModelParser(modelId);
 
   return (
     <div
@@ -36,16 +36,7 @@ const ModelBubble = ({ onClick, modelId }) => {
       </div>
       <div className="flex col-span-2 justify-center border-r lg:border-l border-violet-400">
         <div className="py-1 px-3 bg-gray-100 rounded-full">
-          {arch === "gemma" && <Gemma.Combine type={"color"} />}
-          {arch === "llama" && <Meta.Combine type={"color"} />}
-          {arch === "mistral" && <Mistral.Combine type={"color"} />}
-          {arch === "mathstral" && <Mistral.Combine type={"color"} />}
-          {arch === "phi" && <Microsoft.Combine type={"color"} />}
-          {arch === "grok" && <Grok.Combine type={"color"} />}
-          {arch === "claude" && <Claude.Combine type={"color"} />}
-          {arch === "deepseek" && <DeepSeek.Combine type={"color"} />}
-          {arch === "qwen" && <Qwen.Combine type={"color"} />}
-          {arch === "other" && <span className="text-gray-400">Other</span>}
+          <IconCombined />
         </div>
       </div>
       <div className="flex justify-end">
