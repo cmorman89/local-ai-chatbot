@@ -7,11 +7,10 @@ import ModelBubble from "./ModelBubble";
 import { useEffect, useState } from "react";
 import useFetchData from "../hooks/useFetchData";
 
-const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel }) => {
+const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
+  const url = `${serverUrl}/v1/models`;
   const [modelList, setModelList] = useState([]);
-  const { data, loading, error } = useFetchData(
-    "http://192.168.162:1234/v1/models"
-  );
+  const { data, loading, error } = useFetchData(url);
 
   const handleClose = () => {
     setIsOpen(false);

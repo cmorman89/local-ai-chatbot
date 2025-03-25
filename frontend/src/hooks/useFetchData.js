@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 /// Custom hook to fetch data from an API
@@ -18,8 +17,12 @@ const useFetchData = (url) => {
     // Fetch data from the API
     const fetchData = async () => {
       try {
-        const response = await axios.get(url);
-        setData(response.data);
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const responseData = await response.json();
+        setData(responseData);
       } catch (err) {
         setError(err);
       } finally {
