@@ -8,36 +8,11 @@ import {
   Claude,
   Qwen,
 } from "@lobehub/icons";
-import { useEffect, useState } from "react";
+import useModelParser from "../hooks/useModelParser";
 
-const ModelBubble = ({ onClick, title }) => {
-  const [model, setModel] = useState({
-    title: title,
-    params: null,
-    type: "other",
-  });
+const ModelBubble = ({ onClick, modelId }) => {
+  const { _, paramCount, arch } = useModelParser(modelId);
 
-  useEffect(() => {
-    const parseModelTitle = (title) => {
-      const patterns = {
-        params: /([0-9]+)b/,
-        type: /(gemma|llama|grok|mistral|mathstral|phi|claude|deepseek|qwen)/,
-      };
-      const parts = title.split("_");
-      for (const part of parts) {
-        for (const key in patterns) {
-          const match = part.match(patterns[key]);
-          if (match) {
-            setModel((prevModel) => ({
-              ...prevModel,
-              [key]: match[1],
-            }));
-          }
-        }
-      }
-    };
-    parseModelTitle(title);
-  }, [title]);
   return (
     <div
       className="
@@ -54,32 +29,30 @@ const ModelBubble = ({ onClick, title }) => {
         "
       onClick={onClick}
     >
-      <div className="flex col-span-5 border-none lg:border-r border-violet-400 justify-center lg:justify-start">
+      <div className="flex col-span-5 justify-center lg:justify-start">
         <div className="py-1 px-3 bg-violet-100 rounded-full border border-violet-300 font-mono text-lg lg:text-base mb-4 lg:mb-0">
-          {model.title}
+          {modelId}
         </div>
       </div>
-      <div className="flex col-span-2 justify-center border-r border-violet-400">
+      <div className="flex col-span-2 justify-center border-r lg:border-l border-violet-400">
         <div className="py-1 px-3 bg-gray-100 rounded-full">
-          {model.type === "gemma" && <Gemma.Combine type={"color"} />}
-          {model.type === "llama" && <Meta.Combine type={"color"} />}
-          {model.type === "mistral" && <Mistral.Combine type={"color"} />}
-          {model.type === "mathstral" && <Mistral.Combine type={"color"} />}
-          {model.type === "phi" && <Microsoft.Combine type={"color"} />}
-          {model.type === "grok" && <Grok.Combine type={"color"} />}
-          {model.type === "claude" && <Claude.Combine type={"color"} />}
-          {model.type === "deepseek" && <DeepSeek.Combine type={"color"} />}
-          {model.type === "Qwen" && <DeepSeek.Combine type={"color"} />}
-          {model.type === "other" && (
-            <span className="text-gray-400">Other</span>
-          )}
+          {arch === "gemma" && <Gemma.Combine type={"color"} />}
+          {arch === "llama" && <Meta.Combine type={"color"} />}
+          {arch === "mistral" && <Mistral.Combine type={"color"} />}
+          {arch === "mathstral" && <Mistral.Combine type={"color"} />}
+          {arch === "phi" && <Microsoft.Combine type={"color"} />}
+          {arch === "grok" && <Grok.Combine type={"color"} />}
+          {arch === "claude" && <Claude.Combine type={"color"} />}
+          {arch === "deepseek" && <DeepSeek.Combine type={"color"} />}
+          {arch === "qwen" && <Qwen.Combine type={"color"} />}
+          {arch === "other" && <span className="text-gray-400">Other</span>}
         </div>
       </div>
       <div className="flex justify-end">
         <div className="py-1 px-3 bg-gray-100 rounded-full">
-          {model.params ? (
+          {paramCount ? (
             <span className="text-lg">
-              {model.params}
+              {paramCount}
               <span className="text-gray-400">B</span>
             </span>
           ) : (
