@@ -13,7 +13,7 @@ const Topbar = ({ model, setModelIsOpen }) => {
         shadow-lg shadow-black/20
         "
     >
-      <Logo className={'scale-75 md:scale-85 lg:scale-100'}/>
+      <Logo className={"scale-75 md:scale-85 lg:scale-100"} />
       <ModelIndicator model={model} setModelIsOpen={setModelIsOpen} />
     </div>
   );
