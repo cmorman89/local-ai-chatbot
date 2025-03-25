@@ -1,6 +1,7 @@
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+import Logo from "../components/Logo";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -26,6 +27,9 @@ const Home = () => {
             animate animate-grow animate-fade-up
             "
       >
+        <Logo
+          className={"lg:scale-150 mb-8 lg:mb-16 opacity-85 animate-fade-up"}
+        />
         <div
           className="
             w-3/4
@@ -36,7 +40,6 @@ const Home = () => {
         >
           Connect to your local LLM with ease.
         </div>
-        <div className="text-sm text-gray-500 mt-3 italic font-normal">(v0.0.1-alpha)</div>
         <div
           className="
             flex items-center justify-center
@@ -53,6 +56,9 @@ const Home = () => {
           onClick={() => navigate("/chat")}
         >
           Chat Now <FontAwesomeIcon icon={faCaretRight} className="ml-3" />
+        </div>
+        <div className="text-sm text-gray-500 mt-3 italic font-normal">
+          (v0.0.1-alpha)
         </div>
       </div>
     </div>

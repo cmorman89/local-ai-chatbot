@@ -9,11 +9,11 @@ const Topbar = ({ model, setModelIsOpen }) => {
         sticky top-0 z-50
         bg-violet-700
         w-full h-18
-        px-8 py-4
+        lg:pl-6 pr-8 py-4
         shadow-lg shadow-black/20
         "
     >
-      <Logo />
+      <Logo className={'scale-75 md:scale-85 lg:scale-100'}/>
       <ModelIndicator model={model} setModelIsOpen={setModelIsOpen} />
     </div>
   );
