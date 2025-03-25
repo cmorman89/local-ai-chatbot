@@ -24,7 +24,7 @@ Interactive Menu:
 ![Sidebar Menu](docs/menu.png)
 
 Model Selection:
-![Model Selection Menu](docs/models.png)![alt text](image.png)
+![Model Selection Menu](docs/models.png)
 
 Server Selection:
 ![Server Selection Menu](docs/server.png)
