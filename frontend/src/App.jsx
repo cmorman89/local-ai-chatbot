@@ -13,7 +13,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 function App() {
   const [modelIsOpen, setModelIsOpen] = useState(false);
   const [serverMenuOpen, setServerMenuOpen] = useState(false);
-  const [model, setModel] = useState(null);
+  const [model, setModel] = useLocalStorage("modelId", null);
   const [serverUrl, setServerUrl] = useLocalStorage(
     "serverUrl",
     "http://localhost:1234"
