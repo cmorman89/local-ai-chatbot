@@ -116,12 +116,12 @@
 }
 
 .markdown pre code {
-  @apply block bg-violet-900/10 text-violet-900/80 font-mono text-sm p-6 m-2 rounded-md mx-8 transition-all overflow-auto;
+  @apply block bg-violet-900/10 text-gray-800 font-mono text-sm p-6 m-2 rounded-xl mx-8 transition-all overflow-auto;
   animation: fadeUp 0.3s ease-in-out;
 }
 
 .markdown blockquote {
-  @apply border-l-10 border-violet-900/20 bg-violet-900/10 text-violet-900/80 italic font-serif p-4 m-2 rounded-md mx-8 transition-all;
+  @apply border-l-10 border-violet-900/20 bg-violet-900/10 text-violet-900/80 italic font-serif p-4 m-2 rounded-xl mx-8 transition-all;
   animation: fadeUp 0.3s ease-in-out;
 }
 

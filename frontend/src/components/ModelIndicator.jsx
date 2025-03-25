@@ -1,7 +1,17 @@
 import { faHexagonNodes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 
-const ModelIndicator = ({ setModelIsOpen, model = "Not Set" }) => {
+const ModelIndicator = ({ setModelIsOpen, model }) => {
+  const [hasModel, setHasModel] = useState(false);
+
+  useEffect(() => {
+    if (model) {
+      setHasModel(true);
+    }
+  }, [model]);
+
+  const text = model ? model : "Select Model";
   return (
     <div
       className="
@@ -15,11 +25,14 @@ const ModelIndicator = ({ setModelIsOpen, model = "Not Set" }) => {
           "
       onClick={() => setModelIsOpen(true)}
     >
-      <FontAwesomeIcon icon={faHexagonNodes} className="text-lg lg:text-2xl" />
+      <FontAwesomeIcon
+        icon={faHexagonNodes}
+        className="text-lg lg:text-2xl animate"
+      />
       <h2 className="text-nowrap">
-        <span className="mr-1 text-nowrap">Model:</span>
+        <span className="mr-1 text-nowrap">{hasModel && 'Model:'}</span>
         <span className="font-medium italic text-violet-900 text-nowrap">
-          {model}
+          {text}
         </span>
       </h2>
     </div>

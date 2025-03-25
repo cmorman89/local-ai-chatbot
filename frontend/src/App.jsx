@@ -8,12 +8,16 @@ import Home from "./pages/Home";
 import { useState } from "react";
 import Chat from "./pages/Chat";
 import ServerMenu from "./components/ServerMenu";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
   const [modelIsOpen, setModelIsOpen] = useState(false);
   const [serverMenuOpen, setServerMenuOpen] = useState(false);
-  const [model, setModel] = useState("gemma-3-12b-it");
-  const [serverUrl, setServerUrl] = useState("http://localhost:1234");
+  const [model, setModel] = useLocalStorage("modelId", null);
+  const [serverUrl, setServerUrl] = useLocalStorage(
+    "serverUrl",
+    "http://localhost:1234"
+  );
 
   return (
     <div
