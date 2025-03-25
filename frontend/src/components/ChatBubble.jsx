@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import ChatUserIcon from "./ChatUserIcon";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import "highlight.js/styles/github.css";
 import rehypeHighlight from "rehype-highlight";
 
 const ChatBubble = ({ isUser = false, children, title = null }) => {
@@ -61,7 +62,7 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
                 rehypePlugins={[rehypeHighlight]}
               >
                 {typeof children === "string"
-                  ? children.replace(/---$/, "")
+                  ? children.replace(/---$|```\w+$/, "")
                   : children}
               </ReactMarkdown>
             )}
