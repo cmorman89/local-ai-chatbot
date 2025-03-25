@@ -33,9 +33,26 @@ const ServerMenu = ({
     setServerUrl(newServerUrl);
     setServerMenuOpen(false);
   };
+
+  const handleClose = () => {
+    setServerMenuOpen(false);
+  }
+
   return (
     <div
       className={`
+        ${serverMenuOpen ? "flex" : "hidden"}
+        h-screen w-screen
+        bg-black/30
+        pt-18
+        fixed left-0 top-0 z-40
+        backdrop-blur-sm
+        animate
+        `}
+      onClick={handleClose}
+    >
+      <div
+        className={`
             ${serverMenuOpen ? "flex" : "hidden"}
             items-center mb-2 pr-2
             fixed left-24 bottom-0 z-50
@@ -43,84 +60,86 @@ const ServerMenu = ({
             shadow-lg shadow-black/10
             animate animate-grow
             `}
-    >
-      <div
-        className=" 
+      >
+        <div
+          className=" 
             w-0 h-0
             border-t-[30px] border-t-transparent
             border-r-[30px] border-r-violet-700
             border-b-[30px] border-b-transparent
             "
-      ></div>
+        ></div>
 
-      <div
-        className="
+        <div
+          className="
             grid grid-cols-2 lg:grid-cols-10 w-full px-8 py-4 gap-3
             bg-violet-700
             rounded-2xl
             text-gray-100  font-inter
                 "
-      >
-        <div className="flex flex-col col-span-2 gap-2">
-          <label>Type</label>
-          <select
-            value={data.type}
-            name="type"
-            onChange={(e) => setData({ ...data, type: e.target.value })}
-            className=" bg-gray-100 rounded-full px-4 py-2 text-gray-800"
-          >
-            <option value="http://">http://</option>
-            <option value="https://">https://</option>
-          </select>
-        </div>
-        <div className="flex flex-col gap-2 col-span-2 lg:col-span-5">
-          <label>Server IP/URL</label>
-          <input
-            type="text"
-            value={data.server}
-            name="server"
-            onChange={(e) => setData({ ...data, server: e.target.value })}
-            placeholder="localhost"
-            className="bg-gray-100 rounded-full px-4 py-2 text-gray-800"
-          />
-        </div>
-        <div className="flex flex-col gap-2 lg:col-span-2">
-          <label>Port</label>
-          <input
-            type="number"
-            value={data.port}
-            name="port"
-            placeholder="1234"
-            onChange={(e) => setData({ ...data, port: e.target.value })}
-            className="bg-gray-100 rounded-full px-4 py-2 text-gray-800"
-          />
-        </div>
-        <div className="flex gap-2 justify-center">
-          <div
-            className="flex flex-col cursor-pointer h-full items-center justify-end"
-            role="button"
-            onClick={() => handleUpdateServerUrl()}
-          >
-            <FontAwesomeIcon
-              icon={faCircleCheck}
-              className="text-gray-100 text-4xl hover:text-green-300 mb-0.5 animate animate-grow"
+        >
+          <div className="flex flex-col col-span-2 gap-2">
+            <label>Type</label>
+            <select
+              value={data.type}
+              name="type"
+              onChange={(e) => setData({ ...data, type: e.target.value })}
+              className=" bg-gray-100 rounded-full px-4 py-2 text-gray-800"
+            >
+              <option value="http://">http://</option>
+              <option value="https://">https://</option>
+            </select>
+          </div>
+          <div className="flex flex-col gap-2 col-span-2 lg:col-span-5">
+            <label>Server IP/URL</label>
+            <input
+              type="text"
+              value={data.server}
+              name="server"
+              onChange={(e) => setData({ ...data, server: e.target.value })}
+              placeholder="localhost"
+              className="bg-gray-100 rounded-full px-4 py-2 text-gray-800"
             />
           </div>
-          <div
-            className="flex flex-col cursor-pointer h-full items-center justify-end"
-            role="button"
-            onClick={() => setServerMenuOpen(false)}
-          >
-            <FontAwesomeIcon
-              icon={faCircleXmark}
-              className="text-gray-100 text-4xl hover:text-red-100 mb-0.5 animate animate-grow"
+          <div className="flex flex-col gap-2 lg:col-span-2">
+            <label>Port</label>
+            <input
+              type="number"
+              value={data.port}
+              name="port"
+              placeholder="1234"
+              onChange={(e) => setData({ ...data, port: e.target.value })}
+              className="bg-gray-100 rounded-full px-4 py-2 text-gray-800"
             />
           </div>
-        </div>
-        <div className="col-span-2 lg:col-span-10 text-center italic text-red-200 ">
-          <p className="text-sm">
-            Warning: If using GitHub Pages, you must use https or localhost/127.0.0.1 as the server.
-          </p>
+          <div className="flex gap-2 justify-center">
+            <div
+              className="flex flex-col cursor-pointer h-full items-center justify-end"
+              role="button"
+              onClick={() => handleUpdateServerUrl()}
+            >
+              <FontAwesomeIcon
+                icon={faCircleCheck}
+                className="text-gray-100 text-4xl hover:text-green-300 mb-0.5 animate animate-grow"
+              />
+            </div>
+            <div
+              className="flex flex-col cursor-pointer h-full items-center justify-end"
+              role="button"
+              onClick={handleClose}
+            >
+              <FontAwesomeIcon
+                icon={faCircleXmark}
+                className="text-gray-100 text-4xl hover:text-red-100 mb-0.5 animate animate-grow"
+              />
+            </div>
+          </div>
+          <div className="col-span-2 lg:col-span-10 text-center italic text-red-200 ">
+            <p className="text-sm">
+              Warning: If using GitHub Pages, you must use https or
+              localhost/127.0.0.1 as the server.
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -41,6 +41,7 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
         backdrop-blur-sm
         animate
         `}
+      onClick={handleClose}
     >
       <div
         className="
