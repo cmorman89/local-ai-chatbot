@@ -38,20 +38,25 @@ const ChatInput = ({
     <div
       className={`
             flex justify-center
-            border-1 border-gray-400
+            ${
+              isActive
+                ? "border-violet-700 border-4"
+                : "border-gray-400 border-1"
+            }
+            border-gray-400 hover:border-violet-700
             backdrop-blur-lg
             fixed 
-            ${messageCount > 1 ? 'bottom-20' : 'bottom-1/2'}
+            ${messageCount > 1 ? "bottom-20" : "bottom-1/2"}
             z-20
             bg-gradient-to-br from-violet-200/5 to-violet-700/10 from-80%
             bg-white/60
             rounded-full 
-            shadow-2xl shadow-black/30
-            hover:shadow-violet-950/50
+            ${isActive ? "shadow-violet-950/50" : "shadow-black/20"}
+            shadow-2xl
             w-full max-w-4/5
             p-4 gap-4 
             animate duration-800 
-            translate-y-0 hover:-translate-y-1.5
+            ${isActive ? "-translate-y-1.5" : "translate-y-0"}
             ${isActive ? "opacity-100" : "opacity-70"}
             `}
       onMouseEnter={() => setIsHover(true)}

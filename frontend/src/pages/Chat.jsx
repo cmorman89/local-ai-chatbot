@@ -84,10 +84,10 @@ const Chat = ({ model, serverUrl }) => {
         animate animate-fade-up animate-grow
         cursor-pointer
         "
-        role="button"
-        onClick={() => {
-          setMessages([{ role: "system", content: systemPrompt.join(" ") }]);
-        }}
+          role="button"
+          onClick={() => {
+            setMessages([{ role: "system", content: systemPrompt.join(" ") }]);
+          }}
         >
           <FontAwesomeIcon icon={faRefresh} />
           New Chat
