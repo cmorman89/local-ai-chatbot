@@ -90,7 +90,7 @@ const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
               <div
                 key={index}
                 className="flex items-center justify-between font-inter animate animate-fade-up w-full
-                ring-0 hover:ring-4 ring-violet-700 rounded-full px-4 py-2 bg-gray-50 shadow-lg shadow-black/20"
+                ring-0 hover:ring-4 ring-violet-700 rounded-xl px-4 py-2 bg-gray-50 shadow-lg shadow-black/20"
                 style={{
                   animationDelay: `${index * 0.05}s`,
                   animationFillMode: "both",
