@@ -9,10 +9,12 @@ import { useState } from "react";
 import Chat from "./pages/Chat";
 import ServerMenu from "./components/ServerMenu";
 import useLocalStorage from "./hooks/useLocalStorage";
+import SystemMenu from "./components/SystemMenu";
 
 function App() {
   const [modelIsOpen, setModelIsOpen] = useState(false);
   const [serverMenuOpen, setServerMenuOpen] = useState(false);
+  const [chatSettingsOpen, setChatSettingsOpen] = useState(false);
   const [model, setModel] = useLocalStorage("modelId", null);
   const [serverUrl, setServerUrl] = useLocalStorage(
     "serverUrl",
@@ -46,7 +48,14 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route
                 path="/chat"
-                element={<Chat model={model} serverUrl={serverUrl} />}
+                element={
+                  <Chat
+                    model={model}
+                    serverUrl={serverUrl}
+                    chatSettingsOpen={chatSettingsOpen}
+                    setChatSettingsOpen={setChatSettingsOpen}
+                  />
+                }
               />
             </Routes>
           </MainContentWindow>

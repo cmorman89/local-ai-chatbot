@@ -13,6 +13,7 @@ import {
   Microsoft,
   Qwen,
   Claude,
+  LmStudio,
 } from "@lobehub/icons";
 
 const Home = () => {
@@ -34,7 +35,7 @@ const Home = () => {
             animate animate-fade-up
             bg-gradient-to-br from-gray-800 to-violet-950
             bg-gray-200
-            p-8 py-24 rounded-4xl
+            p-8 pt-16 rounded-4xl
             shadow-lg shadow-black/10
             animate animate-grow animate-fade-up
             "
@@ -45,7 +46,7 @@ const Home = () => {
         <div
           className="
             w-3/4
-            mb-12
+            mb-4
             bg-gradient-to-tl from-violet-600 to-fuchsia-500 
             bg-clip-text text-transparent
             animate animate-fade-up
@@ -59,7 +60,7 @@ const Home = () => {
             font-normal  text-xl
             bg-violet-300
             w-fit
-            px-8 py-4 mt-12 lg:mt-24 mb-12
+            px-8 py-4 mt-12 lg:mt-24 mb-24
             rounded-full
             shadow-lg shadow-black/20 hover:shadow-violet-950/50
             cursor-pointer
@@ -71,6 +72,14 @@ const Home = () => {
           Chat Now <FontAwesomeIcon icon={faCaretRight} className="ml-3" />
         </div>
         <div className="flex flex-wrap items-center justify-center gap-6 text-white/50 text-2xl animate animate-fade-up lg:text-4xl mb-4">
+        Works with:
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-6 text-white/50 text-2xl animate animate-fade-up lg:text-4xl mb-4">
+          <div className="flex flex-col items-center gap-2 animate animate-grow">
+            <LmStudio />
+            <span className="text-xs font-normal">LM Studio</span>
+          </div>
+          <div className="border-r border-white/20 h-12"></div>
           <div className="flex flex-col items-center gap-2 animate animate-grow">
             <Claude />
             <span className="text-xs font-normal">Claude</span>
@@ -100,7 +109,7 @@ const Home = () => {
             <span className="text-xs font-normal">Qwen</span>
           </div>
           <div className="flex flex-col items-center gap-2 animate animate-grow">
-            <FontAwesomeIcon icon={faHexagonNodes} className="text-4xl" />
+            <FontAwesomeIcon icon={faHexagonNodes} />
             <span className="text-xs font-normal">Others</span>
           </div>
         </div>

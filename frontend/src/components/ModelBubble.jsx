@@ -1,8 +1,9 @@
-
 import useModelParser from "../hooks/useModelParser";
 
-const ModelBubble = ({ onClick, modelId }) => {
-  const { _, paramCount, arch, Icon, IconCombined } = useModelParser(modelId);
+const ModelBubble = ({ onClick, modelId, index }) => {
+  const model = useModelParser(modelId);
+  const paramCount = model.paramCount;
+  const IconCombined = model.IconCombined;
 
   return (
     <div
@@ -16,8 +17,12 @@ const ModelBubble = ({ onClick, modelId }) => {
         py-2 px-4
         shadow-xl shadow-black/20
         cursor-pointer
-        animate animate-grow animate-fade-up
+        animate animate-grow animate-fade-up-fast
         "
+      style={{
+        animationDelay: `${index * 0.05}s`,
+        animationFillMode: "both",
+      }}
       onClick={onClick}
     >
       <div className="flex col-span-5 justify-center lg:justify-start">

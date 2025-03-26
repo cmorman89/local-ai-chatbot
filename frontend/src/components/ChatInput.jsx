@@ -16,6 +16,7 @@ const ChatInput = ({
   loading,
   stopGenerating,
   messageCount,
+  setChatSettingsOpen,
 }) => {
   const [isHover, setIsHover] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -105,6 +106,7 @@ const ChatInput = ({
       <ExpandingButton
         text="Edit System Prompt"
         variant={loading ? "disabled" : "default"}
+        onClick={() => setChatSettingsOpen(true)}
       >
         <FontAwesomeIcon icon={faSliders} className="text-violet-50" />
       </ExpandingButton>
