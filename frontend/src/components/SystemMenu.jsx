@@ -3,6 +3,7 @@ import {
   faCoins,
   faHashtag,
   faList,
+  faPlus,
   faSliders,
   faThermometer,
   faThermometerHalf,
@@ -26,6 +27,13 @@ const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
   const handleAddPrompt = () => {
     setSystemPrompt((prev) => [...prev, ""]);
   };
+
+  const handlePromptChange = (e, index) => {
+    const newPrompts = [...systemPrompt];
+    newPrompts[index] = e.target.value;
+    setSystemPrompt(newPrompts);
+  };
+
   return (
     <div
       className={`
@@ -77,7 +85,7 @@ const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
 
         <div
           className="
-            flex flex-col gap-4
+            flex flex-col gap-4 items-center justify-center
             mb-7 p-8
             overflow-y-auto
             overflow-x-visible
@@ -87,15 +95,21 @@ const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
             systemPrompt.map((prompt, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between font-inter animate animate-fade-up animate-grow
-                ring-0 hover:ring-4 ring-violet-700 rounded-full px-2 py-1 bg-gray-50 shadow-lg shadow-black/20"
+                className="flex items-center justify-between font-inter animate animate-fade-up w-full
+                ring-0 hover:ring-4 ring-violet-700 rounded-full px-4 py-2 bg-gray-50 shadow-lg shadow-black/20"
                 style={{
                   animationDelay: `${index * 0.05}s`,
                   animationFillMode: "both",
                 }}
               >
-                <div className="flex items-center gap-4">
-                  <div className="">{prompt}</div>
+                <div className="flex items-center gap-4 w-full">
+                  <input
+                    className="w-full bg-transparent border-none focus:ring-0 focus:outline-none focus:font-mono focus:text-sm"
+                    type="text"
+                    placeholder="Enter a prompt"
+                    value={prompt}
+                    onChange={(e) => handlePromptChange(e, index)}
+                  />
                 </div>
                 <div
                   className="
@@ -110,6 +124,24 @@ const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
                 </div>
               </div>
             ))}
+          <div
+            className="
+              flex items-center justify-center gap-2
+              text- text-violet-100 font-inter
+              bg-violet-700
+              rounded-full
+              py-4 px-8 mt-4
+              cursor-pointer
+              animate animate-grow
+              shadow-xl shadow-black/20
+              "
+            role="button"
+            aria-label="Add New Prompt"
+            onClick={handleAddPrompt}
+          >
+            <FontAwesomeIcon icon={faPlus} className="text-xl" />
+            Add a New Prompt
+          </div>
         </div>
       </div>
     </div>
