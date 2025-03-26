@@ -29,7 +29,7 @@ const ChatConversation = ({ messages, modelId }) => {
 
   return (
     <div className="flex flex-col items-center w-full p-8 mb-50 gap-4">
-      <ChatIntro modelId={modelId} />
+      { messages.length === 1 && <ChatIntro modelId={modelId} />}
       {messages.map((message, index) => {
         // Skip system messages
         if (message.role === "system") {
