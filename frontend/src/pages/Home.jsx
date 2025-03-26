@@ -1,7 +1,19 @@
-import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCaretRight,
+  faHexagonNodes,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
+import {
+  DeepSeek,
+  Gemma,
+  Mistral,
+  Meta,
+  Microsoft,
+  Qwen,
+  Claude,
+} from "@lobehub/icons";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -33,6 +45,7 @@ const Home = () => {
         <div
           className="
             w-3/4
+            mb-12
             bg-gradient-to-tl from-violet-600 to-fuchsia-500 
             bg-clip-text text-transparent
             animate animate-fade-up
@@ -46,7 +59,7 @@ const Home = () => {
             font-normal  text-xl
             bg-violet-300
             w-fit
-            px-8 py-4 mt-12 lg:mt-24
+            px-8 py-4 mt-12 lg:mt-24 mb-12
             rounded-full
             shadow-lg shadow-black/20 hover:shadow-violet-950/50
             cursor-pointer
@@ -57,8 +70,39 @@ const Home = () => {
         >
           Chat Now <FontAwesomeIcon icon={faCaretRight} className="ml-3" />
         </div>
-        <div className="text-sm text-gray-500 mt-3 italic font-normal">
-          (v0.0.1-alpha)
+        <div className="flex flex-wrap items-center justify-center gap-6 text-white/50 text-2xl animate animate-fade-up lg:text-4xl mb-4">
+          <div className="flex flex-col items-center gap-2 animate animate-grow">
+            <Claude />
+            <span className="text-xs font-normal">Claude</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 animate animate-grow">
+            <DeepSeek />
+            <span className="text-xs font-normal">DeepSeek</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 animate animate-grow">
+            <Gemma />
+            <span className="text-xs font-normal">Gemma</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 animate animate-grow">
+            <Meta />
+            <span className="text-xs font-normal">Llama</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 animate animate-grow">
+            <Mistral />
+            <span className="text-xs font-normal">Mistral</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 animate animate-grow">
+            <Microsoft />
+            <span className="text-xs font-normal">Phi</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 animate animate-grow">
+            <Qwen />
+            <span className="text-xs font-normal">Qwen</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 animate animate-grow">
+            <FontAwesomeIcon icon={faHexagonNodes} className="text-4xl" />
+            <span className="text-xs font-normal">Others</span>
+          </div>
         </div>
       </div>
     </div>

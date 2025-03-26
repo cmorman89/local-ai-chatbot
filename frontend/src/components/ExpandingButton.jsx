@@ -2,9 +2,11 @@ import PropTypes from "prop-types";
 
 const ExpandingButton = ({ text, children, onClick, variant = "default" }) => {
   const buttonStyles = {
-    default: "bg-violet-700 cursor-pointer",
-    cancel: "bg-rose-500 cursor-pointer",
-    disabled: "bg-gray-500 cursor-not-allowed",
+    default: "bg-violet-700 cursor-pointer text-white",
+    cancel: "bg-rose-500 cursor-pointer text-white",
+    disabled: "bg-gray-500 cursor-not-allowed text-white",
+    refresh:
+      "backdrop-blur-lg bg-white/30 hover:bg-red-100 hover:ring-2 hover:ring-red-400 cursor-pointer text-gray-400 hover:text-red-900 animate-fade-up duration-1000",
   };
   return (
     <div
@@ -24,7 +26,7 @@ const ExpandingButton = ({ text, children, onClick, variant = "default" }) => {
     >
       {children}
       <div
-        className="flex text-nowrap mx-5 font-medium text-white text-sm"
+        className="flex text-nowrap mx-5 font-medium text-sm"
         onClick={() => onClick()}
       >
         {text}

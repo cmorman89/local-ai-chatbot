@@ -1,9 +1,11 @@
 import { faHexagonNodes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import useModelParser from "../hooks/useModelParser";
 
 const ModelIndicator = ({ setModelIsOpen, model }) => {
   const [hasModel, setHasModel] = useState(false);
+  const { _, paramCount, arch, Icon, IconCombined } = useModelParser(model);
 
   useEffect(() => {
     if (model) {
@@ -25,12 +27,15 @@ const ModelIndicator = ({ setModelIsOpen, model }) => {
           "
       onClick={() => setModelIsOpen(true)}
     >
-      <FontAwesomeIcon
+      {/* <FontAwesomeIcon
         icon={faHexagonNodes}
         className="text-lg lg:text-2xl animate"
-      />
+      /> */}
+      <div className="scale-150">
+        <Icon />
+      </div>
       <h2 className="text-nowrap">
-        <span className="mr-1 text-nowrap">{hasModel && 'Model:'}</span>
+        <span className="mr-1 text-nowrap">{hasModel && "Model:"}</span>
         <span className="font-medium italic text-violet-900 text-nowrap">
           {text}
         </span>

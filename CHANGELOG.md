@@ -23,3 +23,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Button to cancel chat generation on client- and server-side.
 - Model selection menu with logos (Claude, Mistral, DeepSeek, Qwen, Llama, Phi, Grok, Gemma)
 - Server selection menu with http/https, server, and port input fields.
+- Styled chat intro indicating model (or lack thereof).
+- Dynamic chat clear button that appears when chat history is not empty.

@@ -41,6 +41,7 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
         backdrop-blur-sm
         animate
         `}
+      onClick={handleClose}
     >
       <div
         className="
@@ -93,7 +94,7 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
             .map((model, i) => (
               <ModelBubble
                 key={i}
-                title={model}
+                modelId={model}
                 description="This is a description of the model"
                 onClick={() => handleModelSelect(model)}
               />

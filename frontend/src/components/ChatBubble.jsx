@@ -10,7 +10,7 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
     <div
       className={`
         flex w-full
-        ${isUser ? "justify-end origin-right" : "justify-center origin-top"}
+        ${isUser ? "justify-end origin-right my-6" : "justify-center origin-top"}
         animate animate-grow animate-fade-up
         `}
     >
@@ -29,7 +29,7 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
             ? "shadow-lg shadow-black/20"
             : "shadow-lg shadow-purple-950/15"
         }
-        ${isUser ? "w-fit min-w-50 max-w-200 mb-8 italic" : "w-4/5"}
+        ${isUser ? "w-fit min-w-50 max-w-200 italic" : "w-4/5"}
         
         font-inter text-left
         rounded-4xl 

@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import ChatInput from "../components/ChatInput";
 import useStreamingChat from "../hooks/useStreamingChat";
 import ChatConversation from "../components/ChatConversation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRefresh } from "@fortawesome/free-solid-svg-icons";
+import ExpandingButton from "../components/ExpandingButton";
 
 const Chat = ({ model, serverUrl }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
@@ -41,6 +44,15 @@ const Chat = ({ model, serverUrl }) => {
     setInput("");
   };
 
+  const handleClear = () => {
+    setMessages([
+      {
+        role: "system",
+        content: systemPrompt.join(" "),
+      },
+    ]);
+  };
+
   const appendMessageToCurrent = (role, content) => {
     if (messages.length === 0 || !content) return;
     const prevMessages = messages.slice(0, messages.length - 1);
@@ -60,8 +72,9 @@ const Chat = ({ model, serverUrl }) => {
         gap-4
         "
     >
-      <ChatConversation messages={messages} />
+      <ChatConversation messages={messages} modelId={model} />
       <ChatInput
+        messageCount={messages.length}
         name="userPrompt"
         value={input}
         onChange={handleChange}
@@ -69,6 +82,17 @@ const Chat = ({ model, serverUrl }) => {
         loading={loading}
         stopGenerating={stopChatGeneration}
       />
+      {messages.length > 1 && (
+        <div className="fixed">
+          <ExpandingButton
+            onClick={handleClear}
+            text="Clear Chat"
+            variant="refresh"
+          >
+            <FontAwesomeIcon icon={faRefresh} className="mr-3" />
+          </ExpandingButton>
+        </div>
+      )}
     </div>
   );
 };
