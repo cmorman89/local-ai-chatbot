@@ -1,13 +1,4 @@
-import {
-  Gemma,
-  Meta,
-  Mistral,
-  Microsoft,
-  Grok,
-  DeepSeek,
-  Claude,
-  Qwen,
-} from "@lobehub/icons";
+
 import useModelParser from "../hooks/useModelParser";
 
 const ModelBubble = ({ onClick, modelId }) => {

@@ -30,7 +30,7 @@ const useModelParser = (modelId) => {
     const parseModelId = (modelId) => {
       const patterns = {
         paramCount: /([0-9]+)b/,
-        arch: /(gemma|llama|grok|mistral|mathstral|phi|claude|deepseek|qwen)/,
+        arch: /(gemma|llama|mistral|mathstral|phi|claude|deepseek|qwen)/,
       };
 
       const icons = {
@@ -39,7 +39,6 @@ const useModelParser = (modelId) => {
         mistral: <Mistral.Color />,
         mathstral: <Mistral.Color />,
         phi: <Microsoft.Color />,
-        grok: <Grok.Color />,
         claude: <Claude.Color />,
         deepseek: <DeepSeek.Color />,
         qwen: <Qwen.Color />,
@@ -51,7 +50,6 @@ const useModelParser = (modelId) => {
         mistral: <Mistral.Combine type="color" />,
         mathstral: <Mistral.Combine type="color" />,
         phi: <Microsoft.Combine type="color" />,
-        grok: <Grok.Combine type="color" />,
         claude: <Claude.Combine type="color" />,
         deepseek: <DeepSeek.Combine type="color" />,
         qwen: <Qwen.Combine type="color" />,

@@ -60,7 +60,7 @@ const Chat = ({ model, serverUrl }) => {
         gap-4
         "
     >
-      <ChatConversation messages={messages} />
+      <ChatConversation messages={messages} modelId={model} />
       <ChatInput
         name="userPrompt"
         value={input}
