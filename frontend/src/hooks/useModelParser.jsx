@@ -23,16 +23,17 @@ const useModelParser = (modelId) => {
     Icon: () => <FontAwesomeIcon icon={faHexagonNodes} />,
     IconCombined: () => (
       <span className="text-gray-400">
-        <FontAwesomeIcon icon={faHexagonNodes} />
+        <FontAwesomeIcon icon={faHexagonNodes} className="mr-1" />
         Other
       </span>
     ),
     IconCombinedLg: () => (
-      <span className="text-gray-400">
-        <FontAwesomeIcon icon={faHexagonNodes} />
+      <span className="text-gray-400 text-4xl">
+        <FontAwesomeIcon icon={faHexagonNodes} className="mr-2" />
         Other
       </span>
     ),
+    color: "#DCDCDC",
   });
 
   useEffect(() => {
@@ -76,14 +77,14 @@ const useModelParser = (modelId) => {
       };
 
       const color = {
-        gemma: <Gemma.PrimaryColor />,
-        llama: <Meta.PrimaryColor />,
-        mistral: <Mistral.PrimaryColor />,
-        mathstral: <Mistral.PrimaryColor />,
-        phi: <Microsoft.PrimaryColor />,
-        claude: <Claude.PrimaryColor />,
-        deepseek: <DeepSeek.PrimaryColor />,
-        qwen: <Qwen.PrimaryColor />,
+        gemma: Gemma.colorPrimary,
+        llama: Meta.colorPrimary,
+        mistral: Mistral.colorPrimary,
+        mathstral: Mistral.colorPrimary,
+        phi: Microsoft.colorPrimary,
+        claude: Claude.colorPrimary,
+        deepseek: DeepSeek.colorPrimary,
+        qwen: Qwen.colorPrimary,
       };
 
       const parts = modelId.split("_");
@@ -99,11 +100,12 @@ const useModelParser = (modelId) => {
           </span>
         ),
         IconCombinedLg: () => (
-          <span className="text-gray-400">
-            <FontAwesomeIcon icon={faHexagonNodes} className="mr-1" />
+          <span className="text-gray-400 text-4xl">
+            <FontAwesomeIcon icon={faHexagonNodes} className="mr-2" />
             Other
           </span>
         ),
+        color: "#DCDCDC",
       };
 
       for (const part of parts) {
@@ -123,6 +125,9 @@ const useModelParser = (modelId) => {
       }
       if (iconsCombinedLg[parsedModel.arch]) {
         parsedModel.IconCombinedLg = () => iconsCombinedLg[parsedModel.arch];
+      }
+      if (color[parsedModel.arch]) {
+        parsedModel.color = color[parsedModel.arch];
       }
 
       setModel(parsedModel);
@@ -153,6 +158,7 @@ const useModelParser = (modelId) => {
             No Model
           </span>
         ),
+        color: "#550000",
       });
     }
   }, [modelId]);
