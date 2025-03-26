@@ -70,7 +70,7 @@ const Home = () => {
         >
           Chat Now <FontAwesomeIcon icon={faCaretRight} className="ml-3" />
         </div>
-        <div className="flex gap-6 text-white/50 text-2xlanimate animte-fade-up text-4xl mb-4">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-white/50 text-2xlanimate animte-fade-up text-4xl mb-4">
           <div className="flex flex-col items-center gap-2 animate animate-grow">
             <Claude />
             <span className="text-xs font-normal">Claude</span>
