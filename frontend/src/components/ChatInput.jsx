@@ -46,10 +46,8 @@ const ChatInput = ({
             border-gray-400 hover:border-violet-700
             backdrop-blur-lg
             fixed 
-            ${messageCount > 1 ? "bottom-20" : "bottom-1/2"}
+            ${messageCount > 1 ? "bottom-20" : "bottom-1/3 lg:bottom-1/2"}
             z-20
-            bg-gradient-to-br from-violet-200/5 to-violet-700/10 from-80%
-            bg-white/60
             rounded-full 
             ${isActive ? "shadow-violet-950/50" : "shadow-black/20"}
             shadow-2xl
@@ -57,7 +55,7 @@ const ChatInput = ({
             p-4 gap-4 
             animate duration-800 
             ${isActive ? "-translate-y-1.5" : "translate-y-0"}
-            ${isActive ? "opacity-100" : "opacity-70"}
+            ${isActive ? "bg-white/60" : "bg-white/20"}
             `}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
