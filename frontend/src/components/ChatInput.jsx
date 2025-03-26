@@ -15,6 +15,7 @@ const ChatInput = ({
   value,
   loading,
   stopGenerating,
+  messageCount,
 }) => {
   const [isHover, setIsHover] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -37,9 +38,11 @@ const ChatInput = ({
     <div
       className={`
             flex justify-center
-            border border-violet-700/70
+            border-1 border-gray-400
             backdrop-blur-lg
-            fixed bottom-20 z-20
+            fixed 
+            ${messageCount > 1 ? 'bottom-20' : 'bottom-1/2'}
+            z-20
             bg-gradient-to-br from-violet-200/5 to-violet-700/10 from-80%
             bg-white/60
             rounded-full 
@@ -49,7 +52,7 @@ const ChatInput = ({
             p-4 gap-4 
             animate duration-800 
             translate-y-0 hover:-translate-y-1.5
-            ${isActive ? "opacity-100" : "opacity-60"}
+            ${isActive ? "opacity-100" : "opacity-70"}
             `}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}

@@ -62,6 +62,7 @@ const Chat = ({ model, serverUrl }) => {
     >
       <ChatConversation messages={messages} modelId={model} />
       <ChatInput
+        messageCount={messages.length}
         name="userPrompt"
         value={input}
         onChange={handleChange}
