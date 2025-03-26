@@ -35,7 +35,7 @@ const Home = () => {
             animate animate-fade-up
             bg-gradient-to-br from-gray-800 to-violet-950
             bg-gray-200
-            p-8 py-24 rounded-4xl
+            p-8 pt-16 rounded-4xl
             shadow-lg shadow-black/10
             animate animate-grow animate-fade-up
             "
