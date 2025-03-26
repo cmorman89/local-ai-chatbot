@@ -5,6 +5,7 @@ const ExpandingButton = ({ text, children, onClick, variant = "default" }) => {
     default: "bg-violet-700 cursor-pointer",
     cancel: "bg-rose-500 cursor-pointer",
     disabled: "bg-gray-500 cursor-not-allowed",
+    refresh: "backdrop-blur-lg bg-white/30 cursor-pointer",
   };
   return (
     <div
