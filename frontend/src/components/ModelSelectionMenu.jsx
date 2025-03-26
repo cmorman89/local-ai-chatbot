@@ -115,6 +115,7 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
             .map((model, i) => (
               <ModelBubble
                 key={i}
+                index={i}
                 modelId={model}
                 description="This is a description of the model"
                 onClick={() => handleModelSelect(model)}
