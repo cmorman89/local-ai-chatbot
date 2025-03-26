@@ -2,7 +2,7 @@ import { faCircleXmark, faCoins, faHashtag, faList, faSliders, faThermometer, fa
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-const SystemMenu = ({ isOpen, setIsOpen }) => {
+const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
 
   const handleOutsideClick = (e) => {
     if (e.target === e.currentTarget) setIsOpen(false);

@@ -5,8 +5,9 @@ import ChatConversation from "../components/ChatConversation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 import ExpandingButton from "../components/ExpandingButton";
+import SystemMenu from "../components/SystemMenu";
 
-const Chat = ({ model, serverUrl, setChatSettingsOpen }) => {
+const Chat = ({ model, serverUrl, chatSettingsOpen, setChatSettingsOpen }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
     useStreamingChat(serverUrl);
 
@@ -82,6 +83,13 @@ const Chat = ({ model, serverUrl, setChatSettingsOpen }) => {
         loading={loading}
         stopGenerating={stopChatGeneration}
         setChatSettingsOpen={setChatSettingsOpen}
+      />
+
+      <SystemMenu
+        isOpen={chatSettingsOpen}
+        setIsOpen={setChatSettingsOpen}
+        systemPrompt={systemPrompt}
+        setSystemPrompt={setSystemPrompt}
       />
       {messages.length > 1 && (
         <div className="fixed">

@@ -48,7 +48,14 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route
                 path="/chat"
-                element={<Chat model={model} serverUrl={serverUrl} setChatSettingsOpen={setChatSettingsOpen}  />}
+                element={
+                  <Chat
+                    model={model}
+                    serverUrl={serverUrl}
+                    chatSettingsOpen={chatSettingsOpen}
+                    setChatSettingsOpen={setChatSettingsOpen}
+                  />
+                }
               />
             </Routes>
           </MainContentWindow>
@@ -57,10 +64,6 @@ function App() {
             setIsOpen={setModelIsOpen}
             setModel={setModel}
             serverUrl={serverUrl}
-          />
-          <SystemMenu 
-            isOpen={chatSettingsOpen}
-            setIsOpen={setChatSettingsOpen}
           />
         </div>
       </Router>
