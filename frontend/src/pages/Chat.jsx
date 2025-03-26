@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import ChatInput from "../components/ChatInput";
 import useStreamingChat from "../hooks/useStreamingChat";
 import ChatConversation from "../components/ChatConversation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 
 const Chat = ({ model, serverUrl }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
@@ -70,6 +72,27 @@ const Chat = ({ model, serverUrl }) => {
         loading={loading}
         stopGenerating={stopChatGeneration}
       />
+      {messages.length > 1 && (
+        <div
+          className="
+        flex items-center
+        absolute top-0
+        bg-white hover:bg-violet-300
+        px-8 py-4 gap-2 m-4
+        rounded-full
+        shadow-xl shadow-black/10
+        animate animate-fade-up animate-grow
+        cursor-pointer
+        "
+        role="button"
+        onClick={() => {
+          setMessages([{ role: "system", content: systemPrompt.join(" ") }]);
+        }}
+        >
+          <FontAwesomeIcon icon={faRefresh} />
+          New Chat
+        </div>
+      )}
     </div>
   );
 };
