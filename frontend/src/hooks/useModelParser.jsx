@@ -10,7 +10,10 @@ import {
   Qwen,
 } from "@lobehub/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHexagonNodes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHexagonNodes,
+  faTriangleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
 
 const useModelParser = (modelId) => {
   const [model, setModel] = useState({
@@ -87,8 +90,25 @@ const useModelParser = (modelId) => {
 
       setModel(parsedModel);
     };
-
-    parseModelId(modelId);
+    if (modelId) {
+      parseModelId(modelId);
+    } else {
+      setModel({
+        modelId: "No Model Selected",
+        paramCount: null,
+        arch: "none",
+        Icon: () => <FontAwesomeIcon icon={faHexagonNodes} />,
+        IconCombined: () => (
+          <span className="text-gray-400">
+            <FontAwesomeIcon
+              icon={faTriangleExclamation}
+              className="mr-1 text-amber-400"
+            />
+            None
+          </span>
+        ),
+      });
+    }
   }, [modelId]);
 
   return model;
