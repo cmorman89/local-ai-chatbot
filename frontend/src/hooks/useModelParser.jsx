@@ -4,7 +4,6 @@ import {
   Meta,
   Mistral,
   Microsoft,
-  Grok,
   DeepSeek,
   Claude,
   Qwen,
@@ -16,12 +15,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const useModelParser = (modelId) => {
+  const size = 56;
   const [model, setModel] = useState({
     modelId,
     paramCount: null,
     arch: "other",
     Icon: () => <FontAwesomeIcon icon={faHexagonNodes} />,
     IconCombined: () => (
+      <span className="text-gray-400">
+        <FontAwesomeIcon icon={faHexagonNodes} />
+        Other
+      </span>
+    ),
+    IconCombinedLg: () => (
       <span className="text-gray-400">
         <FontAwesomeIcon icon={faHexagonNodes} />
         Other
@@ -58,6 +64,17 @@ const useModelParser = (modelId) => {
         qwen: <Qwen.Combine type="color" />,
       };
 
+      const iconsCombinedLg = {
+        gemma: <Gemma.Combine type="color" size={size} />,
+        llama: <Meta.Combine type="color" size={size} />,
+        mistral: <Mistral.Combine type="color" size={size} />,
+        mathstral: <Mistral.Combine type="color" size={size} />,
+        phi: <Microsoft.Combine type="color" size={size} />,
+        claude: <Claude.Combine type="color" size={size} />,
+        deepseek: <DeepSeek.Combine type="color" size={size} />,
+        qwen: <Qwen.Combine type="color" size={size} />,
+      };
+
       const parts = modelId.split("_");
       let parsedModel = {
         modelId,
@@ -65,6 +82,12 @@ const useModelParser = (modelId) => {
         arch: "other",
         Icon: () => <FontAwesomeIcon icon={faHexagonNodes} />,
         IconCombined: () => (
+          <span className="text-gray-400">
+            <FontAwesomeIcon icon={faHexagonNodes} className="mr-1" />
+            Other
+          </span>
+        ),
+        IconCombinedLg: () => (
           <span className="text-gray-400">
             <FontAwesomeIcon icon={faHexagonNodes} className="mr-1" />
             Other
@@ -86,6 +109,9 @@ const useModelParser = (modelId) => {
       }
       if (iconsCombined[parsedModel.arch]) {
         parsedModel.IconCombined = () => iconsCombined[parsedModel.arch];
+      }
+      if (iconsCombinedLg[parsedModel.arch]) {
+        parsedModel.IconCombinedLg = () => iconsCombinedLg[parsedModel.arch];
       }
 
       setModel(parsedModel);
