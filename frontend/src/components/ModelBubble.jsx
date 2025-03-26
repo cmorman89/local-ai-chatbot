@@ -2,7 +2,9 @@
 import useModelParser from "../hooks/useModelParser";
 
 const ModelBubble = ({ onClick, modelId }) => {
-  const { _, paramCount, arch, Icon, IconCombined } = useModelParser(modelId);
+  const model = useModelParser(modelId);
+  const paramCount = model.paramCount;
+  const IconCombined = model.IconCombined;
 
   return (
     <div
