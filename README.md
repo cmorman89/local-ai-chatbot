@@ -15,6 +15,7 @@
 - Conversational/contextual chat history
 - Select a different model to load and use
 - Select custom server endpoint
+- Modify the system prompt on-the-fly
 
 
 ## Screenshots:
