@@ -1,15 +1,9 @@
 import {
   faCircleXmark,
-  faCoins,
-  faHashtag,
-  faList,
   faPlus,
   faSliders,
-  faThermometer,
-  faThermometerHalf,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 
 const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
   const handleOutsideClick = (e) => {
