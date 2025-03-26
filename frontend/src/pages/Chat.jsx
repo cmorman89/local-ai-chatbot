@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 import ExpandingButton from "../components/ExpandingButton";
 
-const Chat = ({ model, serverUrl }) => {
+const Chat = ({ model, serverUrl, setChatSettingsOpen }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
     useStreamingChat(serverUrl);
 
@@ -81,6 +81,7 @@ const Chat = ({ model, serverUrl }) => {
         onSubmit={handleSubmit}
         loading={loading}
         stopGenerating={stopChatGeneration}
+        setChatSettingsOpen={setChatSettingsOpen}
       />
       {messages.length > 1 && (
         <div className="fixed">
