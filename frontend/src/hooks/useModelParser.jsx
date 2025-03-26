@@ -75,6 +75,17 @@ const useModelParser = (modelId) => {
         qwen: <Qwen.Combine type="color" size={size} />,
       };
 
+      const color = {
+        gemma: <Gemma.PrimaryColor />,
+        llama: <Meta.PrimaryColor />,
+        mistral: <Mistral.PrimaryColor />,
+        mathstral: <Mistral.PrimaryColor />,
+        phi: <Microsoft.PrimaryColor />,
+        claude: <Claude.PrimaryColor />,
+        deepseek: <DeepSeek.PrimaryColor />,
+        qwen: <Qwen.PrimaryColor />,
+      };
+
       const parts = modelId.split("_");
       let parsedModel = {
         modelId,
@@ -125,12 +136,21 @@ const useModelParser = (modelId) => {
         arch: "none",
         Icon: () => <FontAwesomeIcon icon={faHexagonNodes} />,
         IconCombined: () => (
-          <span className="text-gray-400">
+          <span className="text-red-700">
             <FontAwesomeIcon
               icon={faTriangleExclamation}
-              className="mr-1 text-amber-400"
+              className="mr-1 text-red-500"
             />
             None
+          </span>
+        ),
+        IconCombinedLg: () => (
+          <span className="text-red-600 text-4xl">
+            <FontAwesomeIcon
+              icon={faTriangleExclamation}
+              className="mr-2 text-red-500"
+            />
+            No Model
           </span>
         ),
       });
