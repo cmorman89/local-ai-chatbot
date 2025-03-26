@@ -1,6 +1,7 @@
 import {
   faCircleXmark,
   faHexagonNodes,
+  faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ModelBubble from "./ModelBubble";
@@ -19,7 +20,7 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
   const handleClose = () => {
     setIsOpen(false);
   };
-  
+
   const handleModelSelect = (model) => {
     setModel(model);
     setIsOpen(false);
@@ -91,7 +92,23 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
           "
         >
           {loading && <div>Loading...</div>}
-          {error && <div>Error: {error.message}</div>}
+          {error && (
+            <div className="flex justify-center">
+              <div
+                className="
+                flex items-center justify-center font-inter gap-6 rounded-2xl border-red-600 border-2 px-8 py-4 w-fit bg-red-50"
+              >
+                <FontAwesomeIcon
+                  icon={faTriangleExclamation}
+                  className="text-red-500 text-6xl"
+                />
+                <div className="flex flex-col">
+                  <p className="text-2xl font-semibold text-red-700">Error:</p>
+                  <p>{error.message}</p>
+                </div>
+              </div>
+            </div>
+          )}
           {modelList
             .slice()
             .sort((a, b) => a.localeCompare(b))
