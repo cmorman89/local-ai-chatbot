@@ -791,7 +791,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       animate
       `,children:[t,E.jsx("div",{className:"flex text-nowrap mx-5 font-medium text-white text-sm",onClick:()=>r(),children:e})]})};wu.propTypes={text:Ae.string.isRequired,children:Ae.node,onClick:Ae.func};const $m=({name:e="userPrompt",onChange:t,onSubmit:r,value:i,loading:l,stopGenerating:s,messageCount:u})=>{const[d,m]=z.useState(!1),[p,g]=z.useState(!1),[b,y]=z.useState(!1);return z.useEffect(()=>{y(!!(d||p))},[d,p]),z.useEffect(()=>{l&&g(!1)},[l]),E.jsxs("div",{className:`
             flex justify-center
-            border-1 border-gray-400
+            ${b?"border-violet-700 border-4":"border-gray-400 border-1"}
+            border-gray-400 hover:border-violet-700
             backdrop-blur-lg
             fixed 
             ${u>1?"bottom-20":"bottom-1/2"}
@@ -799,12 +800,12 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             bg-gradient-to-br from-violet-200/5 to-violet-700/10 from-80%
             bg-white/60
             rounded-full 
-            shadow-2xl shadow-black/30
-            hover:shadow-violet-950/50
+            ${b?"shadow-violet-950/50":"shadow-black/20"}
+            shadow-2xl
             w-full max-w-4/5
             p-4 gap-4 
             animate duration-800 
-            translate-y-0 hover:-translate-y-1.5
+            ${b?"-translate-y-1.5":"translate-y-0"}
             ${b?"opacity-100":"opacity-70"}
             `,onMouseEnter:()=>m(!0),onMouseLeave:()=>m(!1),children:[E.jsx("input",{type:"text",disabled:l,autoFocus:!0,autoComplete:"off",autoCorrect:"on","aria-autocomplete":"off",name:e,placeholder:l?"Generating response...":"What would you like to ask?",className:`
               flex
