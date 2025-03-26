@@ -12,10 +12,14 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
   const [modelList, setModelList] = useState([]);
   const { data, loading, error } = useFetchData(url);
 
+  const handleOutsideClick = (e) => {
+    if (e.target === e.currentTarget) setIsOpen(false);
+  };
+
   const handleClose = () => {
     setIsOpen(false);
   };
-
+  
   const handleModelSelect = (model) => {
     setModel(model);
     setIsOpen(false);
@@ -41,7 +45,7 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
         backdrop-blur-sm
         animate
         `}
-      onClick={handleClose}
+      onClick={(e) => handleOutsideClick(e)}
     >
       <div
         className="
