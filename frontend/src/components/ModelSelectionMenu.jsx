@@ -5,7 +5,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ModelBubble from "./ModelBubble";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useFetchData from "../hooks/useFetchData";
 
 const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
