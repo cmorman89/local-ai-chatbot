@@ -34,6 +34,10 @@ const ServerMenu = ({
     setServerMenuOpen(false);
   };
 
+  const handleOutsideClick = (e) => {
+    if (e.target === e.currentTarget) setServerMenuOpen(false);
+  };
+
   const handleClose = () => {
     setServerMenuOpen(false);
   }
@@ -49,7 +53,7 @@ const ServerMenu = ({
         backdrop-blur-sm
         animate
         `}
-      onClick={handleClose}
+      onClick={(e) => handleOutsideClick(e)}
     >
       <div
         className={`
