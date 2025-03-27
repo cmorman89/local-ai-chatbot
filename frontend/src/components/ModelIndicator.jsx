@@ -1,11 +1,11 @@
-import { faHexagonNodes } from "@fortawesome/free-solid-svg-icons";
+import { faHexagonNodes, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import useModelParser from "../hooks/useModelParser";
 
 const ModelIndicator = ({ setModelIsOpen, model }) => {
   const [hasModel, setHasModel] = useState(false);
-  const { _, paramCount, arch, Icon, IconCombined } = useModelParser(model);
+  const { _, paramCount, arch, Icon, IconCombined, color } = useModelParser(model);
 
   useEffect(() => {
     if (model) {
@@ -13,7 +13,7 @@ const ModelIndicator = ({ setModelIsOpen, model }) => {
     }
   }, [model]);
 
-  const text = model ? model : "Select Model";
+  const text = model ? model : "No Model";
   return (
     <div
       className="
@@ -31,12 +31,12 @@ const ModelIndicator = ({ setModelIsOpen, model }) => {
         icon={faHexagonNodes}
         className="text-lg lg:text-2xl animate"
       /> */}
-      <div className="scale-150">
-        <Icon />
+      <div className="text-2xl">
+        {hasModel ? <Icon /> : <FontAwesomeIcon icon={faTriangleExclamation} className="text-red-700"/>}
       </div>
       <h2 className="text-nowrap">
         <span className="mr-1 text-nowrap">{hasModel && "Model:"}</span>
-        <span className="font-medium italic text-violet-900 text-nowrap">
+        <span className={`font-medium italic ${hasModel ? 'text-violet-950' : 'text-red-700'} text-nowrap`}>
           {text}
         </span>
       </h2>
