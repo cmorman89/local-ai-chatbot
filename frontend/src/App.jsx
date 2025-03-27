@@ -16,6 +16,7 @@ function App() {
   const [serverMenuOpen, setServerMenuOpen] = useState(false);
   const [chatSettingsOpen, setChatSettingsOpen] = useState(false);
   const [model, setModel] = useLocalStorage("modelId", null);
+  const [modelLoading, setModelLoading] = useState(false);
   const [serverUrl, setServerUrl] = useLocalStorage(
     "serverUrl",
     "http://localhost:1234"
@@ -51,6 +52,7 @@ function App() {
                 element={
                   <Chat
                     model={model}
+                    modelLoading={modelLoading}
                     serverUrl={serverUrl}
                     setModelSelectionOpen={setModelIsOpen}
                     chatSettingsOpen={chatSettingsOpen}
@@ -65,6 +67,7 @@ function App() {
             setIsOpen={setModelIsOpen}
             setModel={setModel}
             serverUrl={serverUrl}
+            setModelLoading={setModelLoading} 
           />
         </div>
       </Router>
