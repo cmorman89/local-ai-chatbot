@@ -17,6 +17,7 @@ const ChatInput = ({
   stopGenerating,
   messageCount,
   setChatSettingsOpen,
+  modelId,
 }) => {
   const [isHover, setIsHover] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -46,7 +47,11 @@ const ChatInput = ({
             }
             border-gray-400 hover:border-violet-700
             backdrop-blur-lg 
-            ${messageCount > 1 ? "fixed bottom-20" : "sticky bottom-1/3 lg:bottom-1/2"}
+            ${
+              messageCount > 1
+                ? "fixed bottom-20"
+                : "sticky bottom-1/3 lg:bottom-1/2"
+            }
             z-20
             rounded-full 
             ${isActive ? "shadow-violet-950/50" : "shadow-black/20"}
@@ -56,20 +61,25 @@ const ChatInput = ({
             animate duration-800 
             ${isActive ? "-translate-y-1.5" : "translate-y-0"}
             ${isActive ? "bg-white/60" : "bg-white/20"}
+            ${!modelId && "cursor-not-allowed"}
             `}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
       <input
         type="text"
-        disabled={loading}
+        disabled={loading || !modelId}
         autoFocus
         autoComplete="off"
         autoCorrect="on"
         aria-autocomplete="off"
         name={name}
         placeholder={
-          loading ? "Generating response..." : "What would you like to ask?"
+          modelId
+            ? loading
+              ? "Generating response..."
+              : "What would you like to ask?"
+            : "Select a model to start chatting"
         }
         className={`
               flex
@@ -77,7 +87,7 @@ const ChatInput = ({
               w-full mx-4
               text-violet-950/80 font-inter
               placeholder:text-violet-950/50 placeholder:italic
-              ${loading ? "cursor-not-allowed" : "cursor-text"}
+              ${loading || !modelId ? "cursor-not-allowed" : "cursor-text"}
               `}
         value={value}
         onChange={(e) => onChange(e)}
@@ -98,7 +108,11 @@ const ChatInput = ({
           <FontAwesomeIcon icon={faXmark} className="text-violet-50 ml-0.5" />
         </ExpandingButton>
       ) : (
-        <ExpandingButton text="Send Message" onClick={onSubmit}>
+        <ExpandingButton
+          text="Send Message"
+          variant={!modelId ? "disabled" : "default"}
+          onClick={onSubmit}
+        >
           <FontAwesomeIcon icon={faPaperPlane} className="text-violet-50" />
         </ExpandingButton>
       )}
