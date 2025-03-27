@@ -38,7 +38,7 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
   useEffect(() => {
     if (!isOpen) return;
     setModelList([]);
-  }, [url, isOpen]);
+  }, [serverUrl, isOpen]);
   return (
     <div
       className={`
