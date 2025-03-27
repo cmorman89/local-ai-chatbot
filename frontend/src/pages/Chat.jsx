@@ -7,7 +7,13 @@ import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 import ExpandingButton from "../components/ExpandingButton";
 import SystemMenu from "../components/SystemMenu";
 
-const Chat = ({ model, serverUrl, chatSettingsOpen, setChatSettingsOpen }) => {
+const Chat = ({
+  model,
+  serverUrl,
+  chatSettingsOpen,
+  setChatSettingsOpen,
+  setModelSelectionOpen,
+}) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
     useStreamingChat(serverUrl);
 
@@ -73,7 +79,11 @@ const Chat = ({ model, serverUrl, chatSettingsOpen, setChatSettingsOpen }) => {
         gap-4
         "
     >
-      <ChatConversation messages={messages} modelId={model} />
+      <ChatConversation
+        messages={messages}
+        modelId={model}
+        setModelSelectionOpen={setModelSelectionOpen}
+      />
       <ChatInput
         messageCount={messages.length}
         name="userPrompt"

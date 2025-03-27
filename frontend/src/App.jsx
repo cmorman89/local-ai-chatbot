@@ -52,6 +52,7 @@ function App() {
                   <Chat
                     model={model}
                     serverUrl={serverUrl}
+                    setModelSelectionOpen={setModelIsOpen}
                     chatSettingsOpen={chatSettingsOpen}
                     setChatSettingsOpen={setChatSettingsOpen}
                   />
