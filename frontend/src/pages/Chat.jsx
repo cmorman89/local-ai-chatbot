@@ -75,7 +75,7 @@ const Chat = ({
     <div
       className="
         flex flex-col items-center
-        w-full p-8 mb-50
+        w-full p-8
         gap-4
         "
     >
@@ -102,7 +102,7 @@ const Chat = ({
         setSystemPrompt={setSystemPrompt}
       />
       {messages.length > 1 && (
-        <div className="fixed">
+        <div className="fixed top-22 z-50">
           <ExpandingButton
             onClick={handleClear}
             text="Clear Chat"
