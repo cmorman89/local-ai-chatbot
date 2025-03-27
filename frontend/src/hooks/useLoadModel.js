@@ -19,6 +19,8 @@ const useLoadModel = (url) => {
           stream: false,
         }),
       });
+      const status = response.status;
+      setResponse({ status });
     } finally {
       setLoading(false);
     }
