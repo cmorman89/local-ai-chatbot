@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useModelParser from "../hooks/useModelParser";
 import { faGear, faRefresh } from "@fortawesome/free-solid-svg-icons";
 
-const ChatIntro = ({ modelId, setModelSelectionOpen, loading }) => {
+const ChatIntro = ({ modelId, setModelSelectionOpen, modelLoading }) => {
   const model = useModelParser(modelId);
   const { _, paramCount, arch, Icon, IconCombined, IconCombinedLg, color } =
     model;
@@ -22,7 +22,7 @@ const ChatIntro = ({ modelId, setModelSelectionOpen, loading }) => {
     >
       <div className="flex flex-col items-center gap-4">
         <div className="">
-          {loading ? (
+          {modelLoading ? (
             <span className="flex items-center gap-2 text-5xl font-inter font-semibold text-gray-800">
               <FontAwesomeIcon
                 icon={faGear}
