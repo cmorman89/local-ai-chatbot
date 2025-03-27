@@ -86,6 +86,7 @@ const Chat = ({
       />
       <ChatInput
         messageCount={messages.length}
+        modelId={model}
         name="userPrompt"
         value={input}
         onChange={handleChange}
