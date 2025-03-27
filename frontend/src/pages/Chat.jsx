@@ -7,7 +7,13 @@ import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 import ExpandingButton from "../components/ExpandingButton";
 import SystemMenu from "../components/SystemMenu";
 
-const Chat = ({ model, serverUrl, chatSettingsOpen, setChatSettingsOpen }) => {
+const Chat = ({
+  model,
+  serverUrl,
+  chatSettingsOpen,
+  setChatSettingsOpen,
+  setModelSelectionOpen,
+}) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
     useStreamingChat(serverUrl);
 
@@ -69,11 +75,15 @@ const Chat = ({ model, serverUrl, chatSettingsOpen, setChatSettingsOpen }) => {
     <div
       className="
         flex flex-col items-center
-        w-full p-8 mb-50
+        w-full p-8
         gap-4
         "
     >
-      <ChatConversation messages={messages} modelId={model} />
+      <ChatConversation
+        messages={messages}
+        modelId={model}
+        setModelSelectionOpen={setModelSelectionOpen}
+      />
       <ChatInput
         messageCount={messages.length}
         name="userPrompt"
@@ -92,7 +102,7 @@ const Chat = ({ model, serverUrl, chatSettingsOpen, setChatSettingsOpen }) => {
         setSystemPrompt={setSystemPrompt}
       />
       {messages.length > 1 && (
-        <div className="fixed">
+        <div className="fixed top-22 z-50">
           <ExpandingButton
             onClick={handleClear}
             text="Clear Chat"

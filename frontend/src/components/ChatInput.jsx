@@ -45,9 +45,8 @@ const ChatInput = ({
                 : "border-gray-400 border-1"
             }
             border-gray-400 hover:border-violet-700
-            backdrop-blur-lg
-            fixed 
-            ${messageCount > 1 ? "bottom-20" : "bottom-1/3 lg:bottom-1/2"}
+            backdrop-blur-lg 
+            ${messageCount > 1 ? "fixed bottom-20" : "sticky bottom-1/3 lg:bottom-1/2"}
             z-20
             rounded-full 
             ${isActive ? "shadow-violet-950/50" : "shadow-black/20"}

@@ -1,7 +1,7 @@
 import ChatBubble from "./ChatBubble";
 import ChatIntro from "./ChatIntro";
 
-const ChatConversation = ({ messages, modelId }) => {
+const ChatConversation = ({ messages, modelId, setModelSelectionOpen }) => {
   const handleAssistantContent = (content) => {
     // Split the content into lines
     let lines = content.split("\n");
@@ -29,7 +29,12 @@ const ChatConversation = ({ messages, modelId }) => {
 
   return (
     <div className="flex flex-col items-center w-full p-8 mb-50 gap-4">
-      {messages.length === 1 && <ChatIntro modelId={modelId} />}
+      {messages.length === 1 && (
+        <ChatIntro
+          modelId={modelId}
+          setModelSelectionOpen={setModelSelectionOpen}
+        />
+      )}
       {messages.map((message, index) => {
         // Skip system messages
         if (message.role === "system") {
