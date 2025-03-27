@@ -34,7 +34,8 @@ const Home = () => {
             animate animate-fade-up
             bg-gradient-to-br from-gray-800 to-violet-950
             bg-gray-200
-            p-8 pt-16 rounded-4xl
+            p-8 pt-16
+            rounded-4xl
             shadow-lg shadow-violet-900/50
             animate animate-fade-up
             "
@@ -59,7 +60,7 @@ const Home = () => {
             font-normal  text-xl
             bg-violet-300
             w-fit
-            px-8 py-4 mt-12 lg:mt-24 mb-24
+            px-6 py-3 mt-12  mb-12
             rounded-full
             shadow-lg shadow-black/20 hover:shadow-fuchsia-500/50
             cursor-pointer
