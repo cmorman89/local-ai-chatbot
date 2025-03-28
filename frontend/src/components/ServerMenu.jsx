@@ -1,6 +1,10 @@
 import {
   faCircleCheck,
   faCircleXmark,
+  faHashtag,
+  faPlug,
+  faServer,
+  faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
@@ -40,7 +44,7 @@ const ServerMenu = ({
 
   const handleClose = () => {
     setServerMenuOpen(false);
-  }
+  };
 
   return (
     <div
@@ -59,15 +63,14 @@ const ServerMenu = ({
         className={`
             ${serverMenuOpen ? "flex" : "hidden"}
             items-center mb-2 pr-2
-            fixed left-24 bottom-0 z-50
+            fixed left-24 top-80 z-50
             w-4/5 max-w-105 lg:max-w-225
-            shadow-lg shadow-black/10
             animate animate-grow
             `}
       >
         <div
           className=" 
-            w-0 h-0
+            w-0 h-0 z-51
             border-t-[30px] border-t-transparent
             border-r-[30px] border-r-violet-700
             border-b-[30px] border-b-transparent
@@ -80,10 +83,14 @@ const ServerMenu = ({
             bg-violet-700
             rounded-2xl
             text-gray-100  font-inter
-                "
+            shadow-lg shadow-black/10
+            "
         >
           <div className="flex flex-col col-span-2 gap-2">
-            <label>Type</label>
+            <label className="flex gap-1 items-center w-full justify-center">
+              <FontAwesomeIcon icon={faPlug} />
+              Connection
+            </label>
             <select
               value={data.type}
               name="type"
@@ -95,9 +102,16 @@ const ServerMenu = ({
             </select>
           </div>
           <div className="flex flex-col gap-2 col-span-2 lg:col-span-5">
-            <label>Server IP/URL</label>
+            <label className="flex gap-1 items-center w-full justify-center">
+              <FontAwesomeIcon icon={faServer} />
+              Server
+            </label>
             <input
               type="text"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck="false"
               value={data.server}
               name="server"
               onChange={(e) => setData({ ...data, server: e.target.value })}
@@ -106,11 +120,16 @@ const ServerMenu = ({
             />
           </div>
           <div className="flex flex-col gap-2 lg:col-span-2">
-            <label>Port</label>
+            <label className="flex gap-1 items-center w-full justify-center">
+              <FontAwesomeIcon icon={faHashtag} />
+              Port
+            </label>
             <input
               type="number"
               value={data.port}
               name="port"
+              min={0}
+              max={65535}
               placeholder="1234"
               onChange={(e) => setData({ ...data, port: e.target.value })}
               className="bg-gray-100 rounded-full px-4 py-2 text-gray-800"
@@ -138,10 +157,25 @@ const ServerMenu = ({
               />
             </div>
           </div>
-          <div className="col-span-2 lg:col-span-10 text-center italic text-red-200 ">
+          <div className="flex col-span-2 lg:col-span-10 text-center italic text-rose-300 text-sm items-center gap-1 font-normal font-inter">
+            <FontAwesomeIcon
+              icon={faTriangleExclamation}
+              className="text-rose-400"
+            />
             <p className="text-sm">
-              Warning: If using GitHub Pages, you must use https or
-              localhost/127.0.0.1 as the server.
+              Warning: If using GitHub Pages, you must use{" "}
+              <code className="px-1.5 py-0.5 rounded bg-white/30 text-rose-200">
+                https
+              </code>{" "}
+              or use{" "}
+              <code className="px-1.5 py-0.5 rounded bg-white/30 text-red-200">
+                localhost
+              </code>{" "}
+              /{" "}
+              <code className="px-1.5 py-0.5 rounded bg-white/30 text-red-200">
+                127.0.0.1
+              </code>{" "}
+              as the server.
             </p>
           </div>
         </div>
