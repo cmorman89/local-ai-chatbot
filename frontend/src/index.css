@@ -52,7 +52,33 @@
     transform: rotate(360deg);
   }
 }
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
 
+@keyframes rotateBorder {
+  to {
+    --angle: 360deg;
+  }
+}
+.animate-border {
+  --angle: 0deg;
+  background-image: linear-gradient(
+      to right,
+      rgb(255 255 255),
+      rgb(255 255 255)
+    ),
+    conic-gradient(
+      from var(--angle),
+      #6d28d9 0deg 180deg,
+      #8b5cf6 180deg 360deg
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  animation: rotateBorder 1.5s linear infinite;
+}
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
