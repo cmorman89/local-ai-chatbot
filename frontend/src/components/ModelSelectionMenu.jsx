@@ -9,11 +9,21 @@ import { useEffect, useState } from "react";
 import useFetchData from "../hooks/useFetchData";
 import useLoadModel from "../hooks/useLoadModel";
 
-const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl, setModelLoading }) => {
+const ModelSelectionMenu = ({
+  isOpen,
+  setIsOpen,
+  setModel,
+  serverUrl,
+  setModelLoading,
+}) => {
   const url = `${serverUrl}/v1/models`;
   const [modelList, setModelList] = useState([]);
   const { data, loading, error } = useFetchData(url);
-  const { response, loading: modelLoading, loadModel } = useLoadModel(serverUrl);
+  const {
+    response,
+    loading: modelLoading,
+    loadModel,
+  } = useLoadModel(serverUrl);
 
   const handleOutsideClick = (e) => {
     if (e.target === e.currentTarget) setIsOpen(false);
@@ -40,9 +50,8 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl, setModelLo
 
   useEffect(() => {
     setModelLoading(modelLoading);
-  }
-    , [modelLoading]);
-  
+  }, [modelLoading]);
+
   return (
     <div
       className={`
