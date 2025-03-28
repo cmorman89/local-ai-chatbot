@@ -1,11 +1,16 @@
-import { faHexagonNodes, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGear,
+  faHexagonNodes,
+  faTriangleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import useModelParser from "../hooks/useModelParser";
 
-const ModelIndicator = ({ setModelIsOpen, model }) => {
+const ModelIndicator = ({ setModelIsOpen, model, modelLoading }) => {
   const [hasModel, setHasModel] = useState(false);
-  const { _, paramCount, arch, Icon, IconCombined, color } = useModelParser(model);
+  const { _, paramCount, arch, Icon, IconCombined, color } =
+    useModelParser(model);
 
   useEffect(() => {
     if (model) {
@@ -27,17 +32,29 @@ const ModelIndicator = ({ setModelIsOpen, model }) => {
           "
       onClick={() => setModelIsOpen(true)}
     >
-      {/* <FontAwesomeIcon
-        icon={faHexagonNodes}
-        className="text-lg lg:text-2xl animate"
-      /> */}
       <div className="text-2xl">
-        {hasModel ? <Icon /> : <FontAwesomeIcon icon={faTriangleExclamation} className="text-red-700"/>}
+        {modelLoading ? (
+          <FontAwesomeIcon
+            icon={faGear}
+            className="animate-rotate text-gray-500"
+          />
+        ) : hasModel ? (
+          <Icon />
+        ) : (
+          <FontAwesomeIcon
+            icon={faTriangleExclamation}
+            className="text-red-700"
+          />
+        )}
       </div>
       <h2 className="text-nowrap">
         <span className="mr-1 text-nowrap">{hasModel && "Model:"}</span>
-        <span className={`font-medium italic ${hasModel ? 'text-violet-950' : 'text-red-700'} text-nowrap`}>
-          {text}
+        <span
+          className={`font-medium italic ${
+            hasModel ? "text-violet-950" : "text-red-700"
+          } text-nowrap`}
+        >
+          {modelLoading ? "Loading..." : hasModel ? model : "No Model"}
         </span>
       </h2>
     </div>
