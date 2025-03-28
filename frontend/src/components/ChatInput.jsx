@@ -41,11 +41,12 @@ const ChatInput = ({
       className={`
             flex justify-center
             ${
-              isActive
+              loading
+                ? "border-transparent border-16"
+                : isActive
                 ? "border-violet-700 border-4"
                 : "border-gray-400 border-1"
             }
-            border-gray-400 hover:border-violet-700
             backdrop-blur-lg 
             ${
               messageCount > 1
@@ -62,6 +63,7 @@ const ChatInput = ({
             ${isActive ? "-translate-y-1.5" : "translate-y-0"}
             ${isActive ? "bg-white/60" : "bg-white/20"}
             ${!modelId && "cursor-not-allowed"}
+            animate-border
             `}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
