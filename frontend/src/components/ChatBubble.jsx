@@ -14,7 +14,7 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
         animate animate-grow animate-fade-up
         `}
     >
-      {isUser && <ChatUserIcon />}
+      {/* {isUser && <ChatUserIcon />} */}
 
       <div
         className={`
