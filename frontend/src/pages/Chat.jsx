@@ -9,6 +9,7 @@ import SystemMenu from "../components/SystemMenu";
 
 const Chat = ({
   model,
+  modelLoading,
   serverUrl,
   chatSettingsOpen,
   setChatSettingsOpen,
@@ -82,6 +83,7 @@ const Chat = ({
       <ChatConversation
         messages={messages}
         modelId={model}
+        modelLoading={modelLoading}
         setModelSelectionOpen={setModelSelectionOpen}
       />
       <ChatInput

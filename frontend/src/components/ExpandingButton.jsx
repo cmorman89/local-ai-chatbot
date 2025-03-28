@@ -24,14 +24,11 @@ const ExpandingButton = ({ text, children, onClick, variant = "default" }) => {
       overflow-hidden
       animate
       `}
+      role="button"
+      onClick={() => onClick()}
     >
       {children}
-      <div
-        className="flex text-nowrap mx-5 font-medium text-sm"
-        onClick={() => onClick()}
-      >
-        {text}
-      </div>
+      <div className="flex text-nowrap mx-5 font-medium text-sm">{text}</div>
     </div>
   );
 };

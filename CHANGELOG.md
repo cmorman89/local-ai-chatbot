@@ -23,3 +23,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Styled chat intro displaying the selected model or indicating no model selection.
 - Dynamic chat clear button that appears when chat history is present.
 - On-the-fly system prompt modification during chat sessions.
+- Loading spinner for chat generation and model selection.
