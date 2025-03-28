@@ -42,7 +42,7 @@ const ChatInput = ({
             flex justify-center
             ${
               loading
-                ? "border-transparent border-16"
+                ? "border-transparent border-8"
                 : isActive
                 ? "border-violet-700 border-4"
                 : "border-gray-400 border-1"
