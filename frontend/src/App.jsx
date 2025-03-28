@@ -32,7 +32,7 @@ function App() {
       "
     >
       <Router>
-        <Topbar model={model} setModelIsOpen={setModelIsOpen} />
+        <Topbar model={model} modelLoading={modelLoading} setModelIsOpen={setModelIsOpen} />
         <div className="flex flex-row w-full h-full">
           <Sidebar
             setModelIsOpen={setModelIsOpen}
