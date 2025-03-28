@@ -5,6 +5,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+/**
+ * A React component that renders a styled message bubble with an icon and text.
+ *
+ * @component
+ * @param {Object} props - The props object.
+ * @param {React.ReactNode} props.children - The content to display inside the message bubble.
+ * @param {string} [props.type="info"] - The type of the message bubble, which determines its styling.
+ *    Valid types are: "info", "error", "success", "warning", "neutral".
+ *    Defaults to "info" if an invalid type is provided.
+ * @returns {JSX.Element} A styled message bubble component.
+ */
 const MessageBubble = ({ children, type = "info" }) => {
   const valid_types = ["info", "error", "success", "warning", "neutral"];
   if (!valid_types.includes(type)) {

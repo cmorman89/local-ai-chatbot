@@ -7,6 +7,19 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MessageBubble from "./MessageBubble";
 
+/**
+ * SystemMenu Component
+ *
+ * A modal component for managing system prompts. Allows users to view, edit, add, and remove prompts.
+ *
+ * @param {Object} props - The component props.
+ * @param {boolean} props.isOpen - Determines whether the modal is open or hidden.
+ * @param {Function} props.setIsOpen - Function to toggle the modal's visibility.
+ * @param {string[]} props.systemPrompt - Array of system prompts to display and manage.
+ * @param {Function} props.setSystemPrompt - Function to update the array of system prompts.
+ *
+ * @returns {JSX.Element} The rendered SystemMenu component.
+ */
 const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
   const handleOutsideClick = (e) => {
     if (e.target === e.currentTarget) setIsOpen(false);

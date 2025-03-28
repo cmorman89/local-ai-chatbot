@@ -8,6 +8,25 @@ import ExpandingButton from "./ExpandingButton";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
+/**
+ * ChatInput component renders an interactive input field for user prompts
+ * with additional controls for sending messages, stopping generation, and
+ * editing system prompts. It dynamically adjusts its appearance and behavior
+ * based on the provided props and user interactions.
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} [props.name="userPrompt"] - The name attribute for the input field.
+ * @param {function} props.onChange - Callback function triggered when the input value changes.
+ * @param {function} props.onSubmit - Callback function triggered when the user submits the input (e.g., pressing Enter or clicking the send button).
+ * @param {string} props.value - The current value of the input field.
+ * @param {boolean} props.loading - Indicates whether a response is being generated.
+ * @param {function} props.stopGenerating - Callback function to stop the response generation.
+ * @param {number} props.messageCount - The number of messages in the chat, used to adjust the component's position.
+ * @param {function} props.setChatSettingsOpen - Callback function to open the chat settings modal.
+ * @param {string|null} props.modelId - The ID of the selected model. If null, input and actions are disabled.
+ *
+ * @returns {JSX.Element} The rendered ChatInput component.
+ */
 const ChatInput = ({
   name = "userPrompt",
   onChange,
