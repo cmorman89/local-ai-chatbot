@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import MessageBubble from "./MessageBubble";
 
 const ServerMenu = ({
   serverUrl,
@@ -157,26 +158,24 @@ const ServerMenu = ({
               />
             </div>
           </div>
-          <div className="flex col-span-2 lg:col-span-10 text-center italic text-rose-300 text-sm items-center gap-1 font-normal font-inter">
-            <FontAwesomeIcon
-              icon={faTriangleExclamation}
-              className="text-rose-400"
-            />
-            <p className="text-sm">
-              Warning: If using GitHub Pages, you must use{" "}
-              <code className="px-1.5 py-0.5 rounded bg-white/30 text-rose-200">
-                https
-              </code>{" "}
-              or use{" "}
-              <code className="px-1.5 py-0.5 rounded bg-white/30 text-red-200">
-                localhost
-              </code>{" "}
-              /{" "}
-              <code className="px-1.5 py-0.5 rounded bg-white/30 text-red-200">
-                127.0.0.1
-              </code>{" "}
-              as the server.
-            </p>
+          <div className="flex col-span-2 lg:col-span-10 italic text-sm items-center lg:mt-4">
+            <MessageBubble type="warning">
+              <p className="text-sm">
+                Warning: If using GitHub Pages, you must use{" "}
+                <code className="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-800">
+                  https
+                </code>{" "}
+                or use{" "}
+                <code className="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-800">
+                  localhost
+                </code>{" "}
+                /{" "}
+                <code className="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-800">
+                  127.0.0.1
+                </code>{" "}
+                as the server.
+              </p>
+            </MessageBubble>
           </div>
         </div>
       </div>
