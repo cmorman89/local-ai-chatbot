@@ -14,7 +14,27 @@
         "ms-python.vscode-pylance",
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
-        "formulahendry.auto-close-tag"
+        "formulahendry.auto-close-tag",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "mgmcdermott.vscode-language-babel",
+        "ms-azuretools.vscode-docker",
+        "donjayamanne.githistory",
+        "bierner.github-markdown-preview",
+        "GitHub.vscode-pull-request-github",
+        "codezombiech.gitignore",
+        "eamodio.gitlens",
+        "ecmel.vscode-html-css",
+        "christian-kohler.npm-intellisense",
+        "christian-kohler.path-intellisense",
+        "RapidAPI.vscode-rapidapi-client",
+        "charliermarsh.ruff",
+        "bradlc.vscode-tailwindcss",
+        "antfu.vite",
+        "ms-edgedevtools.vscode-edge-devtools",
+        "monokai.theme-monokai-pro-vscode",
+        "alefragnani.project-manager",
+        "dsznajder.es7-react-js-snippets"
       ]
     }
   },
