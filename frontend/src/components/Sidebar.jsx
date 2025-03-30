@@ -4,12 +4,13 @@ import {
   // faHistory,
   faHouse,
   faMessage,
+  faPlug,
   // faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarItem from "./SidebarItem";
 
-const Sidebar = ({ setModelIsOpen, setServerMenuOpen }) => {
+const Sidebar = ({ setActiveMenu }) => {
   return (
     <div
       className="
@@ -32,22 +33,13 @@ const Sidebar = ({ setModelIsOpen, setServerMenuOpen }) => {
         <SidebarItem icon={faMessage} url="/chat">
           Chat
         </SidebarItem>
-        <SidebarItem icon={faHexagonNodes} onClick={() => setModelIsOpen(true)}>
+        <SidebarItem icon={faHexagonNodes} onClick={() => setActiveMenu('modelList')}>
           Models
         </SidebarItem>
-        <SidebarItem icon={faGear} onClick={() => setServerMenuOpen(true)}>
-          Server
+        <SidebarItem icon={faPlug} onClick={() => setActiveMenu('connection')}>
+          Connection
         </SidebarItem>
-        {/* <SidebarItem icon={faHistory} url="/history">
-          History
-        </SidebarItem> */}
       </div>
-      {/* <div className="flex flex-col gap-12 items-start justify-center text-center ">
-        <SidebarItem icon={faUser}>Personalize</SidebarItem>
-        <SidebarItem icon={faGear} onClick={() => setServerMenuOpen(true)}>
-          Server
-        </SidebarItem>
-      </div> */}
     </div>
   );
 };

@@ -10,8 +10,10 @@ import Chat from "./pages/Chat";
 import ServerMenu from "./components/ServerMenu";
 import useLocalStorage from "./hooks/useLocalStorage";
 import SystemMenu from "./components/SystemMenu";
+import MenuWindow from "./components/menus/MenuWindow";
 
 function App() {
+  const [activeMenu, setActiveMenu] = useState(null);
   const [modelIsOpen, setModelIsOpen] = useState(false);
   const [serverMenuOpen, setServerMenuOpen] = useState(false);
   const [chatSettingsOpen, setChatSettingsOpen] = useState(false);
@@ -22,6 +24,18 @@ function App() {
     "http://localhost:1234"
   );
 
+  const handleSetActiveMenu = (menuName) => {
+    const menuList = ["connection", "modelList", "systemPrompt"];
+    if (menuName && !menuList.includes(menuName)) {
+      console.error(`Invalid menu name: ${menuName}`);
+      return;
+    }
+    if (!menuName) {
+      setActiveMenu(null);
+    } else {
+      setActiveMenu(menuName);
+    }
+  };
   return (
     <div
       className="
@@ -32,9 +46,14 @@ function App() {
       "
     >
       <Router>
-        <Topbar model={model} modelLoading={modelLoading} setModelIsOpen={setModelIsOpen} />
+        <Topbar
+          model={model}
+          modelLoading={modelLoading}
+          setModelIsOpen={setModelIsOpen}
+        />
         <div className="flex flex-row w-full h-full">
           <Sidebar
+            setActiveMenu={handleSetActiveMenu}
             setModelIsOpen={setModelIsOpen}
             setServerMenuOpen={setServerMenuOpen}
           />
@@ -62,12 +81,42 @@ function App() {
               />
             </Routes>
           </MainContentWindow>
+          <MenuWindow
+            activeMenu={activeMenu}
+            setActiveMenu={handleSetActiveMenu}
+          >
+            {activeMenu === "connection" && (
+              <ServerMenu
+                serverUrl={serverUrl}
+                setServerUrl={setServerUrl}
+                serverMenuOpen={serverMenuOpen}
+                setServerMenuOpen={setServerMenuOpen}
+              />
+            )}
+            {activeMenu === "modelList" && (
+              <ModelSelectionMenu
+                isOpen={modelIsOpen}
+                setIsOpen={setModelIsOpen}
+                setModel={setModel}
+                serverUrl={serverUrl}
+                setModelLoading={setModelLoading}
+              />
+            )}
+            {activeMenu === "systemPrompt" && (
+              <SystemMenu
+                isOpen={chatSettingsOpen}
+                setIsOpen={setChatSettingsOpen}
+                systemPrompt={[]}
+                setSystemPrompt={() => {}}
+              />
+            )}
+          </MenuWindow>
           <ModelSelectionMenu
             isOpen={modelIsOpen}
             setIsOpen={setModelIsOpen}
             setModel={setModel}
             serverUrl={serverUrl}
-            setModelLoading={setModelLoading} 
+            setModelLoading={setModelLoading}
           />
         </div>
       </Router>
