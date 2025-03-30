@@ -10,7 +10,9 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
     <div
       className={`
         flex w-full
-        ${isUser ? "justify-end origin-right my-6" : "justify-center origin-top"}
+        ${
+          isUser ? "justify-end origin-right my-6" : "justify-center origin-top"
+        }
         animate animate-grow animate-fade-up
         `}
     >
@@ -22,14 +24,14 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
         ${
           isUser
             ? "bg-gradient-to-br from-violet-800 to-violet-600"
-            : "bg-gradient-to-br from-white to-violet-50"
+            : "bg-gradient-to-br from-white to-gray-50"
         }
         ${
           isUser
             ? "shadow-lg shadow-black/20"
             : "shadow-lg shadow-purple-950/15"
         }
-        ${isUser ? "w-fit min-w-50 max-w-200 italic" : "w-4/5"}
+        ${isUser ? "w-fit min-w-25 max-w-200 italic" : "w-4/5"}
         
         font-inter text-left
         rounded-4xl 
