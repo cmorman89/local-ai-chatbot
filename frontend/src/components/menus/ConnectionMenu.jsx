@@ -98,7 +98,7 @@ const ConnectionMenu = ({ setServerUrl, serverUrl, setActiveMenu }) => {
           text={"Cancel"}
           onClick={() => setActiveMenu(false)}
         >
-          <FontAwesomeIcon icon={faXmark} />
+          <FontAwesomeIcon icon={faXmark} className="ml-0.5" />
         </ExpandingButton>
       </div>
     </div>
