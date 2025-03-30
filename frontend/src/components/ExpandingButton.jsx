@@ -15,6 +15,7 @@ const ExpandingButton = ({ text, children, onClick, variant = "default" }) => {
   const buttonStyles = {
     main: "bg-violet-700 cursor-pointer text-white",
     default: "bg-violet-500 hover:bg-violet-700 cursor-pointer text-white",
+    success: "bg-lime-600 cursor-pointer text-white",
     cancel: "bg-rose-700 cursor-pointer text-white",
     disabled: "bg-gray-500 cursor-not-allowed text-white",
     clear: "bg-rose-400 hover:bg-rose-700 cursor-pointer text-white",
@@ -28,7 +29,7 @@ const ExpandingButton = ({ text, children, onClick, variant = "default" }) => {
         gap-4 hover:gap-2 
         text-transparent hover:text-gray-100
         h-14 min-h-14 max-h-14 w-14 min-w-14 pl-4.5 overflow-hidden
-        animate-fade-up
+        animate-fade-up transition-colors
         text-xl ${buttonStyles[variant]}
       `}
       role="button"
