@@ -14,10 +14,10 @@ const ExpandingButton = ({ text, children, onClick, variant = "default" }) => {
 
   const buttonStyles = {
     main: "bg-violet-700 cursor-pointer text-white",
-    default: "bg-violet-400 hover:bg-violet-700 cursor-pointer text-white",
-    cancel: "bg-rose-500 cursor-pointer text-white",
+    default: "bg-violet-500 hover:bg-violet-700 cursor-pointer text-white",
+    cancel: "bg-rose-700 cursor-pointer text-white",
     disabled: "bg-gray-500 cursor-not-allowed text-white",
-    clear: "bg-rose-300 hover:bg-rose-500 cursor-pointer text-white",
+    clear: "bg-rose-400 hover:bg-rose-700 cursor-pointer text-white",
   };
 
   return (
