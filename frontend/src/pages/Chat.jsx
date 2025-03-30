@@ -84,18 +84,21 @@ const Chat = ({
         modelLoading={modelLoading}
         setModelSelectionOpen={setModelSelectionOpen}
       />
-      <ChatInput
-        messageCount={messages.length}
-        modelId={model}
-        name="userPrompt"
-        value={input}
-        onChange={handleChange}
-        onClear={handleClear}
-        onSubmit={handleSubmit}
-        loading={loading}
-        stopGenerating={stopChatGeneration}
-        setChatSettingsOpen={setChatSettingsOpen}
-      />
+      <div
+      className="w-5/6 animate absolute bottom-5 md:bottom-10 z-20">
+        <ChatInput
+          messageCount={messages.length}
+          modelId={model}
+          name={name}
+          value={input}
+          onChange={handleChange}
+          onClear={handleClear}
+          onSubmit={handleSubmit}
+          loading={loading}
+          stopGenerating={stopChatGeneration}
+          setChatSettingsOpen={setChatSettingsOpen}
+        />
+      </div>
 
       <SystemMenu
         isOpen={chatSettingsOpen}

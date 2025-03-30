@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 const MainContentWindow = ({ children }) => {
   return (
     // <div className="flex w-full h-full relative pl-24 pb-40">
-    <div className="flex w-full h-full relative pl-14 md:pl-24">
+    <div className="flex w-full h-full
+     pl-16 md:pl-24
+     pt-18
+     absolute left-0 top-0">
       <div
         className="
         h-16 lg:h-40 w-screen
