@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
  *    Defaults to "info" if an invalid type is provided.
  * @returns {JSX.Element} A styled message bubble component.
  */
-const MessageBubble = ({ children, type = "info" }) => {
+const MessageBubble = ({ children, type = "info", className = "" }) => {
   const valid_types = ["info", "error", "success", "warning", "neutral"];
   if (!valid_types.includes(type)) {
     type = "info";
@@ -67,12 +67,13 @@ const MessageBubble = ({ children, type = "info" }) => {
     <div
       className={`
         flex items-center justify-center gap-4
-        border font-inter
+        border font-inter text-sm md:text-base
         ${types[type].class.border}
         ${types[type].class.text}
         ${types[type].class.background}
-        rounded-full
-        py-4 px-8
+        rounded-xl
+        ${className}
+        py-4 pl-6 pr-8
         cursor-default
         shadow-xl shadow-black/20
         animate animate-fade-up
