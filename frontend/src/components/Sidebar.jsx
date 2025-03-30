@@ -17,8 +17,8 @@ const Sidebar = ({ setModelIsOpen, setServerMenuOpen }) => {
                 fixed z-40
                 bg-gray-900
                 h-full
-                w-24
-                pl-8 hover:pl-12
+                w-14 md:w-24
+                pl-3 md:pl-8 hover:pl-12
                 pt-16 pb-28 gap-12
                 text-3xl
                 animate animate-menu
