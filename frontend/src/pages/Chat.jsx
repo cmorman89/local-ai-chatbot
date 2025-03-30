@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 import ChatInput from "../components/ChatInput";
 import useStreamingChat from "../hooks/useStreamingChat";
 import ChatConversation from "../components/ChatConversation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRefresh } from "@fortawesome/free-solid-svg-icons";
-import ExpandingButton from "../components/ExpandingButton";
 import SystemMenu from "../components/SystemMenu";
 
 const Chat = ({

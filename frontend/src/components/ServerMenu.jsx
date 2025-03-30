@@ -4,7 +4,6 @@ import {
   faHashtag,
   faPlug,
   faServer,
-  faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
