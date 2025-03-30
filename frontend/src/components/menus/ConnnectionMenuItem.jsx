@@ -5,7 +5,7 @@ const ConnnectionMenuItem = ({ name, icon, title, children }) => {
     <div
       className="
         flex flex-grow items-center justify-between gap-1 sm:gap-2
-        p-1.5 sm:p-2 sm:pl-4 md:pl-6
+        p-1.5 sm:p-2 sm:pl-4 md:pl-6 
         bg-violet-700
         text-gray-100 text-sm sm:text-base md:text-lg font-inter
         h-16 w-full

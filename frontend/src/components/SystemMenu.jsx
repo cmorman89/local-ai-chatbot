@@ -1,7 +1,6 @@
 import {
   faCircleCheck,
   faCircleXmark,
-  faFloppyDisk,
   faPlus,
   faSliders,
   faTrash,

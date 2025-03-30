@@ -1,13 +1,9 @@
 import {
-  faGear,
   faHexagonNodes,
-  // faHistory,
   faHouse,
   faMessage,
   faPlug,
-  // faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarItem from "./SidebarItem";
 
 const Sidebar = ({ setActiveMenu }) => {
@@ -33,10 +29,13 @@ const Sidebar = ({ setActiveMenu }) => {
         <SidebarItem icon={faMessage} url="/chat">
           Chat
         </SidebarItem>
-        <SidebarItem icon={faHexagonNodes} onClick={() => setActiveMenu('modelList')}>
+        <SidebarItem
+          icon={faHexagonNodes}
+          onClick={() => setActiveMenu("modelList")}
+        >
           Models
         </SidebarItem>
-        <SidebarItem icon={faPlug} onClick={() => setActiveMenu('connection')}>
+        <SidebarItem icon={faPlug} onClick={() => setActiveMenu("connection")}>
           Connection
         </SidebarItem>
       </div>
