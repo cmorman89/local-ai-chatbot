@@ -1,5 +1,4 @@
 import {
-  faCancel,
   faCheck,
   faHashtag,
   faPlug,
@@ -7,7 +6,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ConnnectionMenuItem from "./ConnnectionMenuItem";
 import ExpandingButton from "../ExpandingButton";
 import MessageBubble from "../MessageBubble";
@@ -54,7 +53,7 @@ const ConnectionMenu = ({ setServerUrl, serverUrl, setActiveMenu }) => {
   return (
     <div
       className="
-        flex flex-col items-center justify-center gap-y-4
+        flex flex-col items-center justify-center gap-y-6
         font-inter text-lg w-full"
     >
       <MessageBubble className="w-full">
@@ -63,80 +62,87 @@ const ConnectionMenu = ({ setServerUrl, serverUrl, setActiveMenu }) => {
           <span className="font-semibold text-xl">{serverUrl}</span>
         </div>
       </MessageBubble>
-      <div></div>
-      <ConnnectionMenuItem name="protocol" title="Protocol" icon={faPlug}>
-        <select
-          value={data.protocol}
-          name="protocol"
-          onChange={(e) => handleSetData(e)}
-          className="bg-gray-100 rounded-full px-4 py-2 text-gray-800 w-full outline-none focus:outline-none"
-        >
-          <option value="http://">http://</option>
-          <option value="https://">https://</option>
-        </select>
-      </ConnnectionMenuItem>
-      <ConnnectionMenuItem name="hostname" title="Hostname" icon={faServer}>
-        {forceLocalhost ? (
+      <div
+        className="
+          flex flex-col gap-3
+          border-t border-b border-violet-300
+          py-6
+        w-11/12"
+      >
+        <ConnnectionMenuItem name="protocol" title="Protocol" icon={faPlug}>
           <select
-            value={data.hostname}
-            name="hostname"
+            value={data.protocol}
+            name="protocol"
             onChange={(e) => handleSetData(e)}
             className="bg-gray-100 rounded-full px-4 py-2 text-gray-800 w-full outline-none focus:outline-none"
           >
-            <option value="localhost">localhost</option>
-            <option value="127.0.0.1">127.0.0.1</option>
+            <option value="http://">http://</option>
+            <option value="https://">https://</option>
           </select>
-        ) : (
+        </ConnnectionMenuItem>
+        <ConnnectionMenuItem name="hostname" title="Hostname" icon={faServer}>
+          {forceLocalhost ? (
+            <select
+              value={data.hostname}
+              name="hostname"
+              onChange={(e) => handleSetData(e)}
+              className="bg-gray-100 rounded-full px-4 py-2 text-gray-800 w-full outline-none focus:outline-none"
+            >
+              <option value="localhost">localhost</option>
+              <option value="127.0.0.1">127.0.0.1</option>
+            </select>
+          ) : (
+            <input
+              type="text"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck="false"
+              value={data.hostname}
+              name="hostname"
+              onChange={(e) => handleSetData(e)}
+              placeholder="localhost"
+              className="bg-gray-100 rounded-full px-4 py-2 text-gray-800 w-full outline-none focus:outline-none"
+            />
+          )}
+        </ConnnectionMenuItem>
+        {forceLocalhost && (
+          <MessageBubble type="error">
+            <span className="font-semibold">Warning:</span> You cannot specify
+            an external HTTP server{" "}
+            {hostname === "github"
+              ? "when visiting on GitHub Pages"
+              : "if your current page is served over HTTPS."}
+          </MessageBubble>
+        )}
+        <ConnnectionMenuItem name="port" title="Port" icon={faHashtag}>
           <input
-            type="text"
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            spellCheck="false"
-            value={data.hostname}
-            name="hostname"
+            type="number"
+            value={data.port}
+            name="port"
+            min={0}
+            max={65535}
+            placeholder="1234"
             onChange={(e) => handleSetData(e)}
-            placeholder="localhost"
             className="bg-gray-100 rounded-full px-4 py-2 text-gray-800 w-full outline-none focus:outline-none"
           />
-        )}
-      </ConnnectionMenuItem>
-      {forceLocalhost && (
-        <MessageBubble type="error">
-          <span className="font-semibold">Warning:</span> You cannot specify an
-          external HTTP server{" "}
-          {hostname === "github"
-            ? "when visiting on GitHub Pages"
-            : "if your current page is served over HTTPS."}
-        </MessageBubble>
-      )}
-      <ConnnectionMenuItem name="port" title="Port" icon={faHashtag}>
-        <input
-          type="number"
-          value={data.port}
-          name="port"
-          min={0}
-          max={65535}
-          placeholder="1234"
-          onChange={(e) => handleSetData(e)}
-          className="bg-gray-100 rounded-full px-4 py-2 text-gray-800 w-full outline-none focus:outline-none"
-        />
-      </ConnnectionMenuItem>
-      <div className="flex gap-2 mt-4">
-        <ExpandingButton
-          variant="success"
-          text={"Save Server"}
-          onClick={handleUpdateServerUrl}
-        >
-          <FontAwesomeIcon icon={faCheck} />
-        </ExpandingButton>
-        <ExpandingButton
-          variant="cancel"
-          text={"Cancel"}
-          onClick={() => setActiveMenu(false)}
-        >
-          <FontAwesomeIcon icon={faXmark} className="ml-0.5" />
-        </ExpandingButton>
+        </ConnnectionMenuItem>
+        <div className="flex gap-2 mt-3 justify-center">
+          <ExpandingButton
+            variant="success"
+            text={"Save Server"}
+            onClick={handleUpdateServerUrl}
+          >
+            <FontAwesomeIcon icon={faCheck} />
+          </ExpandingButton>
+          <ExpandingButton
+            variant="cancel"
+            text={"Cancel"}
+            onClick={() => setActiveMenu(false)}
+          >
+            <FontAwesomeIcon icon={faXmark} className="ml-0.5" />
+          </ExpandingButton>
+        </div>
       </div>
     </div>
   );
