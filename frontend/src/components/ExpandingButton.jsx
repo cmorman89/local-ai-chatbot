@@ -1,35 +1,48 @@
 import PropTypes from "prop-types";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const ExpandingButton = ({ text, children, onClick, variant = "default" }) => {
+  const [width, setWidth] = useState(0);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    if (textRef.current) {
+      setWidth(textRef.current.offsetWidth);
+    }
+  }, [text]);
+
   const buttonStyles = {
-    default: "bg-violet-700 cursor-pointer text-white hover:w-80",
-    cancel: "bg-rose-500 cursor-pointer text-white hover:w-80",
-    disabled: "bg-gray-500 cursor-not-allowed text-white hover:w-80",
-    refresh:
-      "backdrop-blur-sm bg-white/30 hover:bg-red-100/30 ring-2 ring-gray-300/20hover:ring-red-400 cursor-pointer \
-      text-gray-400 hover:text-red-900 animate-fade-up duration-1000 hover:w-40",
+    main: "bg-violet-700 cursor-pointer text-white",
+    default: "bg-violet-400 hover:bg-violet-700 cursor-pointer text-white",
+    cancel: "bg-rose-500 cursor-pointer text-white",
+    disabled: "bg-gray-500 cursor-not-allowed text-white",
+    clear: "bg-rose-300 hover:bg-rose-500 cursor-pointer text-white",
   };
+
   return (
-    <div
+    <motion.div
       title={text}
       className={`
-      flex items-center 
-      text-start hover:justify-center
-      rounded-full shadow-md shadow-black/20
-      h-14 min-h-14 max-h-14 
-      w-14 min-w-14 
-      pl-4.5
-      ${buttonStyles[variant]}
-      text-xl
-      overflow-hidden
-      animate
+        flex items-center text-center rounded-full shadow-md shadow-black/20
+        gap-4 hover:gap-2 
+        text-transparent hover:text-gray-100
+        h-14 min-h-14 max-h-14 w-14 min-w-14 pl-4.5 overflow-hidden
+        text-xl ${buttonStyles[variant]}
       `}
       role="button"
-      onClick={() => onClick()}
+      onClick={onClick}
+      whileHover={{ width: `${4.5 + width / 16}rem` }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
       {children}
-      <div className="flex text-nowrap mx-5 font-medium text-sm">{text}</div>
-    </div>
+      <span
+        ref={textRef}
+        className="ml-2 text-nowrap font-medium text-sm text-violet-50 "
+      >
+        {text}
+      </span>
+    </motion.div>
   );
 };
 
@@ -37,6 +50,7 @@ ExpandingButton.propTypes = {
   text: PropTypes.string.isRequired,
   children: PropTypes.node,
   onClick: PropTypes.func,
+  variant: PropTypes.oneOf(["default", "cancel", "disabled", "refresh"]),
 };
 
 export default ExpandingButton;
