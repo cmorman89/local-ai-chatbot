@@ -76,8 +76,9 @@ const Chat = ({
     <div
       className="
         flex flex-col items-center
-        w-full p-8
+        w-full py-8 px-0 md:px-2 lg:px-4 xl:px-8
         gap-4
+        animate
         "
     >
       <ChatConversation
@@ -92,6 +93,7 @@ const Chat = ({
         name="userPrompt"
         value={input}
         onChange={handleChange}
+        onClear={handleClear}
         onSubmit={handleSubmit}
         loading={loading}
         stopGenerating={stopChatGeneration}
@@ -104,17 +106,6 @@ const Chat = ({
         systemPrompt={systemPrompt}
         setSystemPrompt={setSystemPrompt}
       />
-      {messages.length > 1 && (
-        <div className="fixed top-22 z-50">
-          <ExpandingButton
-            onClick={handleClear}
-            text="Clear Chat"
-            variant="refresh"
-          >
-            <FontAwesomeIcon icon={faRefresh} className="mr-3" />
-          </ExpandingButton>
-        </div>
-      )}
     </div>
   );
 };

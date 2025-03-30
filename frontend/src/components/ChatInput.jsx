@@ -1,36 +1,20 @@
 import {
   faPaperPlane,
   faSliders,
+  faTrash,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExpandingButton from "./ExpandingButton";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import ChatFormInput from "./ChatFormInput";
 
-/**
- * ChatInput component renders an interactive input field for user prompts
- * with additional controls for sending messages, stopping generation, and
- * editing system prompts. It dynamically adjusts its appearance and behavior
- * based on the provided props and user interactions.
- *
- * @param {Object} props - The properties object.
- * @param {string} [props.name="userPrompt"] - The name attribute for the input field.
- * @param {function} props.onChange - Callback function triggered when the input value changes.
- * @param {function} props.onSubmit - Callback function triggered when the user submits the input (e.g., pressing Enter or clicking the send button).
- * @param {string} props.value - The current value of the input field.
- * @param {boolean} props.loading - Indicates whether a response is being generated.
- * @param {function} props.stopGenerating - Callback function to stop the response generation.
- * @param {number} props.messageCount - The number of messages in the chat, used to adjust the component's position.
- * @param {function} props.setChatSettingsOpen - Callback function to open the chat settings modal.
- * @param {string|null} props.modelId - The ID of the selected model. If null, input and actions are disabled.
- *
- * @returns {JSX.Element} The rendered ChatInput component.
- */
 const ChatInput = ({
   name = "userPrompt",
   onChange,
   onSubmit,
+  onClear,
   value,
   loading,
   stopGenerating,
@@ -38,6 +22,7 @@ const ChatInput = ({
   setChatSettingsOpen,
   modelId,
 }) => {
+  const [inputSize, setInputSize] = useState(1);
   const [isHover, setIsHover] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -58,6 +43,53 @@ const ChatInput = ({
   return (
     <div
       className={`
+        flex flex-col md:flex-row justify-center gap-2 z-20
+        ${inputSize === 1 ? "items-center" : "items-end"}
+        w-full
+        animate
+        px-8
+        `}
+    >
+      <ChatFormInput
+        value={value}
+        onChange={onChange}
+        inputSize={inputSize}
+        setInputSize={setInputSize}
+        onSubmit={onSubmit}
+      />
+      <div className="flex items-center gap-2 justify-center">
+        {loading ? (
+          <ExpandingButton
+            text="Stop Generating"
+            onClick={stopGenerating}
+            variant="cancel"
+          >
+            <FontAwesomeIcon icon={faXmark} className="text-violet-50 ml-0.5" />
+          </ExpandingButton>
+        ) : (
+          <ExpandingButton
+            text="Send Message"
+            variant={!modelId ? "disabled" : "main"}
+            onClick={onSubmit}
+          >
+            <FontAwesomeIcon icon={faPaperPlane} className="text-violet-50" />
+          </ExpandingButton>
+        )}
+        <ExpandingButton
+          text="Edit System Prompt"
+          variant={loading ? "disabled" : "default"}
+          onClick={() => setChatSettingsOpen(true)}
+        >
+          <FontAwesomeIcon icon={faSliders} className="text-violet-50" />
+        </ExpandingButton>
+        {messageCount > 1 && !loading && (
+          <ExpandingButton text="Clear Chat" variant="clear" onClick={onClear}>
+            <FontAwesomeIcon icon={faTrash} className="text-violet-50" />
+          </ExpandingButton>
+        )}
+      </div>
+      {/* <div
+        className={`
             flex justify-center
             ${
               loading
@@ -84,25 +116,25 @@ const ChatInput = ({
             ${!modelId && "cursor-not-allowed"}
             animate-border
             `}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-    >
-      <input
-        type="text"
-        disabled={loading || !modelId}
-        autoFocus
-        autoComplete="off"
-        autoCorrect="on"
-        aria-autocomplete="off"
-        name={name}
-        placeholder={
-          modelId
-            ? loading
-              ? "Generating response..."
-              : "What would you like to ask?"
-            : "Select a model to start chatting"
-        }
-        className={`
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
+        <input
+          type="text"
+          disabled={loading || !modelId}
+          autoFocus
+          autoComplete="off"
+          autoCorrect="on"
+          aria-autocomplete="off"
+          name={name}
+          placeholder={
+            modelId
+              ? loading
+                ? "Generating response..."
+                : "What would you like to ask?"
+              : "Select a model to start chatting"
+          }
+          className={`
               flex
               focus:outline-none 
               w-full mx-4
@@ -110,40 +142,41 @@ const ChatInput = ({
               placeholder:text-violet-950/50 placeholder:italic
               ${loading || !modelId ? "cursor-not-allowed" : "cursor-text"}
               `}
-        value={value}
-        onChange={(e) => onChange(e)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            onSubmit();
-          }
-        }}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-      />
-      {loading ? (
+          value={value}
+          onChange={(e) => onChange(e)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onSubmit();
+            }
+          }}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+        />
+        {loading ? (
+          <ExpandingButton
+            text="Stop Generating"
+            onClick={stopGenerating}
+            variant="cancel"
+          >
+            <FontAwesomeIcon icon={faXmark} className="text-violet-50 ml-0.5" />
+          </ExpandingButton>
+        ) : (
+          <ExpandingButton
+            text="Send Message"
+            variant={!modelId ? "disabled" : "default"}
+            onClick={onSubmit}
+          >
+            <FontAwesomeIcon icon={faPaperPlane} className="text-violet-50" />
+          </ExpandingButton>
+        )}
         <ExpandingButton
-          text="Stop Generating"
-          onClick={stopGenerating}
-          variant="cancel"
+          text="Edit System Prompt"
+          variant={loading ? "disabled" : "default"}
+          onClick={() => setChatSettingsOpen(true)}
         >
-          <FontAwesomeIcon icon={faXmark} className="text-violet-50 ml-0.5" />
+          <FontAwesomeIcon icon={faSliders} className="text-violet-50" />
         </ExpandingButton>
-      ) : (
-        <ExpandingButton
-          text="Send Message"
-          variant={!modelId ? "disabled" : "default"}
-          onClick={onSubmit}
-        >
-          <FontAwesomeIcon icon={faPaperPlane} className="text-violet-50" />
-        </ExpandingButton>
-      )}
-      <ExpandingButton
-        text="Edit System Prompt"
-        variant={loading ? "disabled" : "default"}
-        onClick={() => setChatSettingsOpen(true)}
-      >
-        <FontAwesomeIcon icon={faSliders} className="text-violet-50" />
-      </ExpandingButton>
+      </div> */}
     </div>
   );
 };
