@@ -73,7 +73,7 @@ const MessageBubble = ({ children, type = "info" }) => {
         ${types[type].class.background}
         rounded-full
         py-4 px-8
-        cursor-pointer
+        cursor-default
         shadow-xl shadow-black/20
         animate animate-fade-up
         `}
