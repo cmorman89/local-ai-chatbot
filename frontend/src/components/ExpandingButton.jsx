@@ -28,6 +28,7 @@ const ExpandingButton = ({ text, children, onClick, variant = "default" }) => {
         gap-4 hover:gap-2 
         text-transparent hover:text-gray-100
         h-14 min-h-14 max-h-14 w-14 min-w-14 pl-4.5 overflow-hidden
+        animate-fade-up
         text-xl ${buttonStyles[variant]}
       `}
       role="button"
