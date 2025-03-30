@@ -56,7 +56,7 @@ const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
         className="
           flex flex-col
           bg-gray-200
-          max-h-4/5 w-2/3 max-w-250
+          max-h-4/5 w-5/6 lg:w-2/3 max-w-250
           m-auto
           rounded-2xl
           shadow-xl shadow-black/20"

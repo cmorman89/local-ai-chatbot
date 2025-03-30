@@ -11,6 +11,7 @@ import ServerMenu from "./components/ServerMenu";
 import useLocalStorage from "./hooks/useLocalStorage";
 import SystemMenu from "./components/SystemMenu";
 import MenuWindow from "./components/menus/MenuWindow";
+import ConnectionMenu from "./components/menus/ConnectionMenu";
 
 function App() {
   const [activeMenu, setActiveMenu] = useState(null);
@@ -86,11 +87,10 @@ function App() {
             setActiveMenu={handleSetActiveMenu}
           >
             {activeMenu === "connection" && (
-              <ServerMenu
+              <ConnectionMenu
                 serverUrl={serverUrl}
                 setServerUrl={setServerUrl}
-                serverMenuOpen={serverMenuOpen}
-                setServerMenuOpen={setServerMenuOpen}
+                setActiveMenu={setActiveMenu}
               />
             )}
             {activeMenu === "modelList" && (
