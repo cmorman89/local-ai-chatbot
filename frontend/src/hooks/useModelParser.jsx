@@ -7,6 +7,7 @@ import {
   DeepSeek,
   Claude,
   Qwen,
+  Groq,
 } from "@lobehub/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -40,11 +41,12 @@ const useModelParser = (modelId) => {
     const parseModelId = (modelId) => {
       const patterns = {
         paramCount: /([0-9]+)b/,
-        arch: /(gemma|llama|mistral|mathstral|phi|claude|deepseek|qwen)/,
+        arch: /(gemma|llama|groq|mistral|mathstral|phi|claude|deepseek|qwen)/,
       };
 
       const icons = {
         gemma: <Gemma.Color />,
+        groq: <Groq />,
         llama: <Meta.Color />,
         mistral: <Mistral.Color />,
         mathstral: <Mistral.Color />,
@@ -56,6 +58,7 @@ const useModelParser = (modelId) => {
 
       const iconsCombined = {
         gemma: <Gemma.Combine type="color" />,
+        groq: <Groq.Combine type="color" />,
         llama: <Meta.Combine type="color" />,
         mistral: <Mistral.Combine type="color" />,
         mathstral: <Mistral.Combine type="color" />,
@@ -67,6 +70,7 @@ const useModelParser = (modelId) => {
 
       const iconsCombinedLg = {
         gemma: <Gemma.Combine type="color" size={size} />,
+        groq: <Groq.Combine type="color" size={size} />,
         llama: <Meta.Combine type="color" size={size} />,
         mistral: <Mistral.Combine type="color" size={size} />,
         mathstral: <Mistral.Combine type="color" size={size} />,
@@ -78,6 +82,7 @@ const useModelParser = (modelId) => {
 
       const color = {
         gemma: Gemma.colorPrimary,
+        groq: Groq.colorPrimary,
         llama: Meta.colorPrimary,
         mistral: Mistral.colorPrimary,
         mathstral: Mistral.colorPrimary,
