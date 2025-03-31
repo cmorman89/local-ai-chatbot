@@ -12,6 +12,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import SystemMenu from "./components/SystemMenu";
 import MenuWindow from "./components/menus/MenuWindow";
 import ConnectionMenu from "./components/menus/ConnectionMenu";
+import ModelListMenu from "./components/menus/ModelListMenu";
 
 function App() {
   const [activeMenu, setActiveMenu] = useState(null);
@@ -94,9 +95,8 @@ function App() {
               />
             )}
             {activeMenu === "modelList" && (
-              <ModelSelectionMenu
-                isOpen={modelIsOpen}
-                setIsOpen={setModelIsOpen}
+              <ModelListMenu
+                setActiveMenu={handleSetActiveMenu}
                 setModel={setModel}
                 serverUrl={serverUrl}
                 setModelLoading={setModelLoading}
