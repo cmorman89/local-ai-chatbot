@@ -54,7 +54,7 @@ const ConnectionMenu = ({ setServerUrl, serverUrl, setActiveMenu }) => {
     <div
       className="
         flex flex-col items-center justify-center gap-y-6
-        font-inter text-lg w-full"
+        font-inter text-lg w-full p-8"
     >
       <MessageBubble className="w-full">
         <div className="flex flex-col text-center">
