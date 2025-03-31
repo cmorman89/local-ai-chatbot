@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 const MenuWindow = ({ children, activeMenu, setActiveMenu }) => {
   const [title, setTitle] = useState("");
-  const [icon, setIcon] = useState(null);
+  const [icon, setIcon] = useState(faGear)
 
   // Set the title and icon based on the activeMenu
   useEffect(() => {
