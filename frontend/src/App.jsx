@@ -43,7 +43,7 @@ function App() {
       flex flex-col
       bg-gray-100
       min-h-screen h-full
-      min-w-screen w-full
+      w-full
       "
     >
       <Router>

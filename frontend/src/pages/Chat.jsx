@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import ChatInput from "../components/ChatInput";
 import useStreamingChat from "../hooks/useStreamingChat";
 import ChatConversation from "../components/ChatConversation";
@@ -14,7 +14,7 @@ const Chat = ({
 }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
     useStreamingChat(serverUrl);
-
+  const [position, setPosition] = useState("translate-y-0");
   const [systemPrompt, setSystemPrompt] = useState([
     "You are a helpful, friendly assistant that answers questions.",
     "Answer in markdown format with headings.",
@@ -69,6 +69,13 @@ const Chat = ({
     appendMessageToCurrent("assistant", responses.join(""));
   }, [responses]);
 
+  useEffect(() => {
+    if (messages.length > 1) {
+      setPosition("translate-y-[80vh]"); // Move down smoothly
+    } else {
+      setPosition("translate-y-0"); // Move up smoothly
+    }
+  }, [messages.length]);
   return (
     <div
       className="
@@ -84,8 +91,7 @@ const Chat = ({
         modelLoading={modelLoading}
         setModelSelectionOpen={setModelSelectionOpen}
       />
-      <div
-      className="w-5/6 animate absolute bottom-5 md:bottom-10 z-20">
+      <div className={`w-5/6 transition-all duration-1000 fixed z-20 ${position}`}>
         <ChatInput
           messageCount={messages.length}
           modelId={model}

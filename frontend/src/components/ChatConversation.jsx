@@ -29,13 +29,13 @@ const ChatConversation = ({ messages, modelId, setModelSelectionOpen, modelLoadi
 
   return (
     <div className="flex flex-col items-center w-full p-8 mb-50 gap-4">
-      {messages.length === 1 && (
+      {/* {messages.length === 1 && (
         <ChatIntro
           modelId={modelId}
           modelLoading={modelLoading}
           setModelSelectionOpen={setModelSelectionOpen}
         />
-      )}
+      )} */}
       {messages.map((message, index) => {
         // Skip system messages
         if (message.role === "system") {

@@ -26,11 +26,12 @@ const ChatFormInput = ({
     <div
       className={`
         flex justify-center
+        bg-white
         ${inputSize === 1 ? "items-center" : ""}
         w-full lg:w-2/3 xl:w-1/2 max-w-256
         px-4 py-2
         ${inputSize === 1 ? "rounded-full" : "rounded-lg"}
-        ring ring-violet-300/50 focus-within:ring-violet-200
+        ring ring-violet-300/50 focus-within:ring-violet-700
         shadow-md shadow-black/20
         animate animate-fade-up
         `}
