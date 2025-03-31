@@ -63,6 +63,7 @@ const MessageBubble = ({ children, type = "info", className = "" }) => {
         rounded-xl
         ${className}
         py-4 pl-6 pr-8
+        min-h-24
         cursor-default
         shadow-xl shadow-black/20
         animate animate-fade-up

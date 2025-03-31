@@ -66,8 +66,7 @@ const ConnectionMenu = ({ setServerUrl, serverUrl, setActiveMenu }) => {
         className="
           flex flex-col gap-3
           border-t border-b border-violet-300
-          py-6
-        w-11/12"
+          py-6 w-11/12 animate animate-fade-up"
       >
         <ConnnectionMenuItem
           name="protocol"
