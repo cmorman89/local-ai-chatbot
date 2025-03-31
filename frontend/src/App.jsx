@@ -14,15 +14,16 @@ import MenuWindow from "./components/menus/MenuWindow";
 import ConnectionMenu from "./components/menus/ConnectionMenu";
 import ModelListMenu from "./components/menus/ModelListMenu";
 import SystemPromptMenu from "./components/menus/SystemPromptMenu";
+import useLoadModel from "./hooks/useLoadModel";
 
 function App() {
   const [activeMenu, setActiveMenu] = useState(null);
   const [model, setModel] = useLocalStorage("modelId", null);
-  const [modelLoading, setModelLoading] = useState(false);
   const [serverUrl, setServerUrl] = useLocalStorage(
     "serverUrl",
     "http://localhost:1234"
   );
+  const { loading: modelLoading, loadModel } = useLoadModel(serverUrl);
   const [systemPrompt, setSystemPrompt] = useState([
     "You are a helpful, friendly assistant that answers questions.",
     "Answer in markdown format with headings.",
@@ -97,7 +98,7 @@ function App() {
                 setActiveMenu={handleSetActiveMenu}
                 setModel={setModel}
                 serverUrl={serverUrl}
-                setModelLoading={setModelLoading}
+                loadModel={loadModel}
               />
             )}
             {activeMenu === "systemPrompt" && (

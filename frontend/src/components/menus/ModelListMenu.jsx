@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import useFetchData from "../../hooks/useFetchData";
-import useLoadModel from "../../hooks/useLoadModel";
 import ModelBubble from "./ModelBubble";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,16 +8,12 @@ const ModelListMenu = ({
   setActiveMenu,
   serverUrl,
   setModel,
-  setModelLoading,
+  loadModel,
 }) => {
   const modelEndpoint = `${serverUrl}/v1/models`;
   const [modelList, setModelList] = useState([]);
   const { data, loading, error } = useFetchData(modelEndpoint);
-  const {
-    response,
-    loading: modelLoading,
-    loadModel,
-  } = useLoadModel(serverUrl);
+
 
   const handleModelSelect = (model) => {
     setModel(model);
@@ -35,9 +30,7 @@ const ModelListMenu = ({
     }
   }, [data, loading]);
 
-  useEffect(() => {
-    setModelLoading(modelLoading);
-  }, [modelLoading]);
+
   return (
     <div
       className="
