@@ -9,9 +9,9 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
   return (
     <div
       className={`
-        flex w-full
+        flex w-full mr-16
         ${
-          isUser ? "justify-end origin-right my-6" : "justify-center origin-top"
+          isUser ? "justify-end origin-right my-6 mr-10" : "justify-center origin-top"
         }
         animate animate-grow animate-fade-up
         `}

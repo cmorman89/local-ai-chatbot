@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExpandingButton from "./ExpandingButton";
 import PropTypes from "prop-types";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ChatFormInput from "./ChatFormInput";
 import ChatIntro from "./ChatIntro";
 
@@ -65,7 +65,7 @@ const ChatInput = ({
     >
       <div
         className={`w-full flex justify-center animate ${
-          isDocked ? "opacity-0 h-0 translate-y-25" : "opacity-100"
+          isDocked ? "opacity-50 h-0 translate-y-25" : "opacity-100"
         }`}
       >
         <ChatIntro

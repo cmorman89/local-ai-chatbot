@@ -11,6 +11,7 @@ const ChatIntro = ({ modelId, setModelSelectionOpen, modelLoading }) => {
     <div
       className="
         flex
+        mt-10
         px-12 md:px-30 py-10
         rounded-4xl
         font-inter

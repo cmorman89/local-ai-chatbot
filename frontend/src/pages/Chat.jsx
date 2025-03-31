@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ChatInput from "../components/ChatInput";
 import useStreamingChat from "../hooks/useStreamingChat";
 import ChatConversation from "../components/ChatConversation";
@@ -80,7 +80,7 @@ const Chat = ({
     <div
       className="
         flex flex-col items-center
-        w-full py-8 px-0 md:px-2 lg:px-4 xl:px-8
+        w-full pb-8 px-0 md:px-2 lg:px-4 xl:px-8
         gap-4
         animate
         "
@@ -103,6 +103,8 @@ const Chat = ({
           loading={loading}
           stopGenerating={stopChatGeneration}
           setChatSettingsOpen={setChatSettingsOpen}
+          modelLoading={modelLoading}
+          setModelSelectionOpen={setModelSelectionOpen}
         />
       </div>
 
