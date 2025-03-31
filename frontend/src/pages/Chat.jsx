@@ -63,9 +63,9 @@ const Chat = ({
 
   useEffect(() => {
     if (messages.length > 1) {
-      setPosition("translate-y-[80vh]"); // Move down smoothly
+      setPosition("bottom-10"); // Move down smoothly
     } else {
-      setPosition("translate-y-0"); // Move up smoothly
+      setPosition("bottom-[calc(50vh-200px)]"); // Move up smoothly
     }
   }, [messages.length]);
   return (

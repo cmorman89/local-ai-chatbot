@@ -17,9 +17,6 @@ import SystemPromptMenu from "./components/menus/SystemPromptMenu";
 
 function App() {
   const [activeMenu, setActiveMenu] = useState(null);
-  const [modelIsOpen, setModelIsOpen] = useState(false);
-  const [serverMenuOpen, setServerMenuOpen] = useState(false);
-  const [chatSettingsOpen, setChatSettingsOpen] = useState(false);
   const [model, setModel] = useLocalStorage("modelId", null);
   const [modelLoading, setModelLoading] = useState(false);
   const [serverUrl, setServerUrl] = useLocalStorage(
@@ -66,14 +63,10 @@ function App() {
         <div className="flex flex-row w-full h-full">
           <Sidebar
             setActiveMenu={handleSetActiveMenu}
-            setModelIsOpen={setModelIsOpen}
-            setServerMenuOpen={setServerMenuOpen}
           />
           <ServerMenu
             serverUrl={serverUrl}
             setServerUrl={setServerUrl}
-            serverMenuOpen={serverMenuOpen}
-            setServerMenuOpen={setServerMenuOpen}
           />
           <MainContentWindow>
             <Routes>
