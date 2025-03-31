@@ -91,7 +91,7 @@ const MenuWindow = ({ children, activeMenu, setActiveMenu }) => {
         <div
           className="
             flex flex-col gap-4 items-center justify-center
-            mb-7 p-8
+            mb-5 p-8 pb-0
             overflow-y-auto
             overflow-x-visible
           "

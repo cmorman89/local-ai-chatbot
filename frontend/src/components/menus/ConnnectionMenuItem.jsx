@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ConnnectionMenuItem = ({ name, icon, title, children }) => {
+const ConnnectionMenuItem = ({ name, icon, title, children, errorState }) => {
   return (
     <div
       className="
@@ -14,18 +14,21 @@ const ConnnectionMenuItem = ({ name, icon, title, children }) => {
         "
     >
       <div className="flex gap-1 sm:gap-2 md:gap-4 items-center min-w-1/4">
-        <FontAwesomeIcon icon={icon} className="text-base sm:text-lg md:text-2xl" />
+        <FontAwesomeIcon
+          icon={icon}
+          className="text-base sm:text-lg md:text-2xl"
+        />
         <label htmlFor={name}>{title}</label>
       </div>
       <div
-        className="
+        className={`
             flex items-center flex-grow
-            bg-gray-100
+            ${errorState ? 'bg-rose-200' : 'bg-gray-100'}
             h-full
             px-4
             rounded-lg
             text-sm sm:text-base md:text-lg font-inter
-        "
+        `}
       >
         {children}
       </div>
