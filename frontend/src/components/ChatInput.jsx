@@ -105,7 +105,7 @@ const ChatInput = ({
           <ExpandingButton
             text="Edit System Prompt"
             variant={loading ? "disabled" : "default"}
-            onClick={() => setActiveMenu('systemPrompt')}
+            onClick={() => setActiveMenu("systemPrompt")}
           >
             <FontAwesomeIcon icon={faSliders} className="text-violet-50" />
           </ExpandingButton>

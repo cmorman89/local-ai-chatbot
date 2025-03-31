@@ -61,13 +61,8 @@ function App() {
           setActiveMenu={setActiveMenu}
         />
         <div className="flex flex-row w-full h-full">
-          <Sidebar
-            setActiveMenu={handleSetActiveMenu}
-          />
-          <ServerMenu
-            serverUrl={serverUrl}
-            setServerUrl={setServerUrl}
-          />
+          <Sidebar setActiveMenu={handleSetActiveMenu} />
+          <ServerMenu serverUrl={serverUrl} setServerUrl={setServerUrl} />
           <MainContentWindow>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -106,7 +101,10 @@ function App() {
               />
             )}
             {activeMenu === "systemPrompt" && (
-              <SystemPromptMenu systemPrompt={systemPrompt} setSystemPrompt={setSystemPrompt} />
+              <SystemPromptMenu
+                systemPrompt={systemPrompt}
+                setSystemPrompt={setSystemPrompt}
+              />
             )}
           </MenuWindow>
         </div>

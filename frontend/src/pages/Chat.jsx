@@ -10,12 +10,11 @@ const Chat = ({
   serverUrl,
   setActiveMenu,
   setSystemPrompt,
-  systemPrompt
+  systemPrompt,
 }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
     useStreamingChat(serverUrl);
   const [position, setPosition] = useState("translate-y-0");
-
 
   const [messages, setMessages] = useState([
     {
@@ -83,7 +82,9 @@ const Chat = ({
         modelLoading={modelLoading}
         setActiveMenu={setActiveMenu}
       />
-      <div className={`w-5/6 transition-all duration-1000 fixed z-20 ${position}`}>
+      <div
+        className={`w-5/6 transition-all duration-1000 fixed z-20 ${position}`}
+      >
         <ChatInput
           messageCount={messages.length}
           modelId={model}

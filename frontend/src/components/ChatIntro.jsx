@@ -42,7 +42,7 @@ const ChatIntro = ({ modelId, setActiveMenu, modelLoading }) => {
         <div
           className="flex flex-col md:flex-row text-gray-800 items-center gap-1.5 italic p-4 bg-white/60 border border-gray-400 rounded-full animate animate-grow cursor-pointer hover:shadow-lg"
           role="button"
-          onClick={() => setActiveMenu('modelList')}
+          onClick={() => setActiveMenu("modelList")}
         >
           <span className="font-semibold">Model:</span>
           {model.modelId}{" "}
