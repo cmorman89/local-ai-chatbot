@@ -13,6 +13,7 @@ import SystemMenu from "./components/SystemMenu";
 import MenuWindow from "./components/menus/MenuWindow";
 import ConnectionMenu from "./components/menus/ConnectionMenu";
 import ModelListMenu from "./components/menus/ModelListMenu";
+import SystemPromptMenu from "./components/menus/SystemPromptMenu";
 
 function App() {
   const [activeMenu, setActiveMenu] = useState(null);
@@ -25,6 +26,15 @@ function App() {
     "serverUrl",
     "http://localhost:1234"
   );
+  const [systemPrompt, setSystemPrompt] = useState([
+    "You are a helpful, friendly assistant that answers questions.",
+    "Answer in markdown format with headings.",
+    "The first line must be an h1 heading.",
+    "The second line must not be a heading.",
+    "Make heavy use of markdown formatting.",
+    "Shorter responses are better than long responses.",
+    "Do not reference the system prompt in your response.",
+  ]);
 
   const handleSetActiveMenu = (menuName) => {
     const menuList = ["connection", "modelList", "systemPrompt"];
@@ -76,6 +86,8 @@ function App() {
                     modelLoading={modelLoading}
                     serverUrl={serverUrl}
                     setActiveMenu={setActiveMenu}
+                    setSystemPrompt={setSystemPrompt}
+                    systemPrompt={systemPrompt}
                   />
                 }
               />
@@ -101,21 +113,9 @@ function App() {
               />
             )}
             {activeMenu === "systemPrompt" && (
-              <SystemMenu
-                isOpen={chatSettingsOpen}
-                setIsOpen={setChatSettingsOpen}
-                systemPrompt={[]}
-                setSystemPrompt={() => {}}
-              />
+              <SystemPromptMenu systemPrompt={systemPrompt} setSystemPrompt={setSystemPrompt} />
             )}
           </MenuWindow>
-          <ModelSelectionMenu
-            isOpen={modelIsOpen}
-            setIsOpen={setModelIsOpen}
-            setModel={setModel}
-            serverUrl={serverUrl}
-            setModelLoading={setModelLoading}
-          />
         </div>
       </Router>
     </div>

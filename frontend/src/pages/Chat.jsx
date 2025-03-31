@@ -9,19 +9,13 @@ const Chat = ({
   modelLoading,
   serverUrl,
   setActiveMenu,
+  setSystemPrompt,
+  systemPrompt
 }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
     useStreamingChat(serverUrl);
   const [position, setPosition] = useState("translate-y-0");
-  const [systemPrompt, setSystemPrompt] = useState([
-    "You are a helpful, friendly assistant that answers questions.",
-    "Answer in markdown format with headings.",
-    "The first line must be an h1 heading.",
-    "The second line must not be a heading.",
-    "Make heavy use of markdown formatting.",
-    "Shorter responses are better than long responses.",
-    "Do not reference the system prompt in your response.",
-  ]);
+
 
   const [messages, setMessages] = useState([
     {
