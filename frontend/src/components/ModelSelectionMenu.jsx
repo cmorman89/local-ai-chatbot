@@ -4,7 +4,7 @@ import {
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ModelBubble from "./ModelBubble";
+import ModelBubble from "./menus/ModelBubble";
 import { useEffect, useState } from "react";
 import useFetchData from "../hooks/useFetchData";
 import useLoadModel from "../hooks/useLoadModel";

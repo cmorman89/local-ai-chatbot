@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useFetchData from "../../hooks/useFetchData";
 import useLoadModel from "../../hooks/useLoadModel";
-import ModelBubble from "../ModelBubble";
+import ModelBubble from "./ModelBubble";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

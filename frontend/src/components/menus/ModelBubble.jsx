@@ -1,4 +1,4 @@
-import useModelParser from "../hooks/useModelParser";
+import useModelParser from "../../hooks/useModelParser";
 
 const ModelBubble = ({ onClick, modelId, index }) => {
   const model = useModelParser(modelId);
