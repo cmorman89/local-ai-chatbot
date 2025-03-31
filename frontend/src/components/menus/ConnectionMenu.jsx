@@ -38,7 +38,7 @@ const ConnectionMenu = ({ setServerUrl, serverUrl, setActiveMenu }) => {
     setData({
       protocol,
       hostname,
-      port: port ? port.slice(1) : protocol === "https" ? "443" : "80",
+      port: port ? port.slice(1) : "",
     });
   }, [serverUrl]);
   // Check if browser will block http requests originating from https site
