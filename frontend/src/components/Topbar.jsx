@@ -1,7 +1,7 @@
 import Logo from "./Logo";
 import ModelIndicator from "./ModelIndicator";
 
-const Topbar = ({ model, setModelIsOpen, modelLoading }) => {
+const Topbar = ({ model, setActiveMenu, modelLoading }) => {
   return (
     <div
       className="
@@ -14,7 +14,11 @@ const Topbar = ({ model, setModelIsOpen, modelLoading }) => {
         "
     >
       <Logo className={"scale-75 md:scale-85 lg:scale-100"} />
-      <ModelIndicator model={model} modelLoading={modelLoading} setModelIsOpen={setModelIsOpen} />
+      <ModelIndicator
+        model={model}
+        modelLoading={modelLoading}
+        setActiveMenu={setActiveMenu}
+      />
     </div>
   );
 };
