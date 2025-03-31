@@ -20,10 +20,9 @@ const ChatInput = ({
   loading,
   stopGenerating,
   messageCount,
-  setChatSettingsOpen,
   modelId,
   modelLoading,
-  setModelSelectionOpen,
+  setActiveMenu,
 }) => {
   const [inputSize, setInputSize] = useState(1);
   const [isHover, setIsHover] = useState(false);
@@ -71,7 +70,7 @@ const ChatInput = ({
         <ChatIntro
           modelId={modelId}
           modelLoading={modelLoading}
-          setModelSelectionOpen={setModelSelectionOpen}
+          setActiveMenu={setActiveMenu}
         />
       </div>
       <div className="flex w-full gap-2 justify-center">

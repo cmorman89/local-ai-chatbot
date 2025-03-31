@@ -51,7 +51,7 @@ function App() {
         <Topbar
           model={model}
           modelLoading={modelLoading}
-          setModelIsOpen={setModelIsOpen}
+          setActiveMenu={setActiveMenu}
         />
         <div className="flex flex-row w-full h-full">
           <Sidebar
@@ -75,9 +75,7 @@ function App() {
                     model={model}
                     modelLoading={modelLoading}
                     serverUrl={serverUrl}
-                    setModelSelectionOpen={setModelIsOpen}
-                    chatSettingsOpen={chatSettingsOpen}
-                    setChatSettingsOpen={setChatSettingsOpen}
+                    setActiveMenu={setActiveMenu}
                   />
                 }
               />

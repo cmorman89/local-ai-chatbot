@@ -8,9 +8,7 @@ const Chat = ({
   model,
   modelLoading,
   serverUrl,
-  chatSettingsOpen,
-  setChatSettingsOpen,
-  setModelSelectionOpen,
+  setActiveMenu,
 }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
     useStreamingChat(serverUrl);
@@ -89,7 +87,7 @@ const Chat = ({
         messages={messages}
         modelId={model}
         modelLoading={modelLoading}
-        setModelSelectionOpen={setModelSelectionOpen}
+        setActiveMenu={setActiveMenu}
       />
       <div className={`w-5/6 transition-all duration-1000 fixed z-20 ${position}`}>
         <ChatInput
@@ -102,15 +100,13 @@ const Chat = ({
           onSubmit={handleSubmit}
           loading={loading}
           stopGenerating={stopChatGeneration}
-          setChatSettingsOpen={setChatSettingsOpen}
+          setActiveMenu={setActiveMenu}
           modelLoading={modelLoading}
-          setModelSelectionOpen={setModelSelectionOpen}
         />
       </div>
 
       <SystemMenu
-        isOpen={chatSettingsOpen}
-        setIsOpen={setChatSettingsOpen}
+        setActiveMenu={setActiveMenu}
         systemPrompt={systemPrompt}
         setSystemPrompt={setSystemPrompt}
       />
