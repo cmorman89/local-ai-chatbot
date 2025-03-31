@@ -61,6 +61,8 @@ const ChatInput = ({
         animate
         px-8
         `}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
     >
       <div
         className={`w-full flex justify-center animate ${
@@ -81,7 +83,7 @@ const ChatInput = ({
           setInputSize={setInputSize}
           onSubmit={onSubmit}
         />
-        <div className="flex items-center gap-2 justify-center">
+        <div className={`flex ${inputSize === 1 ? 'items-center' : 'items-end'} gap-2 justify-center`}>
           {loading ? (
             <ExpandingButton
               text="Stop Generating"

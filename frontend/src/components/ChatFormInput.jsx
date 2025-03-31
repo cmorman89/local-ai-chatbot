@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const ChatFormInput = ({
   value,
@@ -7,14 +7,25 @@ const ChatFormInput = ({
   inputSize,
   setInputSize,
 }) => {
-  useEffect(() => {
-    if (value) {
-      const rows = value.split("\n").length;
-      setInputSize(rows < 5 ? rows : 5);
-    } else {
-      setInputSize(1);
-    }
-  }, [value]);
+    const textareaRef = useRef(null);
+    const MAX_LINES = 5;
+    useEffect(() => {
+      const textarea = textareaRef.current;
+      if (textarea) {
+        textarea.style.height = "auto";
+        const lineHeight = parseInt(
+          window.getComputedStyle(textarea).lineHeight,
+          10
+        );
+
+        const lines = Math.floor(textarea.scrollHeight / lineHeight);
+        // Limit the number of lines to MAX_LINES
+        const clampedLines = Math.min(lines, MAX_LINES);
+        // Set the input size based on the number of lines
+        setInputSize(clampedLines);
+      }
+    }, [value]);
+
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -38,6 +49,7 @@ const ChatFormInput = ({
       style={{ height: `${inputSize * 24}px`, minHeight: "56px" }}
     >
       <textarea
+        ref={textareaRef}
         className={`
             w-full
             text-gray-800
