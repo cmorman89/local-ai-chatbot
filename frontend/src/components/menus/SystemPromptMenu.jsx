@@ -33,7 +33,7 @@ const SystemPromptMenu = ({ systemPrompt, setSystemPrompt }) => {
   return (
       <div
       className="
-            flex flex-col gap-4 items-center justify-center
+            flex flex-col gap-4 items-center
             mb-7 p-8
             overflow-y-auto
             overflow-x-visible

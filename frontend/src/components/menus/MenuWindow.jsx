@@ -1,5 +1,6 @@
 import {
   faCircleXmark,
+  faGear,
   faHexagonNodes,
   faPlug,
   faSliders,
@@ -28,7 +29,7 @@ const MenuWindow = ({ children, activeMenu, setActiveMenu }) => {
         break;
       default:
         setTitle("");
-        setIcon(null);
+        setIcon(faGear);
         break;
     }
   }, [activeMenu]);
@@ -91,7 +92,7 @@ const MenuWindow = ({ children, activeMenu, setActiveMenu }) => {
 
         <div
           className="
-            flex flex-col gap-4 items-center justify-center
+            flex flex-col gap-4 items-center
             overflow-y-auto
           "
         >
