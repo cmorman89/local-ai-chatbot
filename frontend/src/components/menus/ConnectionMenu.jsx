@@ -127,7 +127,8 @@ const ConnectionMenu = ({ setServerUrl, serverUrl, setActiveMenu }) => {
               You must use <code>localhost</code> or <code>127.0.0.1</code>.
             </p>
             <p className="text-xs mt-2 pt-2 px-4 text-center italic border-t border-rose-700/20">
-              (Note: This is a limitation imposed by modern browsers for security reasons, which will automatically block such requests.)
+              (Note: This is a limitation imposed by modern browsers for
+              security reasons, which will automatically block such requests.)
             </p>
           </MessageBubble>
         )}
