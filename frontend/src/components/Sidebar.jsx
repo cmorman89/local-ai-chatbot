@@ -17,7 +17,7 @@ const Sidebar = ({ setActiveMenu }) => {
                 w-14 md:w-24
                 pl-3 md:pl-8 hover:pl-12
                 pt-16 pb-28 gap-12
-                text-3xl
+                text-3xl text-transparent
                 animate animate-menu
                 overflow-hidden
                 "
