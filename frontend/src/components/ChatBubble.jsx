@@ -65,7 +65,7 @@ const ChatBubble = ({ isUser = false, children, title = null, darkMode }) => {
                 : darkMode
                 ? "text-gray-300"
                 : "text-gray-800"
-            } }
+            }
             ${title ? "mx-2" : "mx-0"}
             animate animate-fade-up-fast
             markdown
