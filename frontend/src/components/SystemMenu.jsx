@@ -1,11 +1,17 @@
 import {
+  faCircleCheck,
   faCircleXmark,
   faPlus,
   faSliders,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MessageBubble from "./MessageBubble";
+import { useState } from "react";
+import ExpandingButton from "./ExpandingButton";
 
 const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
+  const [focusIndex, setFocusIndex] = useState(null);
   const handleOutsideClick = (e) => {
     if (e.target === e.currentTarget) setIsOpen(false);
   };
@@ -28,6 +34,10 @@ const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
     setSystemPrompt(newPrompts);
   };
 
+  const handleClearAll = () => {
+    setSystemPrompt([]);
+  };
+
   return (
     <div
       className={`
@@ -45,7 +55,7 @@ const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
         className="
           flex flex-col
           bg-gray-200
-          max-h-4/5 w-2/3 max-w-250
+          max-h-4/5 w-5/6 lg:w-2/3 max-w-250
           m-auto
           rounded-2xl
           shadow-xl shadow-black/20"
@@ -68,7 +78,7 @@ const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
             System Prompt
           </div>
           <div
-            className="cursor-pointer hover:text-red-100 animate animate-grow"
+            className="cursor-pointer hover:text-rose-100 animate animate-grow"
             onClick={handleClose}
             role="button"
             aria-label="Close"
@@ -85,56 +95,88 @@ const SystemMenu = ({ isOpen, setIsOpen, systemPrompt, setSystemPrompt }) => {
             overflow-x-visible
           "
         >
+          <MessageBubble type="info">
+            To edit a prompt, simply click and type. Changes are saved
+            automatically.
+          </MessageBubble>
           {systemPrompt &&
             systemPrompt.map((prompt, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between font-inter animate animate-fade-up w-full
-                ring-0 hover:ring-4 ring-violet-700 rounded-xl px-4 py-2 bg-gray-50 shadow-lg shadow-black/20"
+                className={`flex items-center justify-between font-inter animate animate-fade-up w-full
+                ring-0 rounded-xl px-6 
+                shadow-lg shadow-black/20
+                animate ${
+                  focusIndex !== index
+                    ? "animate-grow bg-gray-50 ring-violet-700 hover:ring-4"
+                    : "bg-lime-50 ring-8 ring-lime-500"
+                }`}
                 style={{
                   animationDelay: `${index * 0.05}s`,
                   animationFillMode: "both",
                 }}
               >
-                <div className="flex items-center gap-4 w-full">
+                <div className="flex items-center gap-4 w-full py-4">
                   <input
-                    className="w-full bg-transparent border-none focus:ring-0 focus:outline-none focus:font-mono focus:text-sm"
+                    className="
+                      w-full bg-transparent  focus:outline-none
+                      animate focus:scale"
                     type="text"
                     placeholder="Enter a prompt"
                     value={prompt}
                     onChange={(e) => handlePromptChange(e, index)}
+                    onClick={() => {
+                      setFocusIndex(index);
+                    }}
+                    onFocus={() => {
+                      setFocusIndex(index);
+                    }}
                   />
                 </div>
-                <div
-                  className="
+                {focusIndex === index ? (
+                  <div
+                    className="
                     flex items-center gap-4
-                    text-2xl text-red-300 hover:text-red-500
+                    text-4xl text-lime-400 hover:text-lime-500
                     cursor-pointer
                     animate animate-grow
                     "
-                  onClick={() => handleRemovePrompt(index)}
-                >
-                  <FontAwesomeIcon icon={faCircleXmark} />
-                </div>
+                    onClick={() => setFocusIndex(null)} // Deselect the current prompt
+                    role="button"
+                    aria-label="Save Prompt"
+                  >
+                    <FontAwesomeIcon icon={faCircleCheck} />
+                  </div>
+                ) : (
+                  <div
+                    className="
+                    flex items-center gap-4
+                    text-4xl text-rose-300 hover:text-rose-500
+                    cursor-pointer
+                    animate animate-grow
+                    "
+                    onClick={() => handleRemovePrompt(index)}
+                  >
+                    <FontAwesomeIcon icon={faCircleXmark} />
+                  </div>
+                )}
               </div>
             ))}
-          <div
-            className="
-              flex items-center justify-center gap-2
-              text- text-violet-100 font-inter
-              bg-violet-700
-              rounded-full
-              py-4 px-8 mt-4
-              cursor-pointer
-              animate animate-grow
-              shadow-xl shadow-black/20
-              "
-            role="button"
-            aria-label="Add New Prompt"
-            onClick={handleAddPrompt}
-          >
-            <FontAwesomeIcon icon={faPlus} className="text-xl" />
-            Add a New Prompt
+          <div className="flex items-center justify-center w-full gap-4">
+            <ExpandingButton
+              variant="main"
+              text="Add New Prompt"
+              onClick={handleAddPrompt}
+            >
+              <FontAwesomeIcon icon={faPlus} className="text-xl" />
+            </ExpandingButton>
+            <ExpandingButton
+              variant="cancel"
+              text="Clear All Prompts"
+              onClick={handleClearAll}
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </ExpandingButton>
           </div>
         </div>
       </div>

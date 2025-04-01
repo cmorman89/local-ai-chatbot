@@ -1,16 +1,14 @@
 import {
   faGear,
-  faHexagonNodes,
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import useModelParser from "../hooks/useModelParser";
 
-const ModelIndicator = ({ setModelIsOpen, model, modelLoading }) => {
+const ModelIndicator = ({ setActiveMenu, model, modelLoading }) => {
   const [hasModel, setHasModel] = useState(false);
-  const { _, paramCount, arch, Icon, IconCombined, color } =
-    useModelParser(model);
+  const { Icon } = useModelParser(model);
 
   useEffect(() => {
     if (model) {
@@ -18,19 +16,18 @@ const ModelIndicator = ({ setModelIsOpen, model, modelLoading }) => {
     }
   }, [model]);
 
-  const text = model ? model : "No Model";
   return (
     <div
       className="
           flex flex-nowrap gap-2 lg:gap-4 items-center
-          px-3 lg:px-6 py-2 rounded-full
-          font-inter text-violet-950 text-sm lg:text-lg font-semibold
+          px-3 lg:px-6 py-2 rounded-full max-w-100
+          font-inter text-violet-950 text-sm font-semibold
           bg-gray-100/90
           cursor-pointer
           text-nowrap
           animate
           "
-      onClick={() => setModelIsOpen(true)}
+      onClick={() => setActiveMenu("modelList")}
     >
       <div className="text-2xl">
         {modelLoading ? (

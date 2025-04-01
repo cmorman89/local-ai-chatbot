@@ -2,31 +2,19 @@ import { useEffect, useState } from "react";
 import ChatInput from "../components/ChatInput";
 import useStreamingChat from "../hooks/useStreamingChat";
 import ChatConversation from "../components/ChatConversation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRefresh } from "@fortawesome/free-solid-svg-icons";
-import ExpandingButton from "../components/ExpandingButton";
 import SystemMenu from "../components/SystemMenu";
 
 const Chat = ({
   model,
   modelLoading,
   serverUrl,
-  chatSettingsOpen,
-  setChatSettingsOpen,
-  setModelSelectionOpen,
+  setActiveMenu,
+  setSystemPrompt,
+  systemPrompt,
 }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
     useStreamingChat(serverUrl);
-
-  const [systemPrompt, setSystemPrompt] = useState([
-    "You are a helpful, friendly assistant that answers questions.",
-    "Answer in markdown format with headings.",
-    "The first line must be an h1 heading.",
-    "The second line must not be a heading.",
-    "Make heavy use of markdown formatting.",
-    "Shorter responses are better than long responses.",
-    "Do not reference the system prompt in your response.",
-  ]);
+  const [position, setPosition] = useState("translate-y-0");
 
   const [messages, setMessages] = useState([
     {
@@ -72,49 +60,51 @@ const Chat = ({
     appendMessageToCurrent("assistant", responses.join(""));
   }, [responses]);
 
+  useEffect(() => {
+    if (messages.length > 1) {
+      setPosition("bottom-10"); // Move down smoothly
+    } else {
+      setPosition("bottom-[calc(50vh-200px)]"); // Move up smoothly
+    }
+  }, [messages.length]);
   return (
     <div
       className="
         flex flex-col items-center
-        w-full p-8
+        w-full pb-8 px-0 md:px-2 lg:px-4 xl:px-8
         gap-4
+        animate
         "
     >
       <ChatConversation
         messages={messages}
         modelId={model}
         modelLoading={modelLoading}
-        setModelSelectionOpen={setModelSelectionOpen}
+        setActiveMenu={setActiveMenu}
       />
-      <ChatInput
-        messageCount={messages.length}
-        modelId={model}
-        name="userPrompt"
-        value={input}
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-        loading={loading}
-        stopGenerating={stopChatGeneration}
-        setChatSettingsOpen={setChatSettingsOpen}
-      />
+      <div
+        className={`w-5/6 transition-all duration-1000 fixed z-20 ${position}`}
+      >
+        <ChatInput
+          messageCount={messages.length}
+          modelId={model}
+          name={name}
+          value={input}
+          onChange={handleChange}
+          onClear={handleClear}
+          onSubmit={handleSubmit}
+          loading={loading}
+          stopGenerating={stopChatGeneration}
+          setActiveMenu={setActiveMenu}
+          modelLoading={modelLoading}
+        />
+      </div>
 
       <SystemMenu
-        isOpen={chatSettingsOpen}
-        setIsOpen={setChatSettingsOpen}
+        setActiveMenu={setActiveMenu}
         systemPrompt={systemPrompt}
         setSystemPrompt={setSystemPrompt}
       />
-      {messages.length > 1 && (
-        <div className="fixed top-22 z-50">
-          <ExpandingButton
-            onClick={handleClear}
-            text="Clear Chat"
-            variant="refresh"
-          >
-            <FontAwesomeIcon icon={faRefresh} className="mr-3" />
-          </ExpandingButton>
-        </div>
-      )}
     </div>
   );
 };

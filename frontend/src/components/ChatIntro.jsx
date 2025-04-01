@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useModelParser from "../hooks/useModelParser";
 import { faGear, faRefresh } from "@fortawesome/free-solid-svg-icons";
 
-const ChatIntro = ({ modelId, setModelSelectionOpen, modelLoading }) => {
+const ChatIntro = ({ modelId, setActiveMenu, modelLoading }) => {
   const model = useModelParser(modelId);
   const { _, paramCount, arch, Icon, IconCombined, IconCombinedLg, color } =
     model;
@@ -11,7 +11,8 @@ const ChatIntro = ({ modelId, setModelSelectionOpen, modelLoading }) => {
     <div
       className="
         flex
-        px-30 py-10
+        mt-10
+        px-12 md:px-30 py-10
         rounded-4xl
         font-inter
         bg-gray-50 border-4
@@ -39,9 +40,9 @@ const ChatIntro = ({ modelId, setModelSelectionOpen, modelLoading }) => {
           style={{ backgroundColor: `${color}50` }}
         ></div>
         <div
-          className="flex text-gray-800 items-center gap-1.5 italic p-4 bg-white/60 border border-gray-400 rounded-full animate animate-grow cursor-pointer hover:shadow-lg"
+          className="flex flex-col md:flex-row text-gray-800 items-center gap-1.5 italic p-4 bg-white/60 border border-gray-400 rounded-full animate animate-grow cursor-pointer hover:shadow-lg"
           role="button"
-          onClick={() => setModelSelectionOpen(true)}
+          onClick={() => setActiveMenu("modelList")}
         >
           <span className="font-semibold">Model:</span>
           {model.modelId}{" "}

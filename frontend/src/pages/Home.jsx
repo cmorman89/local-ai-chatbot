@@ -14,6 +14,7 @@ import {
   Qwen,
   Claude,
   LmStudio,
+  Groq,
 } from "@lobehub/icons";
 
 const Home = () => {
@@ -72,7 +73,7 @@ const Home = () => {
           Chat Now <FontAwesomeIcon icon={faCaretRight} className="ml-3" />
         </div>
         <div className="flex flex-wrap items-center justify-center gap-6 text-white/50 text-2xl animate animate-fade-up lg:text-4xl mb-4">
-        Works with:
+          Works with:
         </div>
         <div className="flex flex-wrap items-center justify-center gap-6 text-white/50 text-2xl animate animate-fade-up lg:text-4xl mb-4">
           <div className="flex flex-col items-center gap-2 animate animate-grow">
@@ -91,6 +92,10 @@ const Home = () => {
           <div className="flex flex-col items-center gap-2 animate animate-grow">
             <Gemma />
             <span className="text-xs font-normal">Gemma</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 animate animate-grow">
+            <Groq />
+            <span className="text-xs font-normal">Groq</span>
           </div>
           <div className="flex flex-col items-center gap-2 animate animate-grow">
             <Meta />
