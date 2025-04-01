@@ -26,3 +26,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Loading spinner for chat generation and model selection.
 - Server and model selections persisted across sessions using local storage.
 - Error handling for failure to load a list of models.
+- Dark mode toggle functionality, allowing users to switch between light and dark themes.
