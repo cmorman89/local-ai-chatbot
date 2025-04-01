@@ -4,16 +4,10 @@ import ModelBubble from "./ModelBubble";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ModelListMenu = ({
-  setActiveMenu,
-  serverUrl,
-  setModel,
-  loadModel,
-}) => {
+const ModelListMenu = ({ setActiveMenu, serverUrl, setModel, loadModel }) => {
   const modelEndpoint = `${serverUrl}/v1/models`;
   const [modelList, setModelList] = useState([]);
   const { data, loading, error } = useFetchData(modelEndpoint);
-
 
   const handleModelSelect = (model) => {
     setModel(model);
@@ -29,7 +23,6 @@ const ModelListMenu = ({
       }
     }
   }, [data, loading]);
-
 
   return (
     <div

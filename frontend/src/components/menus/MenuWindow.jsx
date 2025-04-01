@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 const MenuWindow = ({ children, activeMenu, setActiveMenu, darkMode }) => {
   const [title, setTitle] = useState("");
-  const [icon, setIcon] = useState(faGear)
+  const [icon, setIcon] = useState(faGear);
 
   // Set the title and icon based on the activeMenu
   useEffect(() => {
@@ -56,7 +56,7 @@ const MenuWindow = ({ children, activeMenu, setActiveMenu, darkMode }) => {
       <div
         className={`
           flex flex-col
-          ${darkMode ? 'bg-gray-500' : 'bg-gray-200'}
+          ${darkMode ? "bg-gray-500" : "bg-gray-200"}
           max-h-4/5 w-5/6 lg:w-2/3 max-w-250
           m-auto
           rounded-2xl

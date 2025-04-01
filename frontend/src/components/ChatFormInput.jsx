@@ -9,7 +9,7 @@ const ChatFormInput = ({
   isActive,
   setIsFocused,
   loading,
-  darkMode
+  darkMode,
 }) => {
   const textareaRef = useRef(null);
   const MAX_LINES = 5;
@@ -68,7 +68,7 @@ const ChatFormInput = ({
         disabled={loading}
         className={`
             w-full
-            ${darkMode ? 'text-gray-200' : 'text-gray-800'}
+            ${darkMode ? "text-gray-200" : "text-gray-800"}
             font-inter
             text-sm
             outline-none

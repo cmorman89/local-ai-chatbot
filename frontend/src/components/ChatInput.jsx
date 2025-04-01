@@ -22,7 +22,7 @@ const ChatInput = ({
   modelId,
   modelLoading,
   setActiveMenu,
-  darkMode
+  darkMode,
 }) => {
   const [inputSize, setInputSize] = useState(1);
   const [isHover, setIsHover] = useState(false);
