@@ -20,8 +20,8 @@ const ModelIndicator = ({ setActiveMenu, model, modelLoading }) => {
     <div
       className="
           flex flex-nowrap gap-2 lg:gap-4 items-center
-          px-3 lg:px-6 py-2 rounded-full
-          font-inter text-violet-950 text-sm lg:text-lg font-semibold
+          px-3 lg:px-6 py-2 rounded-full max-w-100
+          font-inter text-violet-950 text-sm font-semibold
           bg-gray-100/90
           cursor-pointer
           text-nowrap
