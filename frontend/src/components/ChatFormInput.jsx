@@ -78,7 +78,7 @@ const ChatFormInput = ({
             animate
             ${loading ? "cursor-not-allowed" : "cursor-text"}
         `}
-        placeholder="Type your message here..."
+        placeholder={loading ? "Generating response..." : "Type your message here..."}
         value={value}
         onChange={(e) => onChange(e)}
         onKeyDown={handleKeyDown}

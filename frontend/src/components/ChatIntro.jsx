@@ -21,7 +21,7 @@ const ChatIntro = ({ modelId, setActiveMenu, modelLoading, darkMode }) => {
       `}
       style={{
         backgroundColor: `${color}${darkMode ? 40 : 20}`,
-        borderColor: `${color}${darkMode ? 80 : 50}`,
+        borderColor: `${color}${darkMode ? 80 : ''}`,
       }}
     >
       <div className="flex flex-col items-center gap-4">

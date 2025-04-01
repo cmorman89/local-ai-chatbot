@@ -76,7 +76,7 @@ const ChatInput = ({
           darkMode={darkMode}
         />
       </div>
-      <div className="flex flex-col md:flex-row items-center w-full gap-2 justify-center">
+      <div className="flex flex-col md:flex-row w-full gap-2 justify-center items-end">
         <ChatFormInput
           value={value}
           onChange={onChange}
@@ -89,9 +89,7 @@ const ChatInput = ({
           darkMode={darkMode}
         />
         <div
-          className={`flex ${
-            inputSize === 1 ? "items-center" : "items-end"
-          } gap-2 justify-center`}
+          className={`flex justify-self-end h-full gap-2 justify-center`}
         >
           {loading ? (
             <ExpandingButton
