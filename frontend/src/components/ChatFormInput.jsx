@@ -8,6 +8,7 @@ const ChatFormInput = ({
   setInputSize,
   isActive,
   setIsFocused,
+  loading,
 }) => {
   const textareaRef = useRef(null);
   const MAX_LINES = 5;
@@ -63,6 +64,7 @@ const ChatFormInput = ({
     >
       <textarea
         ref={textareaRef}
+        disabled={loading}
         className={`
             w-full
             text-gray-800
@@ -72,6 +74,7 @@ const ChatFormInput = ({
             resize-none
             overflow-y-auto
             animate
+            ${loading ? "cursor-not-allowed" : "cursor-text"}
         `}
         placeholder="Type your message here..."
         value={value}
