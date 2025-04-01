@@ -93,6 +93,7 @@ function App() {
           <MenuWindow
             activeMenu={activeMenu}
             setActiveMenu={handleSetActiveMenu}
+            darkMode={darkMode}
           >
             {activeMenu === "connection" && (
               <ConnectionMenu
