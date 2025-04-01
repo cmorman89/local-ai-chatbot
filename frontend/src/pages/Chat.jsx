@@ -9,8 +9,8 @@ const Chat = ({
   modelLoading,
   serverUrl,
   setActiveMenu,
-  setSystemPrompt,
   systemPrompt,
+  darkMode,
 }) => {
   const { responses, sendMessage, loading, _, stopChatGeneration } =
     useStreamingChat(serverUrl);
@@ -81,6 +81,7 @@ const Chat = ({
         modelId={model}
         modelLoading={modelLoading}
         setActiveMenu={setActiveMenu}
+        darkMode={darkMode}
       />
       <div
         className={`w-5/6 transition-all duration-1000 fixed z-20 ${position}`}
@@ -97,14 +98,9 @@ const Chat = ({
           stopGenerating={stopChatGeneration}
           setActiveMenu={setActiveMenu}
           modelLoading={modelLoading}
+          darkMode={darkMode}
         />
       </div>
-
-      <SystemMenu
-        setActiveMenu={setActiveMenu}
-        systemPrompt={systemPrompt}
-        setSystemPrompt={setSystemPrompt}
-      />
     </div>
   );
 };

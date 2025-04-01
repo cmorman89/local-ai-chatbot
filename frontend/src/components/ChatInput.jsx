@@ -22,6 +22,7 @@ const ChatInput = ({
   modelId,
   modelLoading,
   setActiveMenu,
+  darkMode
 }) => {
   const [inputSize, setInputSize] = useState(1);
   const [isHover, setIsHover] = useState(false);
@@ -72,6 +73,7 @@ const ChatInput = ({
           modelId={modelId}
           modelLoading={modelLoading}
           setActiveMenu={setActiveMenu}
+          darkMode={darkMode}
         />
       </div>
       <div className="flex w-full gap-2 justify-center">
@@ -84,6 +86,7 @@ const ChatInput = ({
           isActive={isActive}
           loading={loading}
           setIsFocused={setIsFocused}
+          darkMode={darkMode}
         />
         <div
           className={`flex ${
