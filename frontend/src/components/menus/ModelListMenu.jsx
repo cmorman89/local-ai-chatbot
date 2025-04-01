@@ -4,7 +4,7 @@ import ModelBubble from "./ModelBubble";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ModelListMenu = ({ setActiveMenu, serverUrl, setModel, loadModel }) => {
+const ModelListMenu = ({ setActiveMenu, serverUrl, setModel, loadModel, darkMode }) => {
   const modelEndpoint = `${serverUrl}/v1/models`;
   const [modelList, setModelList] = useState([]);
   const { data, loading, error } = useFetchData(modelEndpoint);
@@ -61,6 +61,7 @@ const ModelListMenu = ({ setActiveMenu, serverUrl, setModel, loadModel }) => {
             modelId={model}
             description="This is a description of the model"
             onClick={() => handleModelSelect(model)}
+            darkMode={darkMode}
           />
         ))}
     </div>

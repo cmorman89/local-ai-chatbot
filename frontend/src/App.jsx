@@ -100,6 +100,7 @@ function App() {
                 serverUrl={serverUrl}
                 setServerUrl={setServerUrl}
                 setActiveMenu={setActiveMenu}
+                darkMode={darkMode}
               />
             )}
             {activeMenu === "modelList" && (
@@ -108,12 +109,15 @@ function App() {
                 setModel={setModel}
                 serverUrl={serverUrl}
                 loadModel={loadModel}
+                darkMode={darkMode}
               />
             )}
             {activeMenu === "systemPrompt" && (
               <SystemPromptMenu
                 systemPrompt={systemPrompt}
                 setSystemPrompt={setSystemPrompt}
+                setActiveMenu={setActiveMenu}
+                darkMode={darkMode}
               />
             )}
           </MenuWindow>

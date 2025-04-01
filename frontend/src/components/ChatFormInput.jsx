@@ -68,8 +68,9 @@ const ChatFormInput = ({
         disabled={loading}
         className={`
             w-full
-            ${darkMode ? "text-gray-200" : "text-gray-800"}
+            ${darkMode ? "text-gray-200" : "text-gray-800 "}
             font-inter
+            placeholder-gray-500
             text-sm
             outline-none
             resize-none

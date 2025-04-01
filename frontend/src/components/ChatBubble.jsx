@@ -27,8 +27,8 @@ const ChatBubble = ({ isUser = false, children, title = null, darkMode }) => {
           isUser
             ? "bg-gradient-to-br from-violet-800 to-violet-600"
             : darkMode
-            ? "bg-gradient-to-br from-gray-600 to-gray-600"
-            : "bg-gradient-to-br from-gray-200 to-gray-300"
+            ? "bg-gray-600"
+            : "bg-gray-50"
         }
         ${
           isUser
@@ -40,6 +40,7 @@ const ChatBubble = ({ isUser = false, children, title = null, darkMode }) => {
         font-inter text-left
         rounded-4xl 
         py-8 px-10
+        animate animate-fade-up-fast
         `}
       >
         <div className="flex flex-col flex-grow justify-center overflow-hidden">
@@ -51,7 +52,7 @@ const ChatBubble = ({ isUser = false, children, title = null, darkMode }) => {
                   : darkMode
                   ? "text-violet-300"
                   : "text-violet-700"
-              } font-semibold italic mb-2`}
+              } font-semibold italic mb-2 animate animate-fade-up-fast`}
             >
               {title}
             </h3>
