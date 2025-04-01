@@ -937,7 +937,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         h-14 min-h-14 max-h-14 w-14 min-w-14 pl-4.5 overflow-hidden
         animate-fade-up transition-colors
         text-xl ${c[r]}
-      `,role:"button",onClick:n,whileHover:{width:`${4.5+i/16}rem`},transition:{duration:.3,ease:"easeOut"},children:[t,_.jsx("span",{ref:l,className:"ml-2 text-nowrap font-medium text-sm text-violet-50 ",children:e})]})};xi.propTypes={text:ze.string.isRequired,children:ze.node,onClick:ze.func,variant:ze.oneOf(["default","cancel","disabled","refresh"])};const ufe=({value:e,onChange:t,onSubmit:n,inputSize:r,setInputSize:i,isActive:o,setIsFocused:l})=>{const c=S.useRef(null),f=5;S.useEffect(()=>{const m=c.current;if(e===""){i(1);return}if(m){m.style.height="auto";const h=parseInt(window.getComputedStyle(m).lineHeight,10),g=Math.floor(m.scrollHeight/h),v=Math.min(g,f);i(v)}},[e]);const d=m=>{m.key==="Enter"&&!m.shiftKey&&(m.preventDefault(),n())};return _.jsx("div",{className:`
+      `,role:"button",onClick:n,whileHover:{width:`${4.5+i/16}rem`},transition:{duration:.3,ease:"easeOut"},children:[t,_.jsx("span",{ref:l,className:"ml-2 text-nowrap font-medium text-sm text-violet-50 ",children:e})]})};xi.propTypes={text:ze.string.isRequired,children:ze.node,onClick:ze.func,variant:ze.oneOf(["default","cancel","disabled","refresh"])};const ufe=({value:e,onChange:t,onSubmit:n,inputSize:r,setInputSize:i,isActive:o,setIsFocused:l,loading:c})=>{const f=S.useRef(null),d=5;S.useEffect(()=>{const h=f.current;if(e===""){i(1);return}if(h){h.style.height="auto";const g=parseInt(window.getComputedStyle(h).lineHeight,10),v=Math.floor(h.scrollHeight/g),x=Math.min(v,d);i(x)}},[e]);const m=h=>{h.key==="Enter"&&!h.shiftKey&&(h.preventDefault(),n())};return _.jsx("div",{className:`
         flex justify-center
         bg-white
         ${r===1?"items-center":""}
@@ -948,7 +948,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         shadow-black/20
         ${o?"border-violet-700 border-2 shadow-xl":"border-violet-300/50 border-1 shadow-md"}
         animate animate-fade-up
-        `,style:{height:`${r*24}px`,minHeight:"56px"},children:_.jsx("textarea",{ref:c,className:`
+        `,style:{height:`${r*24}px`,minHeight:"56px"},children:_.jsx("textarea",{ref:f,disabled:c,className:`
             w-full
             text-gray-800
             font-inter
@@ -957,7 +957,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             resize-none
             overflow-y-auto
             animate
-        `,placeholder:"Type your message here...",value:e,onChange:m=>t(m),onKeyDown:d,rows:r,autoFocus:!0,autoComplete:"off",autoCorrect:"on","aria-autocomplete":"none",name:"userPrompt",style:{height:`${r*20}px`},onFocus:()=>{l(!0)},onBlur:()=>{l(!1)}})})},ffe=({modelId:e,setActiveMenu:t,modelLoading:n})=>{const r=Cx(e),{_:i,paramCount:o,arch:l,Icon:c,IconCombined:f,IconCombinedLg:d,color:m}=r;return _.jsx("div",{className:`
+            ${c?"cursor-not-allowed":"cursor-text"}
+        `,placeholder:"Type your message here...",value:e,onChange:h=>t(h),onKeyDown:m,rows:r,autoFocus:!0,autoComplete:"off",autoCorrect:"on","aria-autocomplete":"none",name:"userPrompt",style:{height:`${r*20}px`},onFocus:()=>{l(!0)},onBlur:()=>{l(!1)}})})},ffe=({modelId:e,setActiveMenu:t,modelLoading:n})=>{const r=Cx(e),{_:i,paramCount:o,arch:l,Icon:c,IconCombined:f,IconCombinedLg:d,color:m}=r;return _.jsx("div",{className:`
         flex
         mt-10
         px-12 md:px-30 py-10
