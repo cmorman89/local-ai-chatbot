@@ -58,7 +58,7 @@ const Home = () => {
         <div
           className="
             flex items-center justify-center
-            font-normal  text-xl
+            font-normal  text-xl text-gray-800
             bg-violet-300
             w-fit
             px-6 py-3 mt-12  mb-12

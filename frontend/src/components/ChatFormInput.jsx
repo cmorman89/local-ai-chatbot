@@ -9,6 +9,7 @@ const ChatFormInput = ({
   isActive,
   setIsFocused,
   loading,
+  darkMode,
 }) => {
   const textareaRef = useRef(null);
   const MAX_LINES = 5;
@@ -46,7 +47,7 @@ const ChatFormInput = ({
     <div
       className={`
         flex justify-center
-        bg-white
+        ${darkMode ? "bg-gray-800" : "bg-white"}
         ${inputSize === 1 ? "items-center" : ""}
         w-full lg:w-2/3 xl:w-1/2 max-w-256
         px-4 py-2
@@ -67,8 +68,9 @@ const ChatFormInput = ({
         disabled={loading}
         className={`
             w-full
-            text-gray-800
+            ${darkMode ? "text-gray-200" : "text-gray-800 "}
             font-inter
+            placeholder-gray-500
             text-sm
             outline-none
             resize-none
@@ -76,7 +78,7 @@ const ChatFormInput = ({
             animate
             ${loading ? "cursor-not-allowed" : "cursor-text"}
         `}
-        placeholder="Type your message here..."
+        placeholder={loading ? "Generating response..." : "Type your message here..."}
         value={value}
         onChange={(e) => onChange(e)}
         onKeyDown={handleKeyDown}

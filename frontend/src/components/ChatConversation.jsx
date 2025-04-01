@@ -1,7 +1,7 @@
 import ChatBubble from "./ChatBubble";
 import ChatIntro from "./ChatIntro";
 
-const ChatConversation = ({ messages }) => {
+const ChatConversation = ({ messages, darkMode }) => {
   const handleAssistantContent = (content) => {
     // Split the content into lines
     let lines = content.split("\n");
@@ -44,14 +44,14 @@ const ChatConversation = ({ messages }) => {
         // Style user messages differently
         if (message.role === "user") {
           return (
-            <ChatBubble key={index} isUser={true}>
+            <ChatBubble key={index} isUser={true} darkMode={darkMode}>
               {message.content}
             </ChatBubble>
           );
         } else {
           const chatBubbles = handleAssistantContent(message.content);
           return chatBubbles.map((bubble, i) => (
-            <ChatBubble key={i} title={bubble.title}>
+            <ChatBubble key={i} title={bubble.title} darkMode={darkMode}>
               {bubble.content.join("\n")}
             </ChatBubble>
           ));

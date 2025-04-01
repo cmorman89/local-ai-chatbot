@@ -20,7 +20,7 @@ const ModelSelectionMenu = ({
   const [modelList, setModelList] = useState([]);
   const { data, loading, error } = useFetchData(url);
   const {
-    response,
+    
     loading: modelLoading,
     loadModel,
   } = useLoadModel(serverUrl);

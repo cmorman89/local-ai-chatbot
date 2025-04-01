@@ -5,13 +5,15 @@ import remarkGfm from "remark-gfm";
 import "highlight.js/styles/github.css";
 import rehypeHighlight from "rehype-highlight";
 
-const ChatBubble = ({ isUser = false, children, title = null }) => {
+const ChatBubble = ({ isUser = false, children, title = null, darkMode }) => {
   return (
     <div
       className={`
         flex w-full mr-16
         ${
-          isUser ? "justify-end origin-right my-6 mr-10" : "justify-center origin-top"
+          isUser
+            ? "justify-end origin-right my-6 mr-10"
+            : "justify-center origin-top"
         }
         animate animate-grow animate-fade-up
         `}
@@ -24,7 +26,9 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
         ${
           isUser
             ? "bg-gradient-to-br from-violet-800 to-violet-600"
-            : "bg-gradient-to-br from-white to-gray-50"
+            : darkMode
+            ? "bg-gray-600"
+            : "bg-gray-50"
         }
         ${
           isUser
@@ -36,21 +40,32 @@ const ChatBubble = ({ isUser = false, children, title = null }) => {
         font-inter text-left
         rounded-4xl 
         py-8 px-10
+        animate animate-fade-up-fast
         `}
       >
         <div className="flex flex-col flex-grow justify-center overflow-hidden">
           {title && (
             <h3
               className={`text-xl ${
-                isUser ? "text-purple-100" : "text-violet-800"
-              } font-semibold italic mb-2`}
+                isUser
+                  ? "text-purple-100"
+                  : darkMode
+                  ? "text-violet-300"
+                  : "text-violet-700"
+              } font-semibold italic mb-2 animate animate-fade-up-fast`}
             >
               {title}
             </h3>
           )}
           <span
             className={`
-            ${isUser ? "text-violet-100 font-medium" : "text-gray-700"}
+            ${
+              isUser
+                ? "text-violet-100 font-medium"
+                : darkMode
+                ? "text-gray-300"
+                : "text-gray-800"
+            }
             ${title ? "mx-2" : "mx-0"}
             animate animate-fade-up-fast
             markdown

@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import useModelParser from "../hooks/useModelParser";
 
-const ModelIndicator = ({ setActiveMenu, model, modelLoading }) => {
+const ModelIndicator = ({ setActiveMenu, model, modelLoading, darkMode }) => {
   const [hasModel, setHasModel] = useState(false);
-  const { Icon } = useModelParser(model);
+  const { Icon, IconMono } = useModelParser(model);
 
   useEffect(() => {
     if (model) {
@@ -18,15 +18,19 @@ const ModelIndicator = ({ setActiveMenu, model, modelLoading }) => {
 
   return (
     <div
-      className="
+      className={`
           flex flex-nowrap gap-2 lg:gap-4 items-center
           px-3 lg:px-6 py-2 rounded-full max-w-100
-          font-inter text-violet-950 text-sm font-semibold
-          bg-gray-100/90
+          font-inter text-sm font-semibold
+          ${
+            darkMode
+              ? "bg-white/10 text-gray-200"
+              : "bg-gray-100/90 text-gray-900"
+          }
           cursor-pointer
           text-nowrap
           animate
-          "
+      `}
       onClick={() => setActiveMenu("modelList")}
     >
       <div className="text-2xl">
@@ -36,7 +40,11 @@ const ModelIndicator = ({ setActiveMenu, model, modelLoading }) => {
             className="animate-rotate text-gray-500"
           />
         ) : hasModel ? (
-          <Icon />
+          darkMode ? (
+            <IconMono />
+          ) : (
+            <Icon />
+          )
         ) : (
           <FontAwesomeIcon
             icon={faTriangleExclamation}
@@ -48,7 +56,11 @@ const ModelIndicator = ({ setActiveMenu, model, modelLoading }) => {
         <span className="mr-1 text-nowrap">{hasModel && "Model:"}</span>
         <span
           className={`font-medium italic ${
-            hasModel ? "text-violet-950" : "text-red-700"
+            hasModel
+              ? darkMode
+                ? "text-gray-200"
+                : "text-violet-950"
+              : "text-red-700"
           } text-nowrap`}
         >
           {modelLoading ? "Loading..." : hasModel ? model : "No Model"}

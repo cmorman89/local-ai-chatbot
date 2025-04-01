@@ -8,9 +8,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
-const MenuWindow = ({ children, activeMenu, setActiveMenu }) => {
+const MenuWindow = ({ children, activeMenu, setActiveMenu, darkMode }) => {
   const [title, setTitle] = useState("");
-  const [icon, setIcon] = useState(faGear)
+  const [icon, setIcon] = useState(faGear);
 
   // Set the title and icon based on the activeMenu
   useEffect(() => {
@@ -54,24 +54,29 @@ const MenuWindow = ({ children, activeMenu, setActiveMenu }) => {
       onClick={(e) => handleOutsideClick(e)}
     >
       <div
-        className="
-          flex flex-col
-          bg-gray-200
+        className={`
+          flex flex-col border
+          ${
+            darkMode
+              ? "bg-gray-800 border-white/20"
+              : "bg-gray-200 border-none"
+          }
           max-h-4/5 w-5/6 lg:w-2/3 max-w-250
           m-auto
           rounded-2xl
           shadow-xl shadow-black/20
-          "
+          
+        `}
       >
         <div
-          className="
+          className={`
             flex items-center justify-evenly
             bg-violet-700
             text-white
             font-medium font-inter text-2xl
             rounded-t-2xl shadow-lg shadow-black/20
             py-3 px-8
-            "
+          `}
         >
           <div className="flex flex-grow items-center justify-center gap-4">
             <FontAwesomeIcon

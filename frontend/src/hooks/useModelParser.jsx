@@ -22,6 +22,7 @@ const useModelParser = (modelId) => {
     paramCount: null,
     arch: "other",
     Icon: () => <FontAwesomeIcon icon={faHexagonNodes} />,
+    IconMono: () => <FontAwesomeIcon icon={faHexagonNodes} />,
     IconCombined: () => (
       <span className="text-gray-400">
         <FontAwesomeIcon icon={faHexagonNodes} className="mr-1" />
@@ -29,6 +30,12 @@ const useModelParser = (modelId) => {
       </span>
     ),
     IconCombinedLg: () => (
+      <span className="text-gray-400 text-4xl">
+        <FontAwesomeIcon icon={faHexagonNodes} className="mr-2" />
+        Other
+      </span>
+    ),
+    IconCombinedMonoLg: () => (
       <span className="text-gray-400 text-4xl">
         <FontAwesomeIcon icon={faHexagonNodes} className="mr-2" />
         Other
@@ -56,6 +63,18 @@ const useModelParser = (modelId) => {
         qwen: <Qwen.Color />,
       };
 
+      const iconsMono = {
+        gemma: <Gemma />,
+        groq: <Groq />,
+        llama: <Meta />,
+        mistral: <Mistral />,
+        mathstral: <Mistral />,
+        phi: <Microsoft />,
+        claude: <Claude.Color />,
+        deepseek: <DeepSeek.Color />,
+        qwen: <Qwen />,
+      };
+
       const iconsCombined = {
         gemma: <Gemma.Combine type="color" />,
         groq: <Groq.Combine type="color" />,
@@ -80,6 +99,18 @@ const useModelParser = (modelId) => {
         qwen: <Qwen.Combine type="color" size={size} />,
       };
 
+      const iconsCombinedMonoLg = {
+        gemma: <Gemma.Combine size={size} />,
+        groq: <Groq.Combine size={size} />,
+        llama: <Meta.Combine size={size} />,
+        mistral: <Mistral.Combine size={size} />,
+        mathstral: <Mistral.Combine size={size} />,
+        phi: <Microsoft.Combine size={size} />,
+        claude: <Claude.Combine size={size} />,
+        deepseek: <DeepSeek.Combine size={size} />,
+        qwen: <Qwen.Combine size={size} />,
+      };
+
       const color = {
         gemma: Gemma.colorPrimary,
         groq: Groq.colorPrimary,
@@ -98,6 +129,7 @@ const useModelParser = (modelId) => {
         paramCount: null,
         arch: "other",
         Icon: () => <FontAwesomeIcon icon={faHexagonNodes} />,
+        IconMono: () => <FontAwesomeIcon icon={faHexagonNodes} />,
         IconCombined: () => (
           <span className="text-gray-400">
             <FontAwesomeIcon icon={faHexagonNodes} className="mr-1" />
@@ -105,6 +137,12 @@ const useModelParser = (modelId) => {
           </span>
         ),
         IconCombinedLg: () => (
+          <span className="text-gray-400 text-4xl">
+            <FontAwesomeIcon icon={faHexagonNodes} className="mr-2" />
+            Other
+          </span>
+        ),
+        IconCombinedMonoLg: () => (
           <span className="text-gray-400 text-4xl">
             <FontAwesomeIcon icon={faHexagonNodes} className="mr-2" />
             Other
@@ -125,11 +163,18 @@ const useModelParser = (modelId) => {
       if (icons[parsedModel.arch]) {
         parsedModel.Icon = () => icons[parsedModel.arch];
       }
+      if (iconsMono[parsedModel.arch]) {
+        parsedModel.IconMono = () => iconsMono[parsedModel.arch];
+      }
       if (iconsCombined[parsedModel.arch]) {
         parsedModel.IconCombined = () => iconsCombined[parsedModel.arch];
       }
       if (iconsCombinedLg[parsedModel.arch]) {
         parsedModel.IconCombinedLg = () => iconsCombinedLg[parsedModel.arch];
+      }
+      if (iconsCombinedMonoLg[parsedModel.arch]) {
+        parsedModel.IconCombinedMonoLg = () =>
+          iconsCombinedMonoLg[parsedModel.arch];
       }
       if (color[parsedModel.arch]) {
         parsedModel.color = color[parsedModel.arch];
@@ -145,6 +190,7 @@ const useModelParser = (modelId) => {
         paramCount: null,
         arch: "none",
         Icon: () => <FontAwesomeIcon icon={faHexagonNodes} />,
+        IconMono: () => <FontAwesomeIcon icon={faHexagonNodes} />,
         IconCombined: () => (
           <span className="text-red-700">
             <FontAwesomeIcon
@@ -155,6 +201,15 @@ const useModelParser = (modelId) => {
           </span>
         ),
         IconCombinedLg: () => (
+          <span className="text-red-600 text-4xl">
+            <FontAwesomeIcon
+              icon={faTriangleExclamation}
+              className="mr-2 text-red-500"
+            />
+            No Model
+          </span>
+        ),
+        IconCombinedMonoLg: () => (
           <span className="text-red-600 text-4xl">
             <FontAwesomeIcon
               icon={faTriangleExclamation}

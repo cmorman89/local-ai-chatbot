@@ -22,6 +22,7 @@ const ChatInput = ({
   modelId,
   modelLoading,
   setActiveMenu,
+  darkMode,
 }) => {
   const [inputSize, setInputSize] = useState(1);
   const [isHover, setIsHover] = useState(false);
@@ -72,9 +73,10 @@ const ChatInput = ({
           modelId={modelId}
           modelLoading={modelLoading}
           setActiveMenu={setActiveMenu}
+          darkMode={darkMode}
         />
       </div>
-      <div className="flex w-full gap-2 justify-center">
+      <div className="flex flex-col md:flex-row w-full gap-2 justify-center items-end">
         <ChatFormInput
           value={value}
           onChange={onChange}
@@ -84,11 +86,10 @@ const ChatInput = ({
           isActive={isActive}
           loading={loading}
           setIsFocused={setIsFocused}
+          darkMode={darkMode}
         />
         <div
-          className={`flex ${
-            inputSize === 1 ? "items-center" : "items-end"
-          } gap-2 justify-center`}
+          className={`flex justify-self-end h-full gap-2 justify-center`}
         >
           {loading ? (
             <ExpandingButton
@@ -128,95 +129,6 @@ const ChatInput = ({
           )}
         </div>
       </div>
-      {/* <div
-        className={`
-            flex justify-center
-            ${
-              loading
-                ? "border-transparent border-8"
-                : isActive
-                ? "border-violet-700 border-4"
-                : "border-gray-400 border-1"
-            }
-            backdrop-blur-lg 
-            ${
-              messageCount > 1
-                ? "fixed bottom-20"
-                : "sticky bottom-1/3 lg:bottom-1/2"
-            }
-            z-20
-            rounded-full 
-            ${isActive ? "shadow-violet-950/50" : "shadow-black/20"}
-            shadow-2xl
-            w-full max-w-4/5
-            p-4 gap-4 
-            animate duration-800 
-            ${isActive ? "-translate-y-1.5" : "translate-y-0"}
-            ${isActive ? "bg-white/60" : "bg-white/20"}
-            ${!modelId && "cursor-not-allowed"}
-            animate-border
-            `}
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-      >
-        <input
-          type="text"
-          disabled={loading || !modelId}
-          autoFocus
-          autoComplete="off"
-          autoCorrect="on"
-          aria-autocomplete="off"
-          name={name}
-          placeholder={
-            modelId
-              ? loading
-                ? "Generating response..."
-                : "What would you like to ask?"
-              : "Select a model to start chatting"
-          }
-          className={`
-              flex
-              focus:outline-none 
-              w-full mx-4
-              text-violet-950/80 font-inter
-              placeholder:text-violet-950/50 placeholder:italic
-              ${loading || !modelId ? "cursor-not-allowed" : "cursor-text"}
-              `}
-          value={value}
-          onChange={(e) => onChange(e)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              onSubmit();
-            }
-          }}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        />
-        {loading ? (
-          <ExpandingButton
-            text="Stop Generating"
-            onClick={stopGenerating}
-            variant="cancel"
-          >
-            <FontAwesomeIcon icon={faXmark} className="text-violet-50 ml-0.5" />
-          </ExpandingButton>
-        ) : (
-          <ExpandingButton
-            text="Send Message"
-            variant={!modelId ? "disabled" : "default"}
-            onClick={onSubmit}
-          >
-            <FontAwesomeIcon icon={faPaperPlane} className="text-violet-50" />
-          </ExpandingButton>
-        )}
-        <ExpandingButton
-          text="Edit System Prompt"
-          variant={loading ? "disabled" : "default"}
-          onClick={() => setChatSettingsOpen(true)}
-        >
-          <FontAwesomeIcon icon={faSliders} className="text-violet-50" />
-        </ExpandingButton>
-      </div> */}
     </div>
   );
 };
