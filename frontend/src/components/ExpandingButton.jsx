@@ -52,7 +52,7 @@ ExpandingButton.propTypes = {
   text: PropTypes.string.isRequired,
   children: PropTypes.node,
   onClick: PropTypes.func,
-  variant: PropTypes.oneOf(["default", "cancel", "disabled", "refresh"]),
+  variant: PropTypes.oneOf(["default", "main", "success", "cancel", "disabled", "clear"]),
 };
 
 export default ExpandingButton;
