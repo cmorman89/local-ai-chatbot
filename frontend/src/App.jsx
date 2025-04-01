@@ -17,6 +17,7 @@ import SystemPromptMenu from "./components/menus/SystemPromptMenu";
 import useLoadModel from "./hooks/useLoadModel";
 
 function App() {
+  const [darkMode, setDarkMode] = useLocalStorage("darkMode", false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [model, setModel] = useLocalStorage("modelId", null);
   const [serverUrl, setServerUrl] = useLocalStorage(
@@ -48,22 +49,29 @@ function App() {
   };
   return (
     <div
-      className="
+      className={`
       flex flex-col
       min-h-screen h-full
       w-full
-      "
+      ${darkMode ? "bg-gray-700" : "bg-gray-200"}
+      animate duration-1000
+      `}
     >
       <Router>
         <Topbar
           model={model}
           modelLoading={modelLoading}
           setActiveMenu={setActiveMenu}
+          darkMode={darkMode}
         />
         <div className="flex flex-row w-full h-full">
-          <Sidebar setActiveMenu={handleSetActiveMenu} />
+          <Sidebar
+            setActiveMenu={handleSetActiveMenu}
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+          />
           <ServerMenu serverUrl={serverUrl} setServerUrl={setServerUrl} />
-          <MainContentWindow>
+          <MainContentWindow darkMode={darkMode}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route
@@ -76,6 +84,7 @@ function App() {
                     setActiveMenu={setActiveMenu}
                     setSystemPrompt={setSystemPrompt}
                     systemPrompt={systemPrompt}
+                    darkMode={darkMode}
                   />
                 }
               />

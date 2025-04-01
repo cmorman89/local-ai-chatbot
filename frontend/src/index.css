@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-100;
+  @apply text-gray-800 ;
 }
 .font-inter {
   font-family: "Inter", sans-serif;
