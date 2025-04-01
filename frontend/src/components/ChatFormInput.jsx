@@ -6,26 +6,34 @@ const ChatFormInput = ({
   onSubmit,
   inputSize,
   setInputSize,
+  isActive,
+  setIsFocused,
 }) => {
-    const textareaRef = useRef(null);
-    const MAX_LINES = 5;
-    useEffect(() => {
-      const textarea = textareaRef.current;
-      if (textarea) {
-        textarea.style.height = "auto";
-        const lineHeight = parseInt(
-          window.getComputedStyle(textarea).lineHeight,
-          10
-        );
+  const textareaRef = useRef(null);
+  const MAX_LINES = 5;
 
-        const lines = Math.floor(textarea.scrollHeight / lineHeight);
-        // Limit the number of lines to MAX_LINES
-        const clampedLines = Math.min(lines, MAX_LINES);
-        // Set the input size based on the number of lines
-        setInputSize(clampedLines);
-      }
-    }, [value]);
+  // Recalculate the input size whenever the value changes
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    // Reset the input size if the value is empty
+    if (value === "") {
+      setInputSize(1);
+      return;
+    }
+    if (textarea) {
+      textarea.style.height = "auto";
+      const lineHeight = parseInt(
+        window.getComputedStyle(textarea).lineHeight,
+        10
+      );
 
+      const lines = Math.floor(textarea.scrollHeight / lineHeight);
+      // Limit the number of lines to MAX_LINES
+      const clampedLines = Math.min(lines, MAX_LINES);
+      // Set the input size based on the number of lines
+      setInputSize(clampedLines);
+    }
+  }, [value]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -43,7 +51,12 @@ const ChatFormInput = ({
         px-4 py-2
         ${inputSize === 1 ? "rounded-full" : "rounded-lg"}
         ring ring-violet-300/50 focus-within:ring-violet-700
-        shadow-md shadow-black/20
+        shadow-black/20
+        ${
+          isActive
+            ? "border-violet-700 border-2 shadow-xl"
+            : "border-violet-300/50 border-1 shadow-md"
+        }
         animate animate-fade-up
         `}
       style={{ height: `${inputSize * 24}px`, minHeight: "56px" }}
@@ -71,6 +84,12 @@ const ChatFormInput = ({
         aria-autocomplete="none"
         name="userPrompt"
         style={{ height: `${inputSize * 20}px` }}
+        onFocus={() => {
+          setIsFocused(true);
+        }}
+        onBlur={() => {
+          setIsFocused(false);
+        }}
       />
     </div>
   );
