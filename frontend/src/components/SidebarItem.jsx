@@ -11,7 +11,7 @@ const SidebarItem = ({ icon, children, url, onClick = null }) => {
                 gap-8
                 animate animate-menu-icon
                 cursor-pointer
-                font-inter
+                font-inter text-nowrap
             `}
       role="buttom"
       onClick={onClick ? onClick : () => navigate(url)}
@@ -20,7 +20,7 @@ const SidebarItem = ({ icon, children, url, onClick = null }) => {
         icon={icon}
         className="text-gray-200 hover:text-inherit"
       />
-      <p className="block text-xl ">{children}</p>
+      <p className="block text-xl text-nowrap">{children}</p>
     </div>
   );
 };

@@ -2,11 +2,14 @@ import {
   faHexagonNodes,
   faHouse,
   faMessage,
+  faMoon,
   faPlug,
+  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import SidebarItem from "./SidebarItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Sidebar = ({ setActiveMenu }) => {
+const Sidebar = ({ setActiveMenu, setDarkMode, darkMode }) => {
   return (
     <div
       className="
@@ -37,6 +40,12 @@ const Sidebar = ({ setActiveMenu }) => {
         </SidebarItem>
         <SidebarItem icon={faPlug} onClick={() => setActiveMenu("connection")}>
           Connection
+        </SidebarItem>
+        <SidebarItem
+          icon={darkMode ? faSun : faMoon}
+          onClick={() => setDarkMode(!darkMode)}
+        >
+          {darkMode ? "Light Mode" : "Dark Mode"}
         </SidebarItem>
       </div>
     </div>
