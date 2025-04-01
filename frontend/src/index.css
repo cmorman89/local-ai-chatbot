@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap");
 @tailwind utilities;
 
+body {
+  @apply text-gray-800 ;
+}
 .font-inter {
   font-family: "Inter", sans-serif;
 }
@@ -25,6 +28,7 @@
   @apply hover:scale-115 hover:text-violet-400 duration-300;
 }
 
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -44,6 +48,45 @@
   }
 }
 
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Rotation derived from https://web.dev/articles/css-border-animations */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotateBorder {
+  to {
+    --angle: 360deg;
+  }
+}
+.animate-border {
+  --angle: 0deg;
+  background-image: linear-gradient(
+      to right,
+      rgb(255 255 255),
+      rgb(255 255 255)
+    ),
+    conic-gradient(
+      from var(--angle),
+      #6d28d9 0deg 180deg,
+      #8b5cf6 180deg 360deg
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  animation: rotateBorder 1.5s linear infinite;
+}
+
+/* --------- */
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -52,9 +95,14 @@
   animation: fadeUp 1s ease-out;
 }
 
+.animate-rotate {
+  animation: rotate 2s linear infinite;
+}
+
 .animate-fade-up-fast {
   animation: fadeUp 0.3s ease-out;
 }
+
 .markdown {
   animation: fadeUp 0.3s ease-in-out;
   @apply transition-all;

@@ -1,16 +1,33 @@
 import {
   faCircleXmark,
   faHexagonNodes,
+  faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ModelBubble from "./ModelBubble";
+import ModelBubble from "./menus/ModelBubble";
 import { useEffect, useState } from "react";
 import useFetchData from "../hooks/useFetchData";
+import useLoadModel from "../hooks/useLoadModel";
 
-const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
+const ModelSelectionMenu = ({
+  isOpen,
+  setIsOpen,
+  setModel,
+  serverUrl,
+  setModelLoading,
+}) => {
   const url = `${serverUrl}/v1/models`;
   const [modelList, setModelList] = useState([]);
   const { data, loading, error } = useFetchData(url);
+  const {
+    
+    loading: modelLoading,
+    loadModel,
+  } = useLoadModel(serverUrl);
+
+  const handleOutsideClick = (e) => {
+    if (e.target === e.currentTarget) setIsOpen(false);
+  };
 
   const handleClose = () => {
     setIsOpen(false);
@@ -18,6 +35,7 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
 
   const handleModelSelect = (model) => {
     setModel(model);
+    loadModel(model);
     setIsOpen(false);
   };
 
@@ -30,6 +48,10 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
     }
   }, [data, loading]);
 
+  useEffect(() => {
+    setModelLoading(modelLoading);
+  }, [modelLoading]);
+
   return (
     <div
       className={`
@@ -41,6 +63,7 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
         backdrop-blur-sm
         animate
         `}
+      onClick={(e) => handleOutsideClick(e)}
     >
       <div
         className="
@@ -86,14 +109,31 @@ const ModelSelectionMenu = ({ isOpen, setIsOpen, setModel, serverUrl }) => {
           "
         >
           {loading && <div>Loading...</div>}
-          {error && <div>Error: {error.message}</div>}
+          {error && (
+            <div className="flex justify-center">
+              <div
+                className="
+                flex items-center justify-center font-inter gap-6 rounded-2xl border-red-600 border-2 px-8 py-4 w-fit bg-red-50"
+              >
+                <FontAwesomeIcon
+                  icon={faTriangleExclamation}
+                  className="text-red-500 text-6xl"
+                />
+                <div className="flex flex-col">
+                  <p className="text-2xl font-semibold text-red-700">Error:</p>
+                  <p>{error.message}</p>
+                </div>
+              </div>
+            </div>
+          )}
           {modelList
             .slice()
             .sort((a, b) => a.localeCompare(b))
             .map((model, i) => (
               <ModelBubble
                 key={i}
-                title={model}
+                index={i}
+                modelId={model}
                 description="This is a description of the model"
                 onClick={() => handleModelSelect(model)}
               />

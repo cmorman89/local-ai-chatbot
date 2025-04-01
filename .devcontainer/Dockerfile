@@ -14,4 +14,4 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
 WORKDIR /workspace
 
 # Expose backend & frontend ports
-EXPOSE 5000 5173
+EXPOSE 5000 5173 5174 1235

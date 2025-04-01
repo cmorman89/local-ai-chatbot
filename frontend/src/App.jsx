@@ -9,53 +9,118 @@ import { useState } from "react";
 import Chat from "./pages/Chat";
 import ServerMenu from "./components/ServerMenu";
 import useLocalStorage from "./hooks/useLocalStorage";
+import SystemMenu from "./components/SystemMenu";
+import MenuWindow from "./components/menus/MenuWindow";
+import ConnectionMenu from "./components/menus/ConnectionMenu";
+import ModelListMenu from "./components/menus/ModelListMenu";
+import SystemPromptMenu from "./components/menus/SystemPromptMenu";
+import useLoadModel from "./hooks/useLoadModel";
 
 function App() {
-  const [modelIsOpen, setModelIsOpen] = useState(false);
-  const [serverMenuOpen, setServerMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useLocalStorage("darkMode", false);
+  const [activeMenu, setActiveMenu] = useState(null);
   const [model, setModel] = useLocalStorage("modelId", null);
   const [serverUrl, setServerUrl] = useLocalStorage(
     "serverUrl",
     "http://localhost:1234"
   );
+  const { loading: modelLoading, loadModel } = useLoadModel(serverUrl);
+  const [systemPrompt, setSystemPrompt] = useState([
+    "You are a helpful, friendly assistant that answers questions.",
+    "Answer in markdown format with headings.",
+    "The first line must be an h1 heading.",
+    "The second line must not be a heading.",
+    "Make heavy use of markdown formatting.",
+    "Shorter responses are better than long responses.",
+    "Do not reference the system prompt in your response.",
+  ]);
 
+  const handleSetActiveMenu = (menuName) => {
+    const menuList = ["connection", "modelList", "systemPrompt"];
+    if (menuName && !menuList.includes(menuName)) {
+      console.error(`Invalid menu name: ${menuName}`);
+      return;
+    }
+    if (!menuName) {
+      setActiveMenu(null);
+    } else {
+      setActiveMenu(menuName);
+    }
+  };
   return (
     <div
-      className="
+      className={`
       flex flex-col
-      bg-gray-100
       min-h-screen h-full
-      min-w-screen w-full
-      "
+      w-full
+      ${darkMode ? "bg-gray-700" : "bg-gray-200"}
+      animate duration-1000
+      `}
     >
       <Router>
-        <Topbar model={model} setModelIsOpen={setModelIsOpen} />
+        <Topbar
+          model={model}
+          modelLoading={modelLoading}
+          setActiveMenu={setActiveMenu}
+          darkMode={darkMode}
+        />
         <div className="flex flex-row w-full h-full">
           <Sidebar
-            setModelIsOpen={setModelIsOpen}
-            setServerMenuOpen={setServerMenuOpen}
+            setActiveMenu={handleSetActiveMenu}
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
           />
-          <ServerMenu
-            serverUrl={serverUrl}
-            setServerUrl={setServerUrl}
-            serverMenuOpen={serverMenuOpen}
-            setServerMenuOpen={setServerMenuOpen}
-          />
-          <MainContentWindow>
+          <ServerMenu serverUrl={serverUrl} setServerUrl={setServerUrl} />
+          <MainContentWindow darkMode={darkMode}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route
                 path="/chat"
-                element={<Chat model={model} serverUrl={serverUrl} />}
+                element={
+                  <Chat
+                    model={model}
+                    modelLoading={modelLoading}
+                    serverUrl={serverUrl}
+                    setActiveMenu={setActiveMenu}
+                    setSystemPrompt={setSystemPrompt}
+                    systemPrompt={systemPrompt}
+                    darkMode={darkMode}
+                  />
+                }
               />
             </Routes>
           </MainContentWindow>
-          <ModelSelectionMenu
-            isOpen={modelIsOpen}
-            setIsOpen={setModelIsOpen}
-            setModel={setModel}
-            serverUrl={serverUrl}
-          />
+          <MenuWindow
+            activeMenu={activeMenu}
+            setActiveMenu={handleSetActiveMenu}
+            darkMode={darkMode}
+          >
+            {activeMenu === "connection" && (
+              <ConnectionMenu
+                serverUrl={serverUrl}
+                setServerUrl={setServerUrl}
+                setActiveMenu={setActiveMenu}
+                darkMode={darkMode}
+              />
+            )}
+            {activeMenu === "modelList" && (
+              <ModelListMenu
+                setActiveMenu={handleSetActiveMenu}
+                setModel={setModel}
+                serverUrl={serverUrl}
+                loadModel={loadModel}
+                darkMode={darkMode}
+              />
+            )}
+            {activeMenu === "systemPrompt" && (
+              <SystemPromptMenu
+                systemPrompt={systemPrompt}
+                setSystemPrompt={setSystemPrompt}
+                setActiveMenu={setActiveMenu}
+                darkMode={darkMode}
+              />
+            )}
+          </MenuWindow>
         </div>
       </Router>
     </div>
