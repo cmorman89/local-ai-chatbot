@@ -76,7 +76,7 @@ const ChatInput = ({
           darkMode={darkMode}
         />
       </div>
-      <div className="flex w-full gap-2 justify-center">
+      <div className="flex flex-col md:flex-row items-center w-full gap-2 justify-center">
         <ChatFormInput
           value={value}
           onChange={onChange}
