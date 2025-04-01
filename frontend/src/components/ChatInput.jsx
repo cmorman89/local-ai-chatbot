@@ -12,7 +12,6 @@ import ChatFormInput from "./ChatFormInput";
 import ChatIntro from "./ChatIntro";
 
 const ChatInput = ({
-  name = "userPrompt",
   onChange,
   onSubmit,
   onClear,
@@ -82,8 +81,15 @@ const ChatInput = ({
           inputSize={inputSize}
           setInputSize={setInputSize}
           onSubmit={onSubmit}
+          isActive={isActive}
+          loading={loading}
+          setIsFocused={setIsFocused}
         />
-        <div className={`flex ${inputSize === 1 ? 'items-center' : 'items-end'} gap-2 justify-center`}>
+        <div
+          className={`flex ${
+            inputSize === 1 ? "items-center" : "items-end"
+          } gap-2 justify-center`}
+        >
           {loading ? (
             <ExpandingButton
               text="Stop Generating"
