@@ -1,15 +1,12 @@
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
-import ModelSelectionMenu from "./components/ModelSelectionMenu";
 import MainContentWindow from "./components/MainContentWindow";
 // import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { useState } from "react";
 import Chat from "./pages/Chat";
-import ServerMenu from "./components/ServerMenu";
 import useLocalStorage from "./hooks/useLocalStorage";
-import SystemMenu from "./components/SystemMenu";
 import MenuWindow from "./components/menus/MenuWindow";
 import ConnectionMenu from "./components/menus/ConnectionMenu";
 import ModelListMenu from "./components/menus/ModelListMenu";
@@ -70,7 +67,6 @@ function App() {
             darkMode={darkMode}
             setDarkMode={setDarkMode}
           />
-          <ServerMenu serverUrl={serverUrl} setServerUrl={setServerUrl} />
           <MainContentWindow darkMode={darkMode}>
             <Routes>
               <Route path="/" element={<Home />} />
