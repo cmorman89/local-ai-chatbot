@@ -3,8 +3,15 @@ import useFetchData from "../../hooks/useFetchData";
 import ModelBubble from "./ModelBubble";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MessageBubble from "../MessageBubble";
 
-const ModelListMenu = ({ setActiveMenu, serverUrl, setModel, loadModel, darkMode }) => {
+const ModelListMenu = ({
+  setActiveMenu,
+  serverUrl,
+  setModel,
+  loadModel,
+  darkMode,
+}) => {
   const modelEndpoint = `${serverUrl}/v1/models`;
   const [modelList, setModelList] = useState([]);
   const { data, loading, error } = useFetchData(modelEndpoint);
@@ -33,24 +40,25 @@ const ModelListMenu = ({ setActiveMenu, serverUrl, setModel, loadModel, darkMode
             overflow-x-visible
           "
     >
-      {loading && <div>Loading...</div>}
-      {error && (
-        <div className="flex justify-center">
-          <div
-            className="
-                flex items-center justify-center font-inter gap-6 rounded-2xl border-red-600 border-2 px-8 py-4 w-fit bg-red-50"
-          >
-            <FontAwesomeIcon
-              icon={faTriangleExclamation}
-              className="text-red-500 text-6xl"
-            />
-            <div className="flex flex-col">
-              <p className="text-2xl font-semibold text-red-700">Error:</p>
-              <p>{error.message}</p>
-            </div>
-          </div>
-        </div>
-      )}
+      <div className="flex justify-center items-center mx-2 md:mx-1/4">
+        {loading && <MessageBubble>Loading models...</MessageBubble>}
+        {!loading && !error && modelList.length === 0 && (
+          <MessageBubble type="warning">
+            <p className="font-bold">No Models Found: </p>
+            <p>Please download a model to load.</p>
+          </MessageBubble>
+        )}
+        {!loading && error && (
+          <MessageBubble type="error">
+            <p className="font-bold">Error Fetching Models: </p>
+            <p>Please check the server settings.</p>
+            <p className="text-sm border-t border-rose-800/50 mt-2 pt-2 text-rose-950/50">
+              (<span className="font-medium">Error Message: </span>
+              {error.message})
+            </p>
+          </MessageBubble>
+        )}
+      </div>
       {modelList
         .slice()
         .sort((a, b) => a.localeCompare(b))
